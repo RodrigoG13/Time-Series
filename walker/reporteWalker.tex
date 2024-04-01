@@ -1,0 +1,1018 @@
+% !TeX spellcheck = es_MX-SpanishMexico
+%----------------------------------------------------------------------------------------------------
+%                           		  ENTRE LÍNEAS DE TIERRA
+
+% Curso: Arqueología Bíblica
+% Módulo 1: Introducción, Definiciones y Conceptos
+% Elabora: Rodrigo Gerardo Trejo Arriaga
+
+%----------------------------------------------------------------------------------------------------
+
+% FORMATO DEL DOCUMENTO
+
+
+\documentclass[11pt]{article} % Letra estandar
+
+\usepackage[utf8]{inputenc}
+
+%\usepackage{tgadventor}
+%\renewcommand{\familydefault}{\sfdefault}
+
+\usepackage[light,math]{iwona}
+
+\usepackage[T1]{fontenc}
+
+
+\usepackage[spanish]{babel}
+\addto\captionsspanish{\renewcommand{\abstractname}{\large{Introducción}}}
+
+\usepackage[margin=1in,letterpaper]{geometry}
+
+\usepackage{fancyhdr} % Paquete para personalizar encabezado y pie de página
+\pagestyle{fancy} % Establece que personalizaremos el pie de pagina y el encabezado
+\setlength{\headheight}{13.59999pt} % Establece la altura del encabezado
+\fancyhead[R]{\textcolor{darkBlue}{Series de Tiempo}} % Encabezado derecho
+\fancyhead[L]{\textit{\textcolor{darkBlue}{Centro de Investigación en Computación}}} % Encabezado izquierdo
+\fancyfoot[L]{\textit{\textcolor{darkBlue}{Caminante Aleatorio}}} % Pie de página izquierdo 
+\fancyfoot[R]{\textcolor{darkBlue}{\thepage}} % Pie de página  derecho
+\fancyfoot[C]{} % Elimina la nueración central de páginas en el pie de página
+\renewcommand{\headrulewidth}{0.5pt} % Grosor de la linea de encabezado
+\renewcommand{\footrulewidth}{0.5pt} % Grosor de la linea de pie de página
+
+\usepackage{enumitem}
+
+\usepackage{changepage}
+
+\usepackage{graphicx}
+
+\usepackage{tabularx}
+
+\setlength{\parskip}{8pt}
+
+\usepackage{xcolor}
+\definecolor{darkBlue}{rgb}{0,0,0.31}
+%\definecolor{darkBlue}{rgb}{0,0,0.5}
+\definecolor{munsell}{rgb}{0.0, 0.5, 0.69}
+\definecolor{indigo}{rgb}{0.0, 0.25, 0.42}
+\renewcommand{\footrulewidth}{2pt}
+\renewcommand{\footrule}{\hbox to\headwidth{\color{darkBlue}\leaders\hrule height \footrulewidth\hfill}}
+
+\usepackage{colortbl}
+
+\usepackage{titlesec}
+\titleformat{\section}
+{\normalfont\Large\bfseries\color{darkBlue}}{\thesection.}{1em}{}
+
+\usepackage{tabularx}
+
+\usepackage{textcomp}
+
+\usepackage{titling}
+
+\usepackage{apacite}
+\bibliographystyle{apacite}
+
+%\usepackage{natbib}
+%\setlength{\bibsep}{6pt}
+
+\usepackage{setspace}
+\usepackage{multicol}
+\usepackage{listings}
+
+
+\definecolor{codeblue}{rgb}{0.25,0.5,0.5}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{commentblue}{rgb}{0.3,0.3,0.6}
+\definecolor{keywordblue}{rgb}{0.2,0.2,0.7}
+\definecolor{stringblue}{rgb}{0.15,0.2,0.9}
+
+\lstdefinestyle{bluepythonstyle}{
+	language=Python,
+	basicstyle=\ttfamily\small,
+	commentstyle=\color{commentblue},
+	keywordstyle=\color{keywordblue},
+	numberstyle=\tiny\color{codeblue},
+	stringstyle=\color{stringblue},
+	backgroundcolor=\color{backcolour},
+	breaklines=true,
+	captionpos=b,
+	abovecaptionskip=1\baselineskip,
+	showstringspaces=false,
+	frame=lines,
+	numbers=left,
+	xleftmargin=\parindent,
+	tabsize=4
+}
+\lstset{style=bluepythonstyle}
+
+
+\renewcommand{\thesection}{\Roman{section}}
+
+\renewcommand*\familydefault{\sfdefault} % Cambia la fuente predeterminada a sans-serif
+\usepackage[T1]{fontenc} % Codificación de la fuente
+\usepackage{lmodern} % Carga la fuente Latin Modern\textbf{}
+\usepackage{amsmath, amssymb}
+\usepackage{hyperref}
+\usepackage{caption}
+\hypersetup{
+	colorlinks=true, % activa el color
+	linkcolor=darkBlue, % color del texto del enlace
+	urlcolor=darkBlue % color de las URLs
+}
+\usepackage{tikz}
+
+%----------------------------------------------------------------------------------------------------
+% CUERPO DEL DOCUMENTO
+
+\begin{document}
+	
+	\begin{titlepage}
+		\centering
+		{\includegraphics[width=0.25\textwidth]{cic}\par}
+		\vspace{0.5cm}
+		{\bfseries\huge Centro de Investigación en Computación \par}
+		\vspace{0.7cm}
+		{\LARGE Series de Tiempo (Predicción y Caos) \par}
+		\vspace{0.3cm}
+		\vspace{3.1cm}
+		{\scshape \Huge \textbf{Proyecto 1:}  \par}
+		\vspace{0.03cm}
+		{{\LARGE \textit{Caminante Aleatorio}} \par}
+		%\vfill
+		\vspace{3.5cm}
+		{\Large Autor: \par}
+		{\Large Rodrigo Gerardo Trejo Arriaga \par}
+		%\vfill
+		\vspace{3cm}
+		{\Large Abril 2024 \par}
+	\end{titlepage}
+	
+	\begin{center}
+		\vspace*{0.1cm}
+		{\huge \textcolor{darkBlue}{\textbf{Proyecto 1:}} \par}
+		
+		{\Large \textcolor{darkBlue}{\textbf{\textit{Caminante Aleatorio}}}}
+	\end{center}
+	
+	Un caminante aleatorio es un proceso estocástico que modela una secuencia de pasos tomados al azar. En el contexto de las series de tiempo, este fenómeno describe cómo una variable de interés evoluciona a lo largo del tiempo de manera que cada valor sucesivo depende del valor anterior más alguna variación aleatoria. Formalmente, se puede representar como:
+	
+	\[
+	P_{t} = P_{t-1} + \epsilon_{t}
+	\]
+	
+	donde $P_{t}$ es el estado del sistema en el tiempo $t$, y $\epsilon_{t}$ es un término aleatorio que representa la innovación o perturbación en el tiempo $t$, usualmente asumiendo una distribución normal con media cero.
+	
+	Aunque el concepto de caminante aleatorio es simple, sus aplicaciones son vastas y variadas. En economía, se utiliza para modelar la hipótesis de mercados eficientes, sugiriendo que los precios de los activos financieros siguen un camino aleatorio y, por lo tanto, son fundamentalmente impredecibles. Esta hipótesis implica que la información pasada no tiene poder predictivo sobre los movimientos futuros de los precios.
+	
+	En la física, el movimiento browniano es un ejemplo clásico de un caminante aleatorio, describiendo el movimiento aparentemente aleatorio de partículas suspendidas en un fluido. Además, en ecología, los patrones de movimiento de diferentes animales pueden ser modelados como caminantes aleatorios, ayudando a entender los procesos de búsqueda de alimento y la dispersión de poblaciones.
+	
+	En este proyecto modelaremos dicho proceso estocástico mediante la animación del movimiento de partículas en una cuadrícula; tomando como elementos aleatorios los siguientes parámetros:
+	\begin{itemize}
+		\item Posición inicial (\( x_0, y_0 \)).
+		\item Dirección de movimiento (del 1 al 8 en cuanto a pixeles).
+		\item Distancia a recorrer en la dirección seleccionada
+	\end{itemize}
+	
+	Dichos elementos serán generados mediante números random, los cuales seguirán distribuciones \textit{normal}, \textit{gamma} y \textit{uniforme}, con el fin de observar el comportamiento del sistema ante diferentes distribuciones de probabilidad en su entrada.
+
+	Este proyecto consta de cuatro fases:
+	
+	\newpage
+	
+	\section{Generación de Números Random con Distribución Uniforme}
+
+	En primer lugar, generamos un total de 100,000 números aleatorios con distribución \textcolor{darkBlue}{\textit{uniforme}} que se guardaron en un archivo de texto llamado \texttt{randomsUniforme.txt}, los cuales generaron un histograma como el siguiente:
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.7\textwidth]{../transformaciones/hist_uniform_Sturges.pdf}
+		\caption{Histograma de números con distribución uniforme.}
+		\label{fig:randomsUniforme}
+	\end{figure}
+	
+	
+	\section{Transformación de distribución}
+	
+	En segundo lugar, transformamos los números generados con una distribución uniforme mediante una técnica específica. Esta transformación nos permite obtener un nuevo conjunto de números aleatorios, pero esta vez siguiendo distribuciones de probabilidad distintas, concretamente la distribución normal y la gamma.
+	
+	\subsection{Transformación a Distribución Normal}
+	
+	La transformación de variables aleatorias con distribución uniforme a una distribución normal se realiza mediante el uso de la función de error inversa (\textit{inverse error function}), la cual juega un papel crucial en estadística para la transformación de variables aleatorias.
+	
+	Dado un valor $q$ de una distribución uniforme, el objetivo es encontrar el correspondiente valor en una distribución normal con media $\mu$ y desviación estándar $\sigma$. La transformación se lleva a cabo en dos pasos principales:
+	
+	\newpage
+	La función de error inversa se calcula utilizando una aproximación basada en una fórmula específica. Para un valor $x$, la función se define como:
+	
+	\[
+	\text{inverse\_erf}(x) = \text{sign}(x) \cdot \sqrt{\sqrt{\left(\frac{2}{\pi a} + \frac{\log(1 - x^2)}{2}\right)^2 - \frac{\log(1 - x^2)}{a}} - \left(\frac{2}{\pi a} + \frac{\log(1 - x^2)}{2}\right)}
+	\]
+	
+	donde $a$ es un coeficiente que en esta aproximación toma el valor de 0.147. Esta función permite mapear los valores de $x$ de la distribución uniforme a valores que siguen la función de error, la cual está estrechamente relacionada con la distribución normal.
+	
+	Con la función de error inversa calculada, el siguiente paso es utilizarla para transformar el cuantil $q$ de la distribución uniforme a un valor que siga una distribución normal estándar, y luego ajustarlo a cualquier media $\mu$ y desviación estándar $\sigma$ deseada. Esto se logra mediante la expresión:
+	
+	\[
+	\text{norm\_ppf}(q, \mu, \sigma) = \mu + \sigma \cdot \sqrt{2} \cdot \text{inverse\_erf}(2q - 1)
+	\]
+	
+	Este método asegura que los valores generados a partir de una distribución uniforme puedan ser transformados efectivamente a valores que siguen una distribución normal con los parámetros especificados.
+	
+	Dicha transformación se aplicó a los 100,000 números distribuidos uniformemente, se guardó el resultado en un archivo \texttt{randomsNormal.txt}  teniendo a la salida números normalmente distribuidos, como se muestra en el histograma:
+	
+	\begin{figure}[h]
+	 	\centering
+	 	\includegraphics[width=0.70\textwidth]{../transformaciones/hist_normal_Rice.pdf}
+	 	\caption{Histograma de números con distribución normal.}
+	 	\label{fig:randomsNormal}
+	 \end{figure}
+	 
+	
+	\subsection{Transformación a Distribución Gamma}
+	 
+	 Para generar variables aleatorias que sigan una distribución Gamma con parámetros de forma $a > 1$ y escala $\theta$, utilizamos el siguiente algoritmo:
+	 
+	 Definimos $\lambda = a - 1$ y calculamos un valor $c$ usando la expresión:
+	 \[
+	 c = \frac{(a - 1)^{a - 1} e^{1-a}}{\Gamma(a)},
+	 \]
+	 donde $\Gamma(a)$ es la función Gamma para el parámetro $a$.
+	 
+	 Repetimos los siguientes pasos hasta que se acepte un candidato:
+	 \begin{enumerate}
+	 	\item Generamos una variable aleatoria $y$ de una distribución exponencial con parámetro $\lambda$, utilizando la transformación $y = -\frac{\log(1-U)}{\lambda}$, donde $U$ es un número aleatorio uniforme entre 0 y 1.
+	 	\item Generamos un número aleatorio uniforme $u$.
+	 	\item Aceptamos $y$ si $u \leq \frac{y^{a-1} e^{-y}}{c \lambda^{-a} e^{-\lambda y}}$. En caso contrario, rechazamos $y$ y repetimos el proceso.
+	 \end{enumerate}
+	 
+	 Una vez aceptado, el valor de salida es $y \cdot \theta$, asegurando que la variable aleatoria generada siga una distribución Gamma con los parámetros de forma $a$ y escala $\theta$.
+	 
+	 De esta manera, obtenemos números con distribución gamma que se almacenaron en \texttt{randomsGamma.txt}. Su transformación la observamos en el siguiente histograma:
+	 
+	 \begin{figure}[h]
+	 	\centering
+	 	\includegraphics[width=0.70\textwidth]{../transformaciones/hist_gamma_Rice.pdf}
+	 	\caption{Histograma de números con distribución gamma.}
+	 	\label{fig:randomsGamma}
+	 \end{figure}
+	 \newpage
+	 
+	 \section{Métricas de las Distribuciones de Probabilidad}
+	 Se realizó una investigación respecto a las expresiones matemáticas que definen a las distribuciones de probabilidad \textit{uniforme, gamma y normal} (las cuales se detallan en el documento \href{https://drive.google.com/file/d/1NWN1bE0bM\_MSOIqLIhVPP\_wj7d1f1rp6/view?usp=drive\_link}{\textbf{Métricas de Probabilidad}}), que se codificaron como sigue para poder aplicarlas en nuestros set de datos anteriores:
+	 
+	 \subsection{Métricas para un set de datos genérico}
+	 \begin{lstlisting}
+	 	class DistribucionProbabilidad:
+	 	def __init__(self, datos):
+		 	self.datos = np.array(datos)
+		 	self.n = len(datos)
+	 	
+	 	def media(self):
+	 		return np.mean(self.datos)
+	 	
+	 	def mediana(self):
+	 		return np.median(self.datos)
+	 	
+	 	def moda(self):
+		 	frecuencias = {}
+		 	for dato in self.datos:
+			 	if dato in frecuencias:
+			 		frecuencias[dato] += 1
+			 	else:
+			 		frecuencias[dato] = 1
+		 	
+		 	modas = [valor for valor, frecuencia in frecuencias.items() if frecuencia == max(frecuencias.values())]
+		 	
+		 	if len(modas) == 1:
+		 		return modas[0]
+		 	else:
+		 		return modas
+	 	
+	 	def media_geometrica(self):
+	 		return gmean(self.datos)
+	 	
+	 	def asimetria(self):
+		 	media = self.media()
+		 	desv_std = self.desviacion_estandar()
+		 	suma_tercero_momento = np.sum((self.datos - media) ** 3)
+		 	skewness = (self.n / ((self.n - 1) * (self.n - 2))) * (suma_tercero_momento / (desv_std ** 3))
+		 	return skewness
+	 	
+	 	def rango(self):
+	 		return self.datos.max() - self.datos.min()
+	 	
+	 	def desviacion_estandar(self):
+	 		return np.std(self.datos, ddof=1)
+	 	
+	 	def varianza(self):
+	 		return np.var(self.datos, ddof=1)
+	 	
+	 	def coeficiente_variacion(self):
+	 		return self.desviacion_estandar() / self.media()
+	 	
+	 	def percentil(self, p):
+		 	if 0 <= p <= 100:
+		 		return np.percentile(self.datos, p)
+		 	else:
+		 		raise ValueError("El percentil debe estar entre 0 y 100.")
+	 	
+	 	def cuartil(self, q):
+		 	if q in [1, 2, 3]:
+		 		return self.percentil(q * 25)
+		 	else:
+		 		np.nan
+	 	
+	 	def curtosis(self):
+		 	media = self.media()
+		 	s = self.desviacion_estandar()
+		 	suma_cuarto_momento = np.sum((self.datos - media) ** 4)
+		 	curtosis = (self.n * (self.n+1) * suma_cuarto_momento) / ((self.n-1) * (self.n-2) * (self.n-3) * s**4) - (3 * (self.n-1)**2) / ((self.n-2) * (self.n-3))
+		 	return curtosis
+	 	
+	 	def entropia(self):
+		 	p, counts = np.unique(self.datos, return_counts=True)
+		 	p = counts / len(self.datos)
+		 	entropia = -np.sum(p * np.log(p))
+		 	return entropia
+	 	
+	 	def calcular_metricas(self, percentil, cuartil):
+		 	resultados = {
+		 		'Media': self.media(),
+		 		'Mediana': self.mediana(),
+		 		'Moda': self.moda(),
+		 		'Media Geometrica': self.media_geometrica(),
+		 		'Rango': self.rango(),
+		 		'Desviacion Estandar': self.desviacion_estandar(),
+		 		'Varianza': self.varianza(),
+		 		f'Percentil {percentil}': self.percentil(percentil),
+		 		f'Cuartil {cuartil}': self.cuartil(cuartil),
+		 		'Asimetria': self.asimetria(),
+		 		'Coeficiente de Variacion': self.coeficiente_variacion(),
+		 		'Curtosis': self.curtosis(),
+		 		'Entropia': self.entropia()
+		 	}
+		 	
+		 	for metrica, valor in resultados.items():
+			 	print(f"{metrica}: {valor}")
+	 \end{lstlisting}
+	
+	\subsection{Métricas para una Distribución Uniforme}
+	\begin{lstlisting}
+		class DistribucionUniforme(DistribucionProbabilidad):
+		
+			def __init__(self, datos):
+				super().__init__(datos)
+				self.a = min(datos)
+				self.b = max(datos)
+			
+			def media(self):
+				return (self.a + self.b)/2
+			
+			def mediana(self):
+				return (self.a + self.b)/2
+			
+			def media_geometrica(self):
+				return super().media_geometrica()
+			
+			def moda(self):
+				return super().moda()
+			
+			def rango(self):
+				return self.b - self.a
+			
+			def varianza(self):
+				return ((self.b - self.a)**2)/12
+			
+			def desviacion_estandar(self):
+				return (((self.b - self.a)**2)/12) ** (1/2)
+			
+			def coeficiente_variacion(self):
+				return ((((self.b - self.a)**2)/12) ** (1/2)) / ((self.a + self.b) / 2)
+			
+			def percentil(self, num_perc):
+				p = num_perc/100
+				return self.a + p*(self.b - self.a)
+			
+			def cuartil(self, num_cuartil):
+				num_perc = num_cuartil * 25
+				return self.percentil(num_perc)
+			
+			def asimetria(self):
+				return super().asimetria()
+			
+			def curtosis(self):
+				return super().curtosis()
+			
+			def entropia(self):
+				return math.log(self.b - self.a)
+			
+			def calcular_metricas(self, percentil, cuartil):
+				return super().calcular_metricas(percentil, cuartil)
+		
+	\end{lstlisting}
+	
+	\subsection{Métricas para una Distribución Normal}
+	\begin{lstlisting}
+		class DistribucionNormal(DistribucionProbabilidad):
+		
+			def __init__(self, datos):
+				super().__init__(datos)
+				self.mu = self.media()
+				self.sigma = self.desviacion_estandar()
+			
+			def media(self):
+				return super().media()
+			
+			def mediana(self):
+				return self.mu
+			
+			def media_geometrica(self):
+				return "No aplica"
+			
+			def moda(self):
+				return self.mu
+			
+			def rango(self):
+				return super().rango()
+			
+			def percentil(self, num_perc):
+				p = num_perc/100
+				if 0 <= p <= 1:
+					valor_z = norm.ppf(p)
+					return self.mu + valor_z * self.sigma
+				else:
+					return np.nan
+			
+			def cuartil(self, num_cuartil):
+				if num_cuartil in [1,2,3,4]:
+					c = num_cuartil * 25
+					return self.percentil(c)
+				
+				else:
+					return np.nan
+			
+			def varianza(self):
+				return self.sigma**2
+			
+			def desviacion_estandar(self):
+				return super().desviacion_estandar()
+			
+			def coeficiente_variacion(self):
+				if self.mu != 0:
+					return self.sigma/self.mu
+				else:
+					return np.nan
+			
+			def asimetria(self):
+				return super().asimetria()
+			
+			def curtosis(self):
+			return super().curtosis()
+			
+			def entropia(self):
+				return 0.5 * np.log(2 * np.pi * np.e * self.sigma ** 2)
+			
+			def calcular_metricas(self, percentil, cuartil):
+				return super().calcular_metricas(percentil, cuartil)
+	\end{lstlisting}
+	
+	\subsection{Métricas para una Distribución Gamma}
+	\begin{lstlisting}
+		class DistribucionGamma(DistribucionProbabilidad):
+		
+			def __init__(self, datos):
+				super().__init__(datos)
+				self.k, self.theta = self.estimar_params(self.datos)
+			
+			@staticmethod
+			def estimar_params(data):
+				def neg_log_likelihood(params, data):
+					return -np.sum(gamma.logpdf(data, a=params[0], scale=params[1]))
+				
+				pesos_iniciales = [1.0, 1.0]
+				result = minimize(neg_log_likelihood, pesos_iniciales, args=(data), method='L-BFGS-B', bounds=((0, None), (0, None)))
+				
+				k_est, theta_est = result.x
+				return k_est, theta_est
+			
+			
+			def media(self):
+				return self.k * self.theta
+			
+			def mediana(self):
+				return super().mediana()
+			
+			def media_geometrica(self):
+				return super().media_geometrica()
+			
+			def moda(self):
+				if self.k > 1:
+					return (self.k - 1) * self.theta
+				else:
+					return np.nan
+			
+			def rango(self):
+				return super().rango()
+			
+			def varianza(self):
+				return self.k * self.theta**2
+			
+			def desviacion_estandar(self):
+				return (self.k)**(1/2)*self.theta
+			
+			def coeficiente_variacion(self):
+				return 1/(self.k)**(1/2)
+			
+			def percentil(self, num_perc):
+				p = num_perc/100
+				return gamma.ppf(p, self.k, scale=self.theta)
+			
+			def cuartil(self, num_cuartil):
+				c = num_cuartil * 25
+				return self.percentil(c)
+			
+			def asimetria(self):
+				return super().asimetria()
+			
+			def curtosis(self):
+				return 6/self.k
+			
+			def entropia(self):
+				return self.k + np.log(self.theta) + gammaln(self.k) + (1 - self.k) * psi(self.k)
+			
+			def calcular_metricas(self, percentil, cuartil):
+				return super().calcular_metricas(percentil, cuartil)
+	\end{lstlisting}
+	
+	Así, para los sets de datos \texttt{randomsUniforme.txt}, \texttt{randomsNormal.txt} y \texttt{randomsGamma.txt} se obtuvieron los siguientes resultados:
+	
+	\newpage
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.49\textwidth]{resultadosUniforme.png}
+		\caption{Métricas para el set \texttt{randomsUniforme.txt}.}
+		\label{fig:resultados - distribución uniforme}
+	\end{figure}
+	
+	\begin{multicols}{2}
+		\begin{minipage}{\linewidth}
+			\centering
+			\includegraphics[width=0.9\linewidth]{resultadosNormal.png}
+			\captionof{figure}{Métricas para el set \texttt{randomsNormal.txt}.}
+			\label{fig:resultados-normal}
+		\end{minipage}
+		\vfill\columnbreak
+		\begin{minipage}{\linewidth}
+			\centering
+			\includegraphics[width=0.9\linewidth]{resultadosGamma.png}
+			\captionof{figure}{Métricas para el set \texttt{randomsGamma.txt}.}
+			\label{fig:resultados-gamma}
+		\end{minipage}
+	\end{multicols}
+	
+	A continuación se analizan los resultados obtenidos al aplicar las métricas a los conjuntos de datos.
+	
+	\subsection{Análisis de Resultados}
+	
+	\subsubsection{Para la distribución uniforme}
+	Tras aplicar las métricas estadísticas a una muestra de datos generados con una distribución uniforme, hemos obtenido los siguientes resultados:
+	
+	\begin{itemize}
+		\item La \textbf{media} y la \textbf{mediana} tienen el mismo valor de 500.0, lo cual es esperable en una distribución uniforme donde todos los valores tienen la misma probabilidad.
+		\item La \textbf{moda} se presenta en 994.0. En una distribución perfectamente uniforme, la moda no está bien definida ya que cada valor es igualmente probable. Sin embargo, debido a variaciones en la muestra, se puede presentar un pico en la frecuencia.
+		\item La \textbf{media geométrica} es 0. Este resultado sugiere que la muestra puede contener valores en o cercanos a cero, lo que arrastra el promedio geométrico hacia abajo.
+		\item El \textbf{rango} es 1000.0, lo que indica que los datos están esparcidos uniformemente a través de un intervalo amplio.
+		\item La \textbf{desviación estándar} y la \textbf{varianza} son coherentes con la fórmula de distribución uniforme $(b-a)^2/12$, reflejando la dispersión de los datos.
+		\item El \textbf{coeficiente de variación} es 0.577, lo que puede considerarse bajo, indicando una baja dispersión relativa respecto a la media.
+		\item Los valores de \textbf{percentil 20} y \textbf{cuartil 3} son consistentes con lo que se esperaría en una distribución uniforme.
+		\item La \textbf{asimetría} se presenta con un valor de 0.031. Esto indica que la distribución de los datos es casi simétrica, con una ligera inclinación hacia la derecha. 
+		\item La \textbf{curtosis} negativa sugiere una distribución más achatada que la distribución normal.
+		\item La \textbf{entropía} es positiva y está relacionada con el logaritmo del rango de los datos, indicando un grado de incertidumbre asociado a la variabilidad de los datos dentro del rango.
+	\end{itemize}
+	
+	\subsubsection{Para la distribución normal}
+	\begin{itemize}
+		\item La \textbf{media}, la \textbf{mediana} y la \textbf{moda} tienen valores muy cercanos entre sí, lo que es característico de una distribución normal, que es simétrica alrededor de su media.
+		
+		\item El \textbf{rango} es aproximadamente 12.73, lo cual nos da una idea de la dispersión total de los datos desde el valor mínimo al máximo.
+		
+		\item La \textbf{desviación estándar} es de aproximadamente 1.04, indicando que la mayoría de los datos se encuentran dentro de este rango alrededor de la media en una distribución normal.
+		
+		\item La \textbf{varianza}, siendo el cuadrado de la desviación estándar, refleja la dispersión de los datos y en este caso es aproximadamente 1.09.
+		
+		\item El \textbf{percentil 20} es aproximadamente -0.86, lo que indica que el 20\% de los valores son menores que este número.
+		
+		\item El \textbf{cuartil 3} es aproximadamente 0.70, mostrando que el 75\% de los datos están por debajo de este valor.
+		
+		\item La \textbf{asimetría} tiene un valor cercano a cero (aproximadamente 0.024), lo que confirma la simetría de la distribución. Una distribución perfectamente normal tendría una asimetría de cero.
+		
+		\item El \textbf{coeficiente de variación} es bastante alto, aproximadamente 64.44, lo que sugiere una variabilidad relativa alta en comparación con la media.
+		
+		\item La \textbf{curtosis} es aproximadamente 2.46, lo cual es ligeramente superior a 3, que es la curtosis de una distribución normal estándar. Esto indica una distribución un poco más puntiaguda que la normal, con colas más pesadas.
+		
+		\item La \textbf{entropía}, de aproximadamente 1.46, aunque no es comúnmente discutida en el contexto de la distribución normal, proporciona una medida de incertidumbre o aleatoriedad en la distribución de los datos.
+	\end{itemize}
+	
+	
+	\subsubsection{Para la distribución Gamma}
+	
+	\begin{itemize}
+		\item La \textbf{media} es aproximadamente 0.856, lo cual representa el promedio de los valores de la muestra.
+		
+		\item La \textbf{mediana} de 0.6506 es menor que la media, lo que indica una asimetría hacia la derecha en la distribución.
+		
+		\item La \textbf{moda} es aproximadamente 0.4486, lo que es esperable en una distribución Gamma asimétrica, donde la moda es menor que la media y la mediana.
+		
+		\item La \textbf{media geométrica} es aproximadamente 0.6626, siendo relevante en distribuciones sesgadas y generalmente menor que la media aritmética para distribuciones con asimetría positiva.
+		
+		\item El \textbf{rango}, de aproximadamente 7.29, muestra la diferencia entre los valores máximo y mínimo en la muestra.
+		
+		\item La \textbf{desviación estándar}, cercana a 0.59, indica la cantidad de variación o dispersión de los valores en la muestra.
+		
+		\item La \textbf{varianza} es aproximadamente 0.3492, proporcionando otra medida de la dispersión de los datos.
+		
+		\item El \textbf{percentil 20} es aproximadamente 0.3638, indicando que el 20\% de los valores en la distribución son inferiores a este valor.
+		
+		\item El \textbf{cuartil 3} es de 1.1492, lo que sugiere que el 75\% de los datos son menores que este valor.
+		
+		\item La \textbf{asimetría} tiene un valor alto de 3.111, confirmando el sesgo positivo de la distribución y la concentración de la mayoría de los datos hacia el lado izquierdo de la media.
+		
+		\item El \textbf{coeficiente de variación}, aproximadamente 0.69, muestra una variabilidad relativa en relación con la media de la muestra.
+		
+		\item La \textbf{curtosis}, de alrededor de 2.856, indica un pico más alto y colas más gruesas en comparación con una distribución normal (curtosis normal = 3).
+		
+		\item La \textbf{entropía}, de aproximadamente 0.7146, es una medida de la incertidumbre inherente en los resultados de la distribución Gamma.
+	\end{itemize}
+	
+	
+	\subsection{Transformaciones al sistema}
+	
+	Con la intención de seguir caracterizando otros sets de datos y observar como se conservan los sistemas dinámicos cuando a su entrada reciben un conjunto de números aleatorios y se procesan a través de transformaciones \textbf{\textit{lineales y no lineales}} se les aplicó a cada set de datos (\texttt{randomsUniforme.txt, randomsNormal.txt y randomsGamma.txt}) las siguientes funciones:
+	
+	\newpage
+	
+	\subsubsection{Transformación lineal: $x^2 - 5x + 7$}
+	
+	Para la transformación cuadrática con origen en datos uniformemente distribuidos:
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.7\textwidth]{../transformaciones/cuad_uniforme1.pdf}
+		\caption{Gráfica de la serie de tiempo para $x^2 - 5x + 7$ con datos de distribución normal.}
+		\label{fig:cuadUnifGraf}
+	\end{figure}
+	
+		\begin{multicols}{2}
+			\begin{minipage}{\linewidth}
+				\centering
+				\includegraphics[width=1\linewidth]{../transformaciones/cuad_uniforme2.pdf}
+				\captionof{figure}{Histograma.}
+				\label{fig:cuadUnifHist}
+			\end{minipage}
+			\vfill\columnbreak
+			\begin{minipage}{\linewidth}
+				\centering
+				\includegraphics[width=1\linewidth]{../transformaciones/cuad_uniforme3.png}
+				\captionof{figure}{Métricas}
+				\label{cuadUnifMet}
+			\end{minipage}
+		\end{multicols}
+	
+	La serie de tiempo dada presenta una fluctuación que parece uniforme a lo largo de todos sus valores. El histograma asociado y las métricas calculadas revelan las siguientes características:
+	
+	\begin{itemize}
+		\item La \textbf{media} de 336759, siendo el promedio de los datos, sugiere que la suma total de la serie de tiempo es considerablemente alta. En una distribución uniforme ideal, la media y la mediana son cercanas, lo que no se observa en este conjunto de datos.
+		
+		\item La \textbf{mediana} de 253513, al ser menor que la media, puede indicar que una cantidad significativa de valores de la serie de tiempo son relativamente bajos, lo que podría desplazar la media hacia arriba.
+		
+		\item La \textbf{moda} de 7 es atípicamente baja y específica en comparación con el rango de los datos. La presencia de una moda tan baja podría ser indicativa de un valor atípico o una acumulación de frecuencias en un punto muy específico de la distribución.
+		
+		\item La \textbf{media geométrica}, aproximadamente 133041, es relevante en la descripción de los datos cuando la distribución no es simétrica. Su valor inferior a la media aritmética indica una distribución sesgada positivamente.
+		
+		\item El \textbf{rango} de aproximadamente 995006 muestra que los datos se extienden sobre un intervalo muy amplio.
+		
+		\item La \textbf{desviación estándar} de 300018 es alta y sugiere que los datos están muy dispersos en relación con la media.
+		
+		\item El \textbf{percentil 20} de 40201 señala que hay una gran cantidad de datos que son muy bajos en comparación con el valor medio, lo cual apoya la existencia de asimetría positiva.
+		
+		\item El \textbf{cuartil 3} de 570781 indica que hay una amplia dispersión en los valores superiores de la serie de tiempo. En una distribución uniforme, los cuartiles estarían más equitativamente espaciados.
+		
+		\item La \textbf{asimetría} positiva de 0.69 sugiere una concentración de datos en el extremo inferior y una cola más larga hacia el lado derecho de la distribución, lo que es indicativo de que hay valores extremadamente altos que están alejando la media de la mediana.
+		
+		\item El \textbf{coeficiente de variación} de aproximadamente 0.89 indica una alta variabilidad relativa de los datos. Este valor alto sugiere una distribución con mayor dispersión en relación con la media.
+		
+		\item La \textbf{curtosis} de aproximadamente -0.19 es inferior a la de una distribución normal (con una curtosis de 0), lo que indica que la distribución es más plana que la normal y que tiene colas más ligeras.
+		
+		\item La \textbf{entropía} de 6.85 es una medida de la incertidumbre y, aunque no proporciona una indicación directa del tipo de distribución, un valor alto sugiere una mayor aleatoriedad en los datos.
+	\end{itemize}
+	
+	Las métricas obtenidas sugieren una distribución con una asimetría positiva y un pico más plano que una distribución normal. La presencia de valores extremos es notable y aleja las características observadas de una distribución uniforme estándar. Con base a estas métricas, los datos parecen alinearse más estrechamente con una distribución que permite valores atípicos y una variabilidad considerable, tal como podría ser una distribución gamma o log-normal, dependiendo de la forma de la distribución observada en los datos.
+	
+	\newpage
+	
+	Para la transformación cuadrática con origen en datos normalmente distribuidos:
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.7\textwidth]{../transformaciones/cuad_normal1.pdf}
+		\caption{Gráfica de la serie de tiempo para $x^2 - 5x + 7$ con datos de distribución uniforme.}
+		\label{fig:cuadNormGraf}
+	\end{figure}
+	
+	\begin{multicols}{2}
+		\begin{minipage}{\linewidth}
+			\centering
+			\includegraphics[width=1\linewidth]{../transformaciones/cuad_normal2.pdf}
+			\captionof{figure}{Histograma.}
+			\label{fig:cuadNormHist}
+		\end{minipage}
+		\vfill\columnbreak
+		\begin{minipage}{\linewidth}
+			\centering
+			\includegraphics[width=1\linewidth]{../transformaciones/cuad_normal3.png}
+			\captionof{figure}{Métricas}
+			\label{cuadNormMet}
+		\end{minipage}
+	\end{multicols}
+	
+	\begin{itemize}
+		\item La \textbf{media} de aproximadamente 8.0 indica el valor promedio de la serie de tiempo. Un valor medio bajo en relación con la amplitud del rango sugiere una concentración de valores bajos.
+		
+		\item La \textbf{mediana} de 6.9, al estar por debajo de la media, refuerza la indicación de una asimetría positiva, donde más de la mitad de los valores están por debajo del promedio.
+		
+		\item La \textbf{moda} de 0.75 sugiere que el valor más frecuente es mucho más bajo que la media y la mediana, lo que podría ser indicativo de una acumulación de frecuencias cerca del límite inferior de los datos.
+		
+		\item La \textbf{media geométrica}, con un valor de aproximadamente 6.25, es menor que la media aritmética, lo que se alinea con una distribución que tiene una asimetría hacia la derecha.
+		
+		\item El \textbf{rango} es de aproximadamente 78.5, lo que indica la extensión total desde el valor más bajo hasta el más alto en la serie de tiempo.
+		
+		\item La \textbf{desviación estándar} es de aproximadamente 6.5, lo que muestra una variabilidad considerable alrededor de la media.
+		
+		\item La \textbf{varianza}, que es el cuadrado de la desviación estándar, nos dice cómo se distribuyen los valores alrededor de la media, y con un valor de aproximadamente 31.9, confirma la dispersión observada.
+		
+		\item El \textbf{percentil 20} de alrededor de 3.4 indica que el 20\% de los valores son inferiores a este número, lo que nos ayuda a entender la distribución de los valores más bajos.
+		
+		\item El \textbf{cuartil 3} de aproximadamente 10.8 indica que el 75\% de los datos se encuentran por debajo de este valor, proporcionando una medida de la distribución en el extremo superior.
+		
+		\item La \textbf{asimetría} con un valor de aproximadamente 2.8 sugiere una fuerte inclinación hacia la derecha, lo que significa que hay una cola más larga de valores hacia el extremo superior de la serie de tiempo.
+		
+		\item El \textbf{coeficiente de variación} de alrededor de 0.7 indica una variabilidad relativa moderada en relación con el valor medio.
+		
+		\item La \textbf{curtosis}, de aproximadamente 25.4, es mucho más alta que 0, lo que indica una distribución muy puntiaguda con colas pesadas, o la presencia de valores atípicos significativos.
+		
+		\item La \textbf{entropía}, con un valor de aproximadamente 6.85, refleja la aleatoriedad en la serie de tiempo. Una entropía alta sugiere una mayor incertidumbre y variabilidad en la distribución de los datos.
+	\end{itemize}
+	
+	La combinación de una alta curtosis y una asimetría significativa sugiere que la distribución de la serie de tiempo no sigue un patrón uniforme ni normal. La presencia de una moda baja y una asimetría positiva sugiere una concentración de valores más bajos y la posibilidad de valores atípicos extremos. Estas características pueden estar asociadas con distribuciones que presentan asimetría positiva y colas pesadas, como ciertas variantes de la distribución gamma o distribuciones log-normales, pero siempre dependiendo de la naturaleza específica de los datos en estudio.
+	
+	\newpage
+	
+	Para la transformación cuadrática con origen en datos de distribución gamma:
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.7\textwidth]{../transformaciones/cuad_gamma1.pdf}
+		\caption{Gráfica de la serie de tiempo para $x^2 - 5x + 7$ con datos de distribución gamma.}
+		\label{fig:cuadGammaGraf}
+	\end{figure}
+	
+	\begin{multicols}{2}
+		\begin{minipage}{\linewidth}
+			\centering
+			\includegraphics[width=1\linewidth]{../transformaciones/cuad_gamma2.pdf}
+			\captionof{figure}{Histograma.}
+			\label{fig:cuadGammaHist}
+		\end{minipage}
+		\vfill\columnbreak
+		\begin{minipage}{\linewidth}
+			\centering
+			\includegraphics[width=1\linewidth]{../transformaciones/cuad_gamma3.png}
+			\captionof{figure}{Métricas}
+			\label{cuadGammaMet}
+		\end{minipage}
+	\end{multicols}
+	
+	\begin{itemize}
+		\item La \textbf{media} de aproximadamente 3.91 indica el promedio de los valores observados en la serie de tiempo, lo que puede sugerir una acumulación de eventos alrededor de este punto.
+		
+		\item La \textbf{mediana} de 4.12, siendo ligeramente mayor que la media, apunta a una distribución con una cantidad equilibrada de valores por encima y por debajo de este punto central, lo que indica cierta simetría en la distribución de los datos.
+		
+		\item La \textbf{moda} reporta múltiples valores (3.66, aproximadamente 0.93 y 6.00), indicando que hay varios picos de frecuencia en la distribución de los datos. Esto podría sugerir una distribución multimodal o la presencia de grupos distintos dentro de los datos.
+		
+		\item La \textbf{media geométrica} de 3.47 es una medida de tendencia central que es típicamente más representativa para datos que no siguen una distribución normal, especialmente cuando la distribución es sesgada.
+		
+		\item El \textbf{rango} de 23.58 muestra la extensión total de los datos desde el valor más bajo hasta el más alto, lo que indica una variabilidad considerable en la serie de tiempo.
+		
+		\item La \textbf{desviación estándar} de aproximadamente 1.60 refleja una variabilidad moderada de los datos alrededor de la media, lo que sugiere que los eventos de la serie de tiempo presentan una dispersión consistente.
+		
+		\item La \textbf{varianza} de aproximadamente 2.55, siendo el cuadrado de la desviación estándar, confirma la dispersión de los datos alrededor de la media.
+		
+		\item El \textbf{percentil 20} de 2.32 sugiere que el 20\% de los valores son menores a este número, lo que puede ser utilizado para comprender la concentración de los valores más bajos.
+		
+		\item El \textbf{cuartil 3} de aproximadamente 5.24 indica que el 75\% de los datos son menores que este valor, ofreciendo una visión de la distribución acumulativa hacia el extremo superior.
+		
+		\item Una \textbf{asimetría} ligeramente negativa de -0.03 sugiere que la serie de tiempo es casi simétrica, con una leve inclinación hacia la izquierda, lo que implica que hay una cantidad ligeramente mayor de eventos por encima de la media.
+		
+		\item El \textbf{coeficiente de variación} de 0.41 indica que la variabilidad de los datos es proporcionalmente moderada en relación con la media.
+		
+		\item Una \textbf{curtosis} de aproximadamente 3.33 sugiere una distribución con un pico similar a una distribución normal (curtosis normal = 3), lo que implica que la serie de tiempo no tiene colas inusualmente pesadas ni ligeras.
+		
+		\item La \textbf{entropía} de 9.21 es una medida de la incertidumbre y aleatoriedad en la serie de tiempo, con un valor más alto sugiriendo una mayor diversidad o aleatoriedad en la distribución de los datos.
+	\end{itemize}
+	
+	En conjunto, estas métricas describen una serie de tiempo con una distribución de valores relativamente simétrica y moderadamente dispersa. La presencia de múltiples modas puede indicar la presencia de subgrupos o comportamientos distintos dentro de la serie de tiempo. La distribución de los datos no parece ser excesivamente sesgada ni puntiaguda, lo que podría ser consistente con una variedad de distribuciones de probabilidad no especificadas sin características extremas o atípicas.
+	
+	\newpage
+	\subsubsection{Transformación no lineal: \( 5\cdot \cos\left(\frac{x}{2}\right) + 7\cdot \cos\left(\frac{x^2}{4}\right) \)
+	}
+	
+	Para la transformación no lineal con origen en datos de distribución uniforme:
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.7\textwidth]{../transformaciones/per_uniforme1.pdf}
+		\caption{Gráfica de la serie de tiempo para \( 5\cdot \cos\left(\frac{x}{2}\right) + 7\cdot \cos\left(\frac{x^2}{4}\right) \) con datos de distribución uniforme.}
+		\label{fig:perUnifGraf}
+	\end{figure}
+	
+	\begin{multicols}{2}
+		\begin{minipage}{\linewidth}
+			\centering
+			\includegraphics[width=1\linewidth]{../transformaciones/per_uniforme2.pdf}
+			\captionof{figure}{Histograma.}
+			\label{fig:perUnifHist}
+		\end{minipage}
+		\vfill\columnbreak
+		\begin{minipage}{\linewidth}
+			\centering
+			\includegraphics[width=1\linewidth]{../transformaciones/per_uniforme3.png}
+			\captionof{figure}{Métricas}
+			\label{perUnifMet}
+		\end{minipage}
+	\end{multicols}
+	
+	\begin{itemize}
+		\item La \textbf{media} cercana a 0.075 sugiere que el promedio de los valores oscila alrededor de cero, lo cual podría indicar una distribución de datos centrada.
+		
+		\item La \textbf{mediana} de -0.14, siendo ligeramente negativa, muestra que más de la mitad de los valores están por debajo de cero, lo que podría señalar una leve inclinación de los datos hacia valores negativos.
+		
+		\item La \textbf{moda} de aproximadamente 2.02 indica el valor que ocurre con mayor frecuencia en la serie de tiempo, sugiriendo un pico en la distribución en ese punto.
+		
+		\item La \textbf{media geométrica} no es aplicable (NaN), típicamente debido a la presencia de valores negativos en los datos que hacen imposible calcular esta métrica.
+		
+		\item El \textbf{rango} de aproximadamente 23.99 refleja una variabilidad significativa en los datos desde el valor más bajo al más alto.
+		
+		\item La \textbf{desviación estándar} de alrededor de 6.14 indica que los valores de la serie de tiempo están dispersos de manera considerable respecto a la media.
+		
+		\item La \textbf{varianza} de aproximadamente 37.73 cuantifica la dispersión observada y es consistente con una desviación estándar elevada.
+		
+		\item El \textbf{percentil 20} de -5.54 muestra que el 20\% de los valores están concentrados hacia el extremo inferior del rango de la serie de tiempo.
+		
+		\item El \textbf{cuartil 3} de aproximadamente 4.71 indica que el 75\% de los valores son inferiores a este número, proporcionando una perspectiva de la distribución hacia el extremo superior.
+		
+		\item Una \textbf{asimetría} de aproximadamente 0.02 sugiere que la serie de tiempo es casi simétrica con una muy ligera inclinación hacia la derecha.
+		
+		\item El \textbf{coeficiente de variación} de alrededor de 81.90 es extremadamente alto y destaca una variabilidad relativa excepcionalmente grande en relación con la media, lo que puede indicar una amplia gama de comportamientos o estados dentro de la serie de tiempo.
+		
+		\item Una \textbf{curtosis} de aproximadamente -0.84 es menor que cero, lo que indica una distribución más aplanada que la normal y con colas más ligeras.
+		
+		\item La \textbf{entropía} de 6.85 muestra la incertidumbre y la aleatoriedad en la distribución de la serie de tiempo, siendo un valor alto que sugiere una gran diversidad en los datos.
+	\end{itemize}
+	
+	Este análisis muestra una serie de tiempo con una distribución de valores que tiene una gran variabilidad y una distribución aplanada. La simetría casi perfecta y la alta variabilidad relativa podrían ser características de una serie de tiempo con influencias aleatorias significativas y sin un patrón o tendencia dominante.
+	
+	\newpage
+	
+	Para la transformación no lineal con origen en datos de distribución normal:
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.7\textwidth]{../transformaciones/per_normal1.pdf}
+		\caption{Gráfica de la serie de tiempo para \( 5\cdot \cos\left(\frac{x}{2}\right) + 7\cdot \cos\left(\frac{x^2}{4}\right) \) con datos de distribución normal.}
+		\label{fig:perNormGraf}
+	\end{figure}
+	
+	\begin{multicols}{2}
+		\begin{minipage}{\linewidth}
+			\centering
+			\includegraphics[width=1\linewidth]{../transformaciones/per_normal2.pdf}
+			\captionof{figure}{Histograma.}
+			\label{fig:perNormHist}
+		\end{minipage}
+		\vfill\columnbreak
+		\begin{minipage}{\linewidth}
+			\centering
+			\includegraphics[width=1\linewidth]{../transformaciones/per_normal3.png}
+			\captionof{figure}{Métricas}
+			\label{perNormMet}
+		\end{minipage}
+	\end{multicols}
+	
+	\begin{itemize}
+		\item La \textbf{media} de aproximadamente 10.81 indica el valor promedio de la serie de tiempo, lo cual sugiere una tendencia central hacia el extremo superior del rango de los datos.
+		
+		\item La \textbf{mediana} de 11.66, ligeramente superior a la media, puede señalar una ligera asimetría en los datos, con una concentración de valores más altos.
+		
+		\item La \textbf{moda} de aproximadamente 5.63 representa el valor más frecuente dentro de la serie de tiempo y parece estar significativamente desplazada de la media y la mediana, lo que indica una distribución de los valores potencialmente bimodal o multimodal.
+		
+		\item La \textbf{media geométrica} no se puede calcular (NaN) debido a la presencia de valores negativos en los datos.
+		
+		\item El \textbf{rango} de alrededor de 22.35 muestra una variabilidad significativa entre los valores máximos y mínimos observados en la serie de tiempo.
+		
+		\item La \textbf{desviación estándar} de aproximadamente 2.32 refleja la cantidad de dispersión que existe alrededor de la media de los datos.
+		
+		\item La \textbf{varianza} de alrededor de 5.38 cuantifica la dispersión de los datos y, junto con la desviación estándar, confirma la presencia de variabilidad en la serie de tiempo.
+		
+		\item El \textbf{percentil 20} de 10.36 indica que el 20\% de los datos son menores o iguales a este valor, proporcionando información sobre la distribución acumulativa de los valores inferiores.
+		
+		\item El \textbf{cuartil 3} de 11.93 refleja el valor por debajo del cual se encuentra el 75\% de los datos, lo que ayuda a entender la concentración de los valores superiores.
+		
+		\item Una \textbf{asimetría} de -4.24 muestra un sesgo considerable hacia la izquierda, indicando una concentración de valores más hacia el lado derecho de la media.
+		
+		\item El \textbf{coeficiente de variación} de 0.21 sugiere que la variabilidad de los datos es baja en comparación con la media, lo que indica una relativa uniformidad en la dispersión de los datos.
+		
+		\item La \textbf{curtosis} extremadamente alta de 24.49 sugiere una distribución muy puntiaguda con colas pesadas, lo que puede implicar la presencia de valores atípicos o un agrupamiento muy denso alrededor de la media.
+		
+		\item La \textbf{entropía} de 6.25 refleja la incertidumbre y la aleatoriedad de los datos. Un valor más alto indica una mayor diversidad o imprevisibilidad en la distribución de la serie de tiempo.
+	\end{itemize}
+	
+	Estas métricas indican una serie de tiempo con un marcado pico central y una notable simetría hacia la derecha, aunque la asimetría negativa y la curtosis alta sugieren una complejidad subyacente. Estos hallazgos son típicos de series que contienen eventos o comportamientos extremos y valores que se aglomeran en torno a un punto central.
+	
+	
+	\newpage
+	
+	Para la transformación no lineal con origen en datos de distribución gamma:
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.7\textwidth]{../transformaciones/per_gamma1.pdf}
+		\caption{Gráfica de la serie de tiempo para \( 5\cdot \cos\left(\frac{x}{2}\right) + 7\cdot \cos\left(\frac{x^2}{4}\right) \) con datos de distribución gamma.}
+		\label{fig:perGammaGraf}
+	\end{figure}
+	
+	\begin{multicols}{2}
+		\begin{minipage}{\linewidth}
+			\centering
+			\includegraphics[width=1\linewidth]{../transformaciones/per_gamma2.pdf}
+			\captionof{figure}{Histograma.}
+			\label{fig:perGammaHist}
+		\end{minipage}
+		\vfill\columnbreak
+		\begin{minipage}{\linewidth}
+			\centering
+			\includegraphics[width=1\linewidth]{../transformaciones/per_gamma3.png}
+			\captionof{figure}{Métricas}
+			\label{perGammaMet}
+		\end{minipage}
+	\end{multicols}
+	
+	\begin{itemize}
+		\item La \textbf{media} de aproximadamente 10.61 puede sugerir que la distribución de los valores tiende a ser mayor en comparación con el punto de equilibrio de cero, indicando una posible acumulación de eventos en el lado positivo.
+		
+		\item La \textbf{mediana} de 11.69, mayor que la media, indica que más de la mitad de los valores están por encima del promedio, reforzando la idea de que hay una tendencia hacia valores mayores en la serie de tiempo.
+		
+		\item La \textbf{moda} de -11.28 es inusualmente baja y distinta de la media y la mediana, lo cual es característico de una distribución que podría ser bimodal o tener un comportamiento atípico en su distribución de valores.
+		
+		\item La \textbf{media geométrica} no se calcula (NaN), lo que comúnmente ocurre debido a la presencia de valores negativos en los datos, lo que impide el cálculo de esta métrica.
+		
+		\item El \textbf{rango} de 23.25 muestra la diferencia entre los valores máximo y mínimo en la serie de tiempo, lo que indica una extensa variabilidad de los datos.
+		
+		\item La \textbf{desviación estándar} de aproximadamente 3.01 sugiere una dispersión considerable de los datos alrededor de la media, lo que indica una amplia gama de comportamientos o valores en la serie de tiempo.
+		
+		\item La \textbf{varianza} de aproximadamente 9.07, como el cuadrado de la desviación estándar, cuantifica la dispersión de los datos y es consistente con una desviación estándar alta.
+		
+		\item El \textbf{percentil 20} de 10.47 muestra que el 20\% de los datos son menores o iguales a este valor, proporcionando una indicación de la distribución acumulativa de los valores inferiores.
+		
+		\item El \textbf{cuartil 3} de 11.90 indica que el 75\% de los valores están por debajo de este número, lo que ayuda a entender la concentración de los valores superiores en la serie de tiempo.
+		
+		\item Una \textbf{asimetría} de -3.89 sugiere un sesgo significativo hacia la izquierda, lo que indica una cola larga de eventos hacia el lado izquierdo de la distribución.
+		
+		\item El \textbf{coeficiente de variación} de 0.28 sugiere una baja variabilidad relativa de los datos en comparación con la media, lo que podría indicar una concentración de valores alrededor de la media.
+		
+		\item La \textbf{curtosis} extremadamente alta de 16.05 indica una distribución con un pico muy agudo y colas pesadas, lo que puede sugerir la presencia de valores extremos o comportamientos muy concentrados alrededor de la media.
+		
+		\item La \textbf{entropía} de 2.91 refleja la incertidumbre y la diversidad en la distribución de la serie de tiempo, con un valor más alto indicando una mayor imprevisibilidad o variedad en los datos.
+	\end{itemize}
+	
+	Estos resultados nos llevan a concluir que estamos observando una serie de tiempo con una distribución de datos que tiene una asimetría significativa hacia la izquierda y una curtosis muy elevada. Estas características sugieren una serie con una gran cantidad de valores concentrados alrededor de un punto central y una posible presencia de valores atípicos que influyen en la forma de la distribución.
+	
+	
+	\section{Caminante Aleatorio}
+	
+	Con base en los datos generados con una distribución uniforme (\texttt{randomsUniforme.txt}), distribución normal (\texttt{randomsNormal.txt}) y distribución gamma \texttt{randomsGamma.txt} se plantea crear la animación del caminante aleatorio con el fin de observar su comportamiento con distintas distribuciones de probabilidad, y analizar las series de tiempo (con las métricas) generadas por:
+	
+	\begin{itemize}
+		\item Dirección tomada.
+		\item Distancia recorrida en cada paso.
+		\item Choques con pared
+		\item Posición (x,y) en el plano a lo largo del tiempo.
+	\end{itemize}
+	
+	\newpage
+	\textit{Nota:} Por simplicidad, aunque se observen más caminantes aleatorios en cada animación, se analizará solamente al primero.
+	
+	 \subsection{Caminante Aleatorio con Distribución Uniforme}
+	 \begin{center}
+	 	\includegraphics[width=1\linewidth]{walkerUniforme.png}
+	 	\captionof{figure}{Caminante Aleatorio - Distribución Uniforme}
+	 	\label{walkerUniforme}
+	 \end{center}
+	 
+	
+	
+\end{document}

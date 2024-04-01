@@ -1,0 +1,351 @@
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+
+% This is the preamble, load any packages you're going to use here
+\usepackage{physics} % provides lots of nice features and commands often used in physics, it also loads some other packages (like AMSmath)
+\usepackage{siunitx} % typesets numbers with units very nicely
+\usepackage[spanish]{babel}
+
+\usepackage[margin=1.3in,letterpaper]{geometry}
+
+
+% Establecer Latin Modern Sans Serif como la fuente predeterminada
+\renewcommand*\familydefault{\sfdefault} % Cambia la fuente predeterminada a sans-serif
+\usepackage[T1]{fontenc} % Codificación de la fuente
+\usepackage{lmodern} % Carga la fuente Latin Modern
+\renewcommand{\abstractname}{Objetivo}
+
+\usepackage{enumitem}
+
+\usepackage{changepage}
+
+\usepackage{graphicx}
+
+\usepackage{tabularx}
+
+\setlength{\parskip}{8pt}
+
+\usepackage{fancyhdr} % Paquete para personalizar encabezado y pie de página
+\pagestyle{fancy} % Establece que personalizaremos el pie de pagina y el encabezado
+\setlength{\headheight}{13.59999pt} % Establece la altura del encabezado
+\fancyhead[R]{\textcolor{darkBlue}{}} % Encabezado derecho
+\fancyhead[L]{\textit{\textcolor{darkBlue}{Series de Tiempo}}} % Encabezado izquierdo
+\fancyfoot[L]{\textit{\textcolor{darkBlue}{Centro de Investigación en Computación}}} % Pie de página izquierdo 
+\fancyfoot[R]{\textcolor{darkBlue}{\thepage}} % Pie de página  derecho
+\fancyfoot[C]{} % Elimina la nueración central de páginas en el pie de página
+\renewcommand{\headrulewidth}{0.5pt} % Grosor de la linea de encabezado
+\renewcommand{\footrulewidth}{0.5pt} % Grosor de la linea de pie de página
+
+\usepackage{xcolor}
+\definecolor{darkBlue}{rgb}{0,0,0.31}
+%\definecolor{darkBlue}{rgb}{0,0,0.5}
+\definecolor{munsell}{rgb}{0.0, 0.5, 0.69}
+\definecolor{indigo}{rgb}{0.0, 0.25, 0.42}
+\renewcommand{\footrulewidth}{2pt}
+\renewcommand{\footrule}{\hbox to\headwidth{\color{darkBlue}\leaders\hrule height \footrulewidth\hfill}}
+
+\usepackage{colortbl}
+
+\usepackage{titlesec}
+\titleformat{\section}
+{\normalfont\Large\bfseries\color{darkBlue}}{\thesection.}{1em}{}
+
+\usepackage{tabularx}
+
+\usepackage{textcomp}
+
+\usepackage{titling}
+
+\usepackage{listings}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\usepackage{amsmath, amssymb}
+
+
+\definecolor{codeblue}{rgb}{0.25,0.5,0.5}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{commentblue}{rgb}{0.3,0.3,0.6}
+\definecolor{keywordblue}{rgb}{0.2,0.2,0.7}
+\definecolor{stringblue}{rgb}{0.15,0.2,0.9}
+
+\lstdefinestyle{bluepythonstyle}{
+	language=Python,
+	basicstyle=\ttfamily\small,
+	commentstyle=\color{commentblue},
+	keywordstyle=\color{keywordblue},
+	numberstyle=\tiny\color{codeblue},
+	stringstyle=\color{stringblue},
+	backgroundcolor=\color{backcolour},
+	breaklines=true,
+	captionpos=b,
+	abovecaptionskip=1\baselineskip,
+	showstringspaces=false,
+	frame=lines,
+	numbers=left,
+	xleftmargin=\parindent,
+	tabsize=4
+}
+\lstset{style=bluepythonstyle}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+
+
+
+\begin{document}
+	
+	
+
+\title{\LARGE \textcolor{darkBlue}{Métricas para distribuciones de Probabilidad}}
+\author{Rodrigo Gerardo Trejo Arriaga}
+\date{\today}
+
+\maketitle
+
+\thispagestyle{fancy} 
+
+\section*{Distribución Normal}
+La distribución normal se caracteriza por dos parámetros: la media \(\mu\) y la desviación estándar \(\sigma\). Estos se calculan como sigue:
+\begin{itemize}
+	\item \textbf{Media} (\(\mu\)): La media de una población se calcula como:
+	\[
+	\mu = \frac{1}{N} \sum_{i=1}^{N} x_i
+	\]
+	donde \(N\) es el número total de valores en el conjunto de datos y \(x_i\) es cada valor individual.
+	
+	\item \textbf{Desviación estándar} (\(\sigma\)): La desviación estándar se calcula usando la fórmula:
+	\[
+	\sigma = \sqrt{\frac{1}{N} \sum_{i=1}^{N} (x_i - \mu)^2}
+	\]
+	donde \(\mu\) es la media del conjunto de datos, \(N\) es el número total de valores, y \(x_i\) es cada valor individual.
+\end{itemize}
+
+\subsection*{Tendencia Central}
+Para una distribución normal con media \(\mu\) y desviación estándar \(\sigma\), las métricas son:
+\begin{itemize}
+	\item \textbf{Media}: \(\mu\)
+	\item \textbf{Mediana}: \(\mu\)
+	\item \textbf{Moda}: \(\mu\)
+\end{itemize}
+
+\subsection*{Dispersión}
+Para una distribución normal con media \(\mu\) y desviación estándar \(\sigma\):
+\begin{itemize}
+	\item \textbf{Rango}: No definido específicamente ya que teóricamente es \((-\infty, \infty)\). En el caso discreto, diferencia entre el valor máximo y mínimo observado.
+	\item \textbf{Varianza} (\(\sigma^2\)): \(\sigma^2\)
+	\item \textbf{Desviación estándar} (\(\sigma\)): \(\sigma\)
+	\item \textbf{Coeficiente de variación} (\(CV\)): \(\frac{\sigma}{\mu}\) (para \(\mu \neq 0\))
+\end{itemize}
+
+\subsection*{Posición Relativa}
+La posición relativa dentro de una distribución normal puede determinarse mediante la función de distribución acumulativa (CDF). Los percentiles y cuartiles se calculan como sigue:
+\begin{itemize}
+	\item \textbf{Percentil} (\(P\)): Un valor \(x\) que cumple con la condición de que \(P\)% de los datos son menores o iguales a \(x\) se encuentra mediante la inversa de la CDF (función cuantil) de la distribución normal estándar, ajustada por \(\mu\) y \(\sigma\).
+	\[
+	x = \mu + Z(P) \cdot \sigma
+	\]
+	donde \(Z(P)\) es el valor \(Z\) para el percentil \(P\) de la distribución normal estándar.
+	
+	\item \textbf{Cuartil}: Los cuartiles son casos especiales de percentiles; por ejemplo, el primer cuartil (25\%) es \(Q1 = \mu + Z(0.25) \cdot \sigma\), el segundo cuartil (mediana, 50\%) es \(Q2 = \mu\), y el tercer cuartil (75\%) es \(Q3 = \mu + Z(0.75) \cdot \sigma\).
+\end{itemize}
+
+Para calcular cualquier percentil \(P\) en una distribución normal, se utiliza la función de distribución acumulativa (CDF) inversa ajustada por la media \(\mu\) y la desviación estándar \(\sigma\):
+\begin{itemize}
+	\item \textbf{Percentil} \(P\): 
+	\[
+	x_P = \mu + Z(P) \cdot \sigma
+	\]
+	Donde \(x_P\) es el valor correspondiente al percentil \(P\) y \(Z(P)\) es el valor de la puntuación Z para el percentil \(P\) en la distribución normal estándar.
+\end{itemize}
+Los cuartiles son casos específicos de percentiles (25\%, 50\%, 75\%, 100\%), y se calculan con la misma fórmula ajustando \(P\) para 0.25, 0.5, 0.75 y 1.
+
+\subsection*{Forma}
+La distribución normal es simétrica, por lo que sus métricas de forma son:
+\begin{itemize}
+	\item \textbf{Asimetría (Skewness)}: 0, indicando una distribución perfectamente simétrica.
+\end{itemize}
+
+\textit{Ver la sección de notas.}
+
+\subsection*{Curtosis y Entropía}
+Para una distribución normal con media \(\mu\) y desviación estándar \(\sigma\):
+\begin{itemize}
+	\item \textbf{Curtosis}: 3 (La curtosis se mide a menudo relativa a una distribución normal, que tiene una curtosis de 3. Por lo tanto, el exceso de curtosis sería 0).
+	\item \textbf{Entropía}: \(\frac{1}{2} \ln(2 \pi e \sigma^2)\), donde \(e\) es la base del logaritmo natural.
+\end{itemize}
+
+
+
+\section*{Distribución Gamma}
+La distribución gamma se caracteriza por los parámetros de forma \(k\) y escala \(\theta\). La estimación de estos parámetros no se realiza mediante una fórmula directa, sino a través de métodos estadísticos avanzados como la estimación de máxima verosimilitud o el ajuste de momentos.
+\begin{itemize}
+	\item \textbf{Nota}: Los parámetros \(k\) y \(\theta\) suelen estimarse a partir de los datos utilizando técnicas estadísticas complejas que van más allá de cálculos directos.
+\end{itemize}
+
+\subsection*{Tendencia Central}
+Para una distribución gamma con parámetros de forma \(k\) y escala \(\theta\):
+\begin{itemize}
+	\item \textbf{Media}: \(k\theta\)
+	\item \textbf{Mediana}: La mediana para la distribución gamma no tiene una expresión simple cerrada.
+	\item \textbf{Moda}: Para \(k > 1\), \(\text{Moda} = (k - 1)\theta\). Para \(k \leq 1\), la moda no está bien definida.
+\end{itemize}
+
+\subsection*{Dispersión}
+Para una distribución gamma con parámetros de forma \(k\) y escala \(\theta\):
+\begin{itemize}
+	\item \textbf{Rango}: \((0, \infty)\) para \(k, \theta > 0\). En el caso discreto, diferencia entre el valor máximo y mínimo observado.
+	\item \textbf{Varianza}: \(k\theta^2\)
+	\item \textbf{Desviación estándar}: \(\sqrt{k}\theta\)
+	\item \textbf{Coeficiente de variación}: \(\frac{\sqrt{k}\theta}{k\theta} = \frac{1}{\sqrt{k}}\)
+\end{itemize}
+
+\subsection*{Posición Relativa}
+Los percentiles y cuartiles de la distribución gamma también se basan en su CDF, pero no hay fórmulas simples para su cálculo directo y generalmente se requieren métodos numéricos:
+\begin{itemize}
+	\item \textbf{Percentil y Cuartil}: Se determinan a través de la inversa de la CDF de la distribución gamma, que generalmente se calcula mediante software estadístico debido a la complejidad matemática de la función.
+\end{itemize}
+
+\begin{lstlisting}
+	import scipy.stats as stats
+	
+	# Parametros de la distribucion Gamma: forma (k) y escala (theta)
+	k = 2.0  # Parametro de forma
+	theta = 3.0  # Parametro de escala
+	
+	# Calcular cuartiles
+	cuartil_1 = stats.gamma.ppf(0.25, k, scale=theta)
+	cuartil_2 = stats.gamma.ppf(0.50, k, scale=theta)  # Mediana
+	cuartil_3 = stats.gamma.ppf(0.75, k, scale=theta)
+	cuartil_4 = stats.gamma.ppf(1.00, k, scale=theta)  # Maximo
+	
+	print("Cuartil 1 (Q1):", cuartil_1)
+	print("Cuartil 2 (Mediana, Q2):", cuartil_2)
+	print("Cuartil 3 (Q3):", cuartil_3)
+	print("Cuartil 4 (Maximo):", cuartil_4)
+	
+	# Calcular un percentil especifico, por ejemplo, el percentil 90
+	percentil_90 = stats.gamma.ppf(0.90, k, scale=theta)
+	print("Percentil 90:", percentil_90)
+	
+	# Para calcular cualquier otro percentil, cambia el 0.90 del ejemplo anterior
+	# por el valor correspondiente.
+\end{lstlisting}
+
+Este código utiliza la función \texttt{ppf} (Percent Point Function, la inversa de la CDF) de la distribución gamma en SciPy para calcular los cuartiles y percentiles.
+
+
+\subsection*{Forma}
+La asimetría de la distribución gamma depende de su parámetro de forma \(k\):
+\begin{itemize}
+	\item \textbf{Asimetría (Skewness)}: \(\frac{2}{\sqrt{k}}\), indicando que la distribución puede ser asimétrica dependiendo del valor de \(k\). Para valores grandes de \(k\), la distribución se aproxima a una forma simétrica.
+\end{itemize}
+
+\subsection*{Curtosis y Entropía}
+Para una distribución gamma con parámetros de forma \(k\) y escala \(\theta\):
+\begin{itemize}
+	\item \textbf{Curtosis}: \(\frac{6}{k}\)
+	\item \textbf{Entropía}: \(k + \ln(\theta) + \ln(\Gamma(k)) + (1-k) \psi(k)\), donde \(\Gamma(k)\) es la función gamma y \(\psi(k)\) es la función digamma.
+\end{itemize}
+
+
+
+\section*{Distribución Uniforme}
+La distribución uniforme está definida por dos parámetros: \(a\) y \(b\), que son los límites inferior y superior de la distribución, respectivamente.
+\begin{itemize}
+	\item \textbf{Límite inferior} (\(a\)): El valor mínimo en el rango de valores posibles.
+	\item \textbf{Límite superior} (\(b\)): El valor máximo en el rango de valores posibles.
+\end{itemize}
+
+\subsection*{Tendencia Central}
+Para una distribución uniforme definida entre \(a\) y \(b\):
+\begin{itemize}
+	\item \textbf{Media}: \(\frac{a + b}{2}\)
+	\item \textbf{Mediana}: \(\frac{a + b}{2}\)
+	\item \textbf{Moda}: No está bien definida ya que todos los valores dentro del intervalo \([a, b]\) son igualmente probables.
+\end{itemize}
+
+\subsection*{Dispersión}
+
+Para una distribución uniforme definida entre \(a\) y \(b\):
+\begin{itemize}
+	\item \textbf{Rango}: \(b - a\)
+	\item \textbf{Varianza}: \(\frac{(b - a)^2}{12}\)
+	\item \textbf{Desviación estándar}: \(\sqrt{\frac{(b - a)^2}{12}}\)
+	\item \textbf{Coeficiente de variación}: \(\frac{\sqrt{\frac{(b - a)^2}{12}}}{\frac{a + b}{2}}\) (para \(a, b > 0\))
+\end{itemize}
+
+\subsection*{Posición Relativa}
+Para la distribución uniforme, los percentiles y cuartiles se pueden calcular de forma más directa debido a la naturaleza uniforme de la distribución:
+\begin{itemize}
+	\item \textbf{Percentil} (\(P\)): Dado un percentil \(P\) (como fracción, por ejemplo, 0.25 para el 25\%), el valor correspondiente \(x\) es:
+	\[
+	x = a + P \cdot (b - a)
+	\]
+	
+	\item \textbf{Cuartil}: De manera similar, cada cuartil se calcula ajustando \(P\) para 0.25, 0.5, y 0.75 respectivamente.
+\end{itemize}
+
+Los percentiles y cuartiles se calculan directamente de la forma:
+\begin{itemize}
+	\item \textbf{Percentil} \(P\): 
+	\[
+	x_P = a + P \cdot (b - a)
+	\]
+	Donde \(x_P\) es el valor correspondiente al percentil \(P\) (como fracción, por ejemplo, 0.25 para el 25\%).
+\end{itemize}
+Para los cuartiles, \(P\) se ajusta para 0.25, 0.5, 0.75 y 1, respectivamente.
+
+
+\subsection*{Forma}
+La distribución uniforme es simétrica entre \(a\) y \(b\), por lo que sus métricas de forma son:
+\begin{itemize}
+	\item \textbf{Asimetría (Skewness)}: 0, reflejando su simetría perfecta.
+\end{itemize}
+
+\textit{Ver la sección de notas.}
+
+
+\subsection*{Curtosis y Entropía}
+Para una distribución uniforme definida entre \(a\) y \(b\):
+\begin{itemize}
+	\item \textbf{Curtosis}: \(-\frac{6}{5}\) (o el exceso de curtosis es \(-\frac{6}{5}\), ya que la curtosis de una distribución uniforme perfecta es menor en comparación con una normal).
+	\item \textbf{Entropía}: \(\ln(b - a)\)
+\end{itemize}
+
+
+
+\section*{Notas}
+
+La asimetría (skewness) de un conjunto de datos se puede calcular utilizando la siguiente fórmula:
+
+\[ \text{Skewness} = \frac{n}{(n-1)(n-2)} \sum \left(\frac{x_i - \bar{x}}{s}\right)^3 \]
+
+donde \(n\) es el número de observaciones, \(x_i\) son los valores individuales, \(\bar{x}\) es la media del conjunto de datos, y \(s\) es la desviación estándar.
+
+Este cálculo puede realizarse fácilmente en Python para conjuntos de datos tanto normalmente como uniformemente distribuidos, utilizando bibliotecas como SciPy o Pandas. A continuación se muestra un ejemplo de código en Python para calcular la asimetría de un conjunto de datos:
+
+\begin{verbatim}
+	import numpy as np
+	from scipy.stats import skew
+	
+	# Ejemplo de conjunto de datos
+	data = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+	
+	# Cálculo de la asimetría
+	data_skewness = skew(data)
+	
+	print("Asimetría del conjunto de datos:", data_skewness)
+\end{verbatim}
+
+
+
+
+
+
+\end{document}

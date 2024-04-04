@@ -104,10 +104,10 @@ class Particula(threading.Thread):
         self.running = True
         self.paused = False  
         self.pause_cond = threading.Condition(threading.Lock())
-        self.arch_direccion = open(f'series{distr}/direcciones_{id}.txt', 'w+')
-        self.arch_distancia = open(f'series{distr}/distancia_{id}.txt', 'w+')
-        self.arch_posiciones = open(f'series{distr}/posiciones_{id}.txt', 'w+')
-        self.arch_choques_pared = open(f'series{distr}/choques_{id}.txt', 'w+')
+        self.arch_direccion = open(f'direcciones_{distr.lower()}1.txt', 'w+')
+        self.arch_distancia = open(f'distancia_{distr.lower()}1.txt', 'w+')
+        self.arch_posiciones = open(f'posiciones_{distr.lower()}1.txt', 'w+')
+        self.arch_choques_pared = open(f'choques_{distr.lower()}1.txt', 'w+')
         aux = cargar_set(f"../transformaciones/randoms{distr}.txt")
         self.datos = desordenar_lista(aux)
 
@@ -155,12 +155,14 @@ class Particula(threading.Thread):
 
     def move(self):
         val_prueba_dir = self.datos.pop(0)
-        self.datos.append(val_prueba_dir)
+        #self.datos.append(val_prueba_dir)
+        self.datos.insert(random.randint(0, len(self.datos)-1), val_prueba_dir)
         direction = definir_direccion(partir_conjunto(self.datos, 8), val_prueba_dir)
         self.arch_direccion.write(f"{direction},")
         val_prueba_long = self.datos.pop(0)
-        self.datos.append(val_prueba_long)
-        pasos = definir_tam_paso(partir_conjunto(self.datos, 2), val_prueba_long)
+        #self.datos.append(val_prueba_long)
+        self.datos.insert(random.randint(0, len(self.datos)), val_prueba_long)
+        pasos = definir_tam_paso(partir_conjunto(self.datos, 8), val_prueba_long)
         self.arch_distancia.write(f"{pasos},")
 
         bandera_choque = 0
@@ -278,7 +280,7 @@ def definir_direccion(intervalos, valor):
     
 def definir_tam_paso(intervalos, valor):
     intervalo = definir_direccion(intervalos, valor)
-    return (intervalo * 3)+1
+    return intervalo + 1
 
 
 if __name__ == "__main__":

@@ -821,8 +821,7 @@
 	En conjunto, estas métricas describen una serie de tiempo con una distribución de valores relativamente simétrica y moderadamente dispersa. La presencia de múltiples modas puede indicar la presencia de subgrupos o comportamientos distintos dentro de la serie de tiempo. La distribución de los datos no parece ser excesivamente sesgada ni puntiaguda, lo que podría ser consistente con una variedad de distribuciones de probabilidad no especificadas sin características extremas o atípicas.
 	
 	\newpage
-	\subsubsection{Transformación no lineal: \( 5\cdot \cos\left(\frac{x}{2}\right) + 7\cdot \cos\left(\frac{x^2}{4}\right) \)
-	}
+	\subsubsection{Transformación no lineal: \( 5\cdot \cos\left(\frac{x}{2}\right) + 7\cdot \cos\left(\frac{x^2}{4}\right) \)}
 	
 	Para la transformación no lineal con origen en datos de distribución uniforme:
 	\begin{figure}[h]
@@ -994,7 +993,7 @@
 	
 	\section{Caminante Aleatorio}
 	
-	Con base en los datos generados con una distribución uniforme (\texttt{randomsUniforme.txt}), distribución normal (\texttt{randomsNormal.txt}) y distribución gamma \texttt{randomsGamma.txt} se plantea crear la animación del caminante aleatorio con el fin de observar su comportamiento con distintas distribuciones de probabilidad, y analizar las series de tiempo (con las métricas) generadas por:
+	Con base en los datos generados con una distribución uniforme (\texttt{randomsUniforme.txt}), distribución normal (\texttt{randomsNormal.txt}) y distribución gamma \texttt{(randomsGamma.txt)} se plantea crear la animación del caminante aleatorio con el fin de observar su comportamiento al ser alimentado con números aleatorios basados en estas de probabilidad, y analizar las series de tiempo (mediante las métricas) generadas por:
 	
 	\begin{itemize}
 		\item Dirección tomada.
@@ -1003,16 +1002,529 @@
 		\item Posición (x,y) en el plano a lo largo del tiempo.
 	\end{itemize}
 	
-	\newpage
-	\textit{Nota:} Por simplicidad, aunque se observen más caminantes aleatorios en cada animación, se analizará solamente al primero.
+	\subsection{Procedimiento}
+	
+	Se crea una cuadrícula en la que se posicionan n caminantes aleatorios (cuyo número fue definido por el usuario) en una posición aleatoria.
+	
+	Luego, se crea una instancia para cada caminante, cargando el archivo de la distribución de probabilidad seleccionada.
+	
+	En tercer lugar, se elige un número random que representará la dirección en la que se moverá el caminante, como se muestra en la figura \ref{fig:dir-paredes}. Posteriormente se elige otro número random que representará la distancia que el caminante recorrerá en la dirección ya seleccionada.
+	
+	A su vez, por cada movimiento, se registrán los choques que se dan con la pared, cuyo índice es el que se muestra en la figura \ref{fig:dir-paredes}. Así como su posición x,y en el mapa.
+	
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=0.6\linewidth]{rectangulo.png}
+			\caption{Índices de las paredes y las direcciones.}
+			\label{fig:dir-paredes}
+		\end{figure}
+	
+	
+	\textit{Nota:} Por simplicidad, aunque se observen más caminantes aleatorios en cada animación, se analizará solamente al de color \textbf{\textit{blanco}}.
 	
 	 \subsection{Caminante Aleatorio con Distribución Uniforme}
+	 
 	 \begin{center}
-	 	\includegraphics[width=1\linewidth]{walkerUniforme.png}
+	 	\includegraphics[width=0.8\linewidth]{walkerUniforme.png}
 	 	\captionof{figure}{Caminante Aleatorio - Distribución Uniforme}
 	 	\label{walkerUniforme}
 	 \end{center}
 	 
+	 \subsubsection{Direcciones}
+	 \begin{figure}[h]
+	 	\centering
+	 	\includegraphics[width=0.7\textwidth]{graf_direcciones_uniforme.pdf}
+	 	\caption{Gráfica de la serie de tiempo para las direcciones del caminante con distribución uniforme.}
+	 	\label{fig:direcUnifGraf}
+	 \end{figure}
+	 \begin{multicols}{2}
+	 	\begin{minipage}{\linewidth}
+	 		\centering
+	 		\includegraphics[width=1\linewidth]{hist_direcciones_uniforme.pdf}
+	 		\captionof{figure}{Histograma.}
+	 		\label{fig:direcUnifHist}
+	 	\end{minipage}
+	 	\vfill\columnbreak
+	 	\begin{minipage}{\linewidth}
+	 		\centering
+	 		\includegraphics[width=1\linewidth]{u1.png}%
+	 		\captionof{figure}{Métricas}
+	 		\label{direcUnifMet}
+	 	\end{minipage}
+	 \end{multicols}
+	 
+	 \begin{itemize}
+	 	
+	 	\item La \textbf{mediana} de 4.0, que es el valor central de los datos, sugiere que la mitad de las distancias son mayores que 4.0 y la otra mitad son menores, lo que indica un equilibrio en la distribución de las direcciones.
+	 	
+	 	\item La \textbf{moda} de 1 sugiere que el valor más comúnmente observado para la distancia en la serie de tiempo es 1, lo que podría indicar una frecuencia alta de este resultado específico o un posible punto de concentración en los datos.
+	 	
+	 	\item La \textbf{media geométrica} es 0.0, lo cual generalmente significa que hay valores de cero en los datos, afectando este promedio.
+	 	
+	 	\item El \textbf{rango} de 7 muestra la extensión completa de los datos desde el valor más bajo hasta el más alto registrado.
+	 	
+	 	\item Una \textbf{asimetría} de aproximadamente -0.0029 sugiere que la distribución es muy simétrica, con una ligera inclinación hacia la izquierda.
+	 	
+	 	\item El \textbf{coeficiente de variación} de 0.6576 refleja una variabilidad relativa moderada en comparación con la media, lo que podría indicar un grado de homogeneidad en las distancias registradas.
+	 	
+	 	\item La \textbf{curtosis} de -1.25, es típica de la distribución uniforme.
+	 	
+	 	\item La \textbf{entropía} de 2.07, similar al de aplicar el $ln(b-a) = ln(7)$, que es la métrica de la entropía en la distribución uniforme.
+	 \end{itemize}
+	 
+	 El análisis de estas métricas sugiere una serie de tiempo de distancias con una distribución bastante simétrica y un grado de variabilidad moderado. El perfil aplanado de la distribución, junto con la simetría y el rango de los datos, puede indicar una distribución \textbf{uniforme} de las distancias.
+	  
+
+	\subsubsection{Distancias}
+	 \begin{figure}[h]
+	 	\centering
+	 	\includegraphics[width=0.6\textwidth]{graf_distancia_uniforme.pdf}
+	 	\caption{Gráfica de la serie de tiempo para las distancias del caminante con distribución uniforme.}
+	 	\label{fig:distUnifGraf}
+	 \end{figure}
+	 \begin{multicols}{2}
+	 	\begin{minipage}{\linewidth}
+	 		\centering
+	 		\includegraphics[width=1\linewidth]{hist_distancia_uniforme.pdf}
+	 		\captionof{figure}{Histograma.}
+	 		\label{fig:distUnifHist}
+	 	\end{minipage}
+	 	\vfill\columnbreak
+	 	\begin{minipage}{\linewidth}
+	 		\centering
+	 		\includegraphics[width=1\linewidth]{u2.png}%
+	 		\captionof{figure}{Métricas}
+	 		\label{distUnifMet}
+	 	\end{minipage}
+	 \end{multicols}
+	 
+	 \begin{itemize}
+	 	\item La \textbf{mediana} de 5.0, que coincide con el valor medio del rango, indica una distribución simétrica de los valores en torno a este punto central.
+	 	\item El \textbf{rango} de 7 sugiere que los valores de la serie de tiempo se extienden uniformemente a lo largo del espectro de datos posible.
+	 	\item La \textbf{desviación estándar} de aproximadamente 2.30, junto con la varianza de 5.32, señalan una dispersión moderada de los valores alrededor de la media.
+	 	\item El \textbf{percentil 20} y el \textbf{cuartil 3}, ambos con valores de 2.0 y 7.0 respectivamente, refuerzan la idea de una distribución uniforme, donde los valores están igualmente dispersos a lo largo del intervalo.
+	 	\item La \textbf{asimetría} cercana a cero sugiere que la serie de tiempo es casi perfectamente simétrica.
+	 	\item El \textbf{coeficiente de variación} de 0.51 indica una variabilidad relativa moderada con respecto a la media de la serie de tiempo.
+	 	\item Una \textbf{curtosis} negativa de -1.26 es típica de la distribución uniforme.
+	 	\item La \textbf{entropía} de 2.07, que es relativamente baja, sugiere que hay un menor grado de incertidumbre o aleatoriedad en la distribución de los datos y es similar al de aplicar el $ln(b-a) = ln(8-1)= ln(7)$, que es la métrica de la entropía en la distribución uniforme
+	 \end{itemize}
+	 
+	 Las métricas proporcionadas son características de una distribución que se distribuye de manera bastante \textbf{uniforme} a lo largo de su rango, con una varianza moderada y sin sesgo aparente en ninguna dirección.
+	 
+	 
+	 \subsubsection{Posiciones}
+	 \begin{figure}[h]
+	 	\centering
+	 	\includegraphics[width=0.5\textwidth]{graf_posiciones_uniforme.pdf}
+	 	\caption{Gráfica de la serie de tiempo para las posiciones del caminante con distribución uniforme.}
+	 	\label{fig:posUnifGraf}
+	 \end{figure}
+	 
+	 \newpage
+	 \begin{multicols}{2}
+	 	\begin{minipage}{\linewidth}
+	 		\centering
+	 		\includegraphics[width=0.8\linewidth]{hist_posiciones_uniforme.pdf}
+	 		\captionof{figure}{Histograma.}
+	 		\label{fig:posUnifHist}
+	 	\end{minipage}
+	 	\vfill\columnbreak
+	 	\begin{minipage}{\linewidth}
+	 		\centering
+	 		\includegraphics[width=1\linewidth]{u3.png}%
+	 		\captionof{figure}{Métricas}
+	 		\label{posUnifMet}
+	 	\end{minipage}
+	 \end{multicols}
+	 
+	 \begin{itemize}
+	 	\item La \textbf{media} en las coordenadas (270.86, 94.12), sugiere que el centro de masa de la distribución de posiciones está situado en esta localización en el espacio bidimensional.
+	 	
+	 	\item La \textbf{mediana} en las coordenadas (298.0, 94.0), muy cercana a la media, indica que la mitad de las posiciones caen por debajo de este valor y la otra mitad por encima, lo que apunta a una distribución equitativa en ambas direcciones del plano.
+	 	
+	
+	 	\item El \textbf{rango}, con valores máximos en (362, 189), muestra la extensión total de los datos en el espacio bidimensional.
+	 	
+	 	\item La \textbf{desviación estándar}, con valores aproximados de (106.81, 56.20), refleja la dispersión de las posiciones respecto a la media en cada dirección.
+	 	
+	 	\item Una \textbf{asimetría} negativa de aproximadamente -4.30 en la dirección 'x' y positiva de 0.08 en la dirección 'y' sugiere una cola más pesada hacia el lado izquierdo en la dirección 'x' y una distribución más simétrica en la dirección 'y'.
+	 	
+	 	\item El \textbf{coeficiente de variación} de aproximadamente 0.39 en 'x' y 0.59 en 'y', indica una variabilidad relativa menor en la dirección 'x' en comparación con 'y'.
+	 	
+	 	\item La \textbf{curtosis}, con un valor de 1.65 en 'x' y 28.37 en 'y', sugiere una distribución más plana de lo normal en 'x' y una distribución muy puntiaguda con colas pesadas en 'y'.
+	 	
+	 	\item La \textbf{entropía} de 6.57 en 'x' y 2.52 en 'y', mide el grado de incertidumbre y aleatoriedad en la distribución de las posiciones en ambas direcciones, siendo relativamente alta en 'x' e indicando más uniformidad en 'y'.
+	 \end{itemize}
+	 
+	 Los valores indican una distribución con una dispersión considerable y una asimetría notable en la dirección 'x', mientras que en la dirección 'y', los valores sugieren una mayor concentración alrededor de la moda con colas pesadas. Estas características podrían alinearse con una serie de tiempo que contiene un área de actividad concentrada y comportamientos atípicos en determinadas regiones del espacio bidimensional analizado.
+	 
+	 
+	 \newpage
+	 \subsubsection{Choques contra paredes}
+	 \begin{figure}[h]
+	 	\centering
+	 	\includegraphics[width=0.7\textwidth]{graf_choques_uniforme.pdf}
+	 	\caption{Gráfica de la serie de tiempo para los choques del caminante con distribución normal.}
+	 	\label{fig:chUnifGraf}
+	 \end{figure}
+	 \begin{multicols}{2}
+	 	\begin{minipage}{\linewidth}
+	 		\centering
+	 		\includegraphics[width=1\linewidth]{hist_choques_uniforme.pdf}
+	 		\captionof{figure}{Histograma.}
+	 		\label{fig:chUnifHist}
+	 	\end{minipage}
+	 	\vfill\columnbreak
+	 	\begin{minipage}{\linewidth}
+	 		\centering
+	 		\includegraphics[width=1\linewidth]{u4.png}%
+	 		\captionof{figure}{Métricas}
+	 		\label{chUnifMet}
+	 	\end{minipage}
+	 \end{multicols}
+	 
+	 \begin{itemize}
+	 	\item La \textbf{mediana} y la \textbf{moda} de 0 sugieren que la mayor parte de los valores en la serie de tiempo son ceros, lo que puede indicar ausencia de choques durante la mayoría de las observaciones.
+	 	\item La \textbf{media geométrica} es 0, lo que confirma que los valores son predominantemente ceros o valores cercanos a cero.
+	 	\item La \textbf{desviación estándar} de 0.3006 es relativamente pequeña, lo que indica que hay poca variación en los valores y que la mayoría de los valores están cerca de la media.
+	 	\item El \textbf{percentil 20} de 0 refuerza el hallazgo de que al menos el 20\% de los datos son ceros.
+	 	\item El \textbf{cuartil 3} de 0 sugiere que hasta el 75\% de los datos podrían ser ceros, lo que refleja la alta frecuencia de valores sin choques en la serie de tiempo.
+	 	\item Una \textbf{asimetría} de aproximadamente 7.71 indica una distribución muy sesgada, con una cola hacia valores mayores que la mayoría de las observaciones.
+	 	\item El \textbf{coeficiente de variación} de aproximadamente 7.15, al ser relativamente alto, sugiere que la variabilidad de los datos es significativa en comparación con la media, lo cual es notable dado que la media es muy baja.
+	 	\item La \textbf{curtosis} extremadamente alta de aproximadamente 61.69 sugiere una distribución con un pico muy pronunciado en cero y colas muy gruesas, lo que indica una concentración significativa de ceros y la presencia de valores atípicos ocasionales.
+	 	\item La \textbf{entropía} de 0.1270 es baja, lo que implica una alta predecibilidad en la serie de tiempo, probablemente debido a la gran cantidad de ceros.
+	 \end{itemize}
+	 
+	 Dado el predominio de ceros y la baja variabilidad general con la excepción de algunos valores atípicos, la serie de tiempo presenta características de una distribución donde la mayoría de los eventos no registran un cambio, pero ocasionalmente se observan picos significativos.
+	 
+	 
+	 \newpage
+	 \subsection{Caminante Aleatorio con Distribución Normal}
+	 \begin{center}
+	 	\includegraphics[width=0.65\linewidth]{walkerNormal.png}
+	 	\captionof{figure}{Caminante Aleatorio - Distribución Normal}
+	 	\label{walkerNormal}
+	 \end{center}
+	 
+ 
+ 	\subsection{Direcciones}
+	 \begin{figure}[h]
+	 	\centering
+	 	\includegraphics[width=0.6\textwidth]{graf_direcciones_normal.pdf}
+	 	\caption{Gráfica de la serie de tiempo para las direcciones del caminante con distribución normal.}
+	 	\label{fig:direcNormalGraf}
+	 \end{figure}
+	 \begin{multicols}{2}
+	 	\begin{minipage}{\linewidth}
+	 		\centering
+	 		\includegraphics[width=0.9\linewidth]{hist_direcciones_normal.pdf}
+	 		\captionof{figure}{Histograma.}
+	 		\label{fig:direcNormalHist}
+	 	\end{minipage}
+	 	\vfill\columnbreak
+	 	\begin{minipage}{\linewidth}
+	 		\centering
+	 		\includegraphics[width=1\linewidth]{n1.png}%
+	 		\captionof{figure}{Métricas}
+	 		\label{direcNormalMet}
+	 	\end{minipage}
+	 \end{multicols}
+	 
+	 \begin{itemize}
+	 	\item La \textbf{media} de aproximadamente 3.51 sugiere que el promedio de los valores observados se inclina ligeramente hacia el extremo inferior del rango.
+	 	\item La \textbf{mediana} de 4.0 indica que la mitad de los valores son menores que 4 y la otra mitad mayores, apuntando a una distribución equilibrada alrededor de este punto.
+	 	\item La \textbf{moda} de 4 señala que el valor más frecuente en la serie de tiempo es 4, lo cual puede indicar una concentración de medidas alrededor de este valor.
+	 	\item El \textbf{rango} de 7 muestra la extensión completa desde el valor más bajo al más alto.
+	 	\item La \textbf{desviación estándar} de aproximadamente 0.6199 refleja que hay poca dispersión de los valores respecto a la media.
+	 	\item La \textbf{varianza} de 0.4788 es una medida de la dispersión que confirma la baja variabilidad de los datos alrededor de la media.
+	 	\item La \textbf{asimetría} cercana a cero implica que la serie de tiempo tiene una distribución simétrica.
+	 	\item El \textbf{coeficiente de variación} de aproximadamente 0.19 indica una baja variabilidad relativa en relación con la media de la serie de tiempo.
+	 	\item Una \textbf{curtosis} negativa de -0.081 sugiere que la serie de tiempo tiene una distribución menos concentrada que la normal, con colas más ligeras.
+	 	\item La \textbf{entropía} muy baja de 0.141 implica que hay poca incertidumbre o aleatoriedad en la serie de tiempo, posiblemente debido a una alta frecuencia de valores repetidos o un rango limitado de valores únicos. Además es similar a la típica de la distribución normal: \(\frac{1}{2} \ln(2 \pi e \sigma^2)\) = \(\frac{1}{2} \ln(2 \pi e (0.4788))\) = 1.050
+	 \end{itemize}
+	 
+	 Las métricas indican una serie de tiempo con valores que están normalmente distribuidos o concentrados en torno a un número limitado de estados, dada la baja dispersión y alta frecuencia de ciertos valores.
+	 
+	 \subsection{Distancias}
+	 \begin{figure}[h]
+	 	\centering
+	 	\includegraphics[width=0.6\textwidth]{graf_distancia_normal.pdf}
+	 	\caption{Gráfica de la serie de tiempo para las distancias del caminante con distribución normal.}
+	 	\label{fig:distNormalGraf}
+	 \end{figure}
+	 \begin{multicols}{2}
+	 	\begin{minipage}{\linewidth}
+	 		\centering
+	 		\includegraphics[width=0.9\linewidth]{hist_distancia_normal.pdf}
+	 		\captionof{figure}{Histograma.}
+	 		\label{fig:distNormalHist}
+	 	\end{minipage}
+	 	\vfill\columnbreak
+	 	\begin{minipage}{\linewidth}
+	 		\centering
+	 		\includegraphics[width=1\linewidth]{n2.png}%
+	 		\captionof{figure}{Métricas}
+	 		\label{distNormalMet}
+	 	\end{minipage}
+	 \end{multicols}
+	 
+	 \begin{itemize}
+	 	\item La \textbf{media} de aproximadamente 4.50 sugiere que en promedio, los valores de la serie de tiempo se centran en la mitad del rango de valores posibles.
+	 	\item La \textbf{mediana} de 5.0, igual a la moda, indica que la mitad de las mediciones son menores que 5 y la otra mitad mayores, apoyando la presencia de una distribución equilibrada alrededor de este valor central.
+	 	\item La \textbf{moda} de 5, coincidiendo con la mediana y la media, apunta a que es el valor más frecuente, lo que podría indicar un pico en la distribución de los datos.
+	 	\item La \textbf{media geométrica} de aproximadamente 4.44 está cerca de la media, lo que sugiere que los valores bajos no dominan la serie de tiempo.
+	 	\item El \textbf{rango} de 7 indica la extensión total desde el valor más bajo al más alto en la serie de tiempo.
+	 	\item La \textbf{desviación estándar} de aproximadamente 0.77 muestra que los valores tienden a variar moderadamente alrededor de la media.
+	 	\item La \textbf{varianza} de cerca de 0.49 como el cuadrado de la desviación estándar, refleja esta dispersión de los valores.
+	 	\item La \textbf{asimetría} cercana a cero sugiere que la serie de tiempo es simétrica.
+	 	\item El \textbf{coeficiente de variación} de aproximadamente 0.17 indica una baja variabilidad relativa respecto a la media.
+	 	\item La \textbf{entropía} de aproximadamente 1.06, algo baja, sugiere que hay un grado de predecibilidad en la serie de tiempo.  Además es similar a la típica de la distribución normal: \(\frac{1}{2} \ln(2 \pi e \sigma^2)\) = \(\frac{1}{2} \ln(2 \pi e (0.4994))\) = 1.071
+	 \end{itemize}
+	 
+	 Dado el pico pronunciado en la moda y la simetría reflejada en las métricas, junto con la baja entropía y una ligera puntiagudez indicada por la curtosis, las métricas sugieren que la serie de tiempo podría estar distribuida de manera normal con una tendencia a agruparse alrededor de un punto central. Esto es consistente con el histograma que muestra un pico en el valor central con una distribución simétrica a su alrededor.
+	 
+	 
+	 \subsection{Posiciones}
+	 \begin{figure}[h]
+	 	\centering
+	 	\includegraphics[width=0.45\textwidth]{graf_posiciones_normal.pdf}
+	 	\caption{Gráfica de la serie de tiempo para las posiciones del caminante con distribución normal.}
+	 	\label{fig:posNormalGraf}
+	 \end{figure}
+	 \begin{multicols}{2}
+	 	\begin{minipage}{\linewidth}
+	 		\centering
+	 		\includegraphics[width=0.8\linewidth]{hist_posiciones_normal.pdf}
+	 		\captionof{figure}{Histograma.}
+	 		\label{fig:posNormalHist}
+	 	\end{minipage}
+	 	\vfill\columnbreak
+	 	\begin{minipage}{\linewidth}
+	 		\centering
+	 		\includegraphics[width=1\linewidth]{n3.png}%
+	 		\captionof{figure}{Métricas}
+	 		\label{posNormalMet}
+	 	\end{minipage}
+	 \end{multicols}
+	 \begin{itemize}
+	 	\item La \textbf{media} con coordenadas (9.24, 2.32) sugiere un centro de masa para las posiciones que tiende a estar en la parte inferior izquierda del rango de los datos.
+	 	\item Las \textbf{medianas} y \textbf{modas} de (0, 0) indican que el valor más común y el valor medio de las posiciones están en el origen, lo cual podría sugerir una concentración de posiciones o un punto de partida común.
+	 	\item La \textbf{media geométrica} también de (0, 0) confirma la influencia de valores bajos en los datos, posiblemente debido a la frecuencia de ceros en las posiciones.
+	 	\item El \textbf{rango} en las coordenadas (375, 193) muestra la extensión total de los datos a lo largo de las direcciones x e y.
+	 	\item La \textbf{desviación estándar} con valores (14.23, 13.23) refleja una dispersión considerable de las posiciones alrededor del centro de masa.
+	 	\item La \textbf{asimetría} con valores (6.57, 4.65) indica una distribución con colas pesadas que se extienden hacia valores mayores en ambas direcciones x e y.
+	 	\item El \textbf{coeficiente de variación} con valores (1.54, 5.70) sugiere una alta variabilidad relativa, especialmente en la dirección y.
+	 	\item La \textbf{curtosis} extremadamente alta en las coordenadas (43.69, 642.65) implica una distribución con picos muy pronunciados y colas muy gruesas en ambas direcciones.
+	 \end{itemize}
+	 
+	 Dadas las métricas, la serie de tiempo podría reflejar un comportamiento donde las posiciones están altamente concentradas cerca del origen, con ocasionales valores atípicos que generan una distribución con colas largas y picos pronunciados. Esto puede ser indicativo de un proceso con un estado o ubicación de inicio común, seguido de movimientos que, aunque infrecuentes, pueden ser de gran magnitud.
 	
 	
+	\subsection{Choques con pared}
+	 \begin{figure}[h]
+	 	\centering
+	 	\includegraphics[width=0.5\textwidth]{graf_choques_normal.pdf}
+	 	\caption{Gráfica de la serie de tiempo para las choques del caminante con distribución normal.}
+	 	\label{fig:chNormalGraf}
+	 \end{figure}
+	 \begin{multicols}{2}
+	 	\begin{minipage}{\linewidth}
+	 		\centering
+	 		\includegraphics[width=0.9\linewidth]{hist_choques_normal.pdf}
+	 		\captionof{figure}{Histograma.}
+	 		\label{fig:chNormalHist}
+	 	\end{minipage}
+	 	\vfill\columnbreak
+	 	\begin{minipage}{\linewidth}
+	 		\centering
+	 		\includegraphics[width=1\linewidth]{n4.png}%
+	 		\captionof{figure}{Métricas}
+	 		\label{chNormalMet}
+	 	\end{minipage}
+	 \end{multicols}
+	 
+	 \begin{itemize}
+	 	\item La \textbf{media} de aproximadamente 0.809 indica que, en promedio, los choques ocurren en la pared 1.
+	 	\item La \textbf{mediana} y la \textbf{moda} de 1.0 sugieren que la mayoría de las observaciones de la serie de tiempo registran un solo choque.
+	 	\item La \textbf{media geométrica} de 0.0 refuerza la presencia de valores cero en los datos, lo que indica periodos sin choques.
+	 	\item La \textbf{desviación estándar} de aproximadamente 0.974 muestra una variabilidad moderada de la frecuencia de los choques alrededor de la media.
+	 	\item El \textbf{percentil 20} de 0.0 implica que al menos el 20\% de los choques registrados son cero, lo que sugiere que no hay choques durante ese porcentaje de tiempo.
+	 	\item El \textbf{cuartil 3} de 1.0 indica que el 75\% de los choques tienen presencia en la pared 1.
+	 	\item La \textbf{asimetría} de aproximadamente 2.10 sugiere una distribución sesgada hacia valores más bajos, con colas más pesadas hacia valores mayores.
+	 	\item El \textbf{coeficiente de variación} de aproximadamente 1.20 indica una alta variabilidad relativa en relación con la media.
+	 	\item Una \textbf{curtosis} de aproximadamente 4.81 indica una distribución con un pico pronunciado y colas pesadas.
+	 	\item La \textbf{entropía} de 0.877, más baja que 1, sugiere una distribución con cierta predecibilidad y la presencia de un valor común o repetitivo.
+	 \end{itemize}
+	 
+	 La combinación de la moda y mediana en 1, junto con la alta asimetría y curtosis, y una media relativamente baja, sugiere que los choques ocurren mayor frecuencia en la pared 1, aunque puede no haberlos esporádicamente.
+	
+	
+	
+	\newpage	
+	\subsection{Caminante Aleatorio con Distribución Gamma}
+	\begin{center}
+		\includegraphics[width=0.7\linewidth]{walkerGamma.png}
+		\captionof{figure}{Caminante Aleatorio - Distribución Gamma}
+		\label{walkerGamma}
+	\end{center}
+	
+	\subsection{Direcciones}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.55\textwidth]{graf_direcciones_gamma.pdf}
+		\caption{Gráfica de la serie de tiempo para las direcciones del caminante con distribución gamma.}
+		\label{fig:direcGammaGraf}
+	\end{figure}
+	\begin{multicols}{2}
+		\begin{minipage}{\linewidth}
+			\centering
+			\includegraphics[width=1\linewidth]{hist_direcciones_gamma.pdf}
+			\captionof{figure}{Histograma.}
+			\label{fig:direcGammaHist}
+		\end{minipage}
+		\vfill\columnbreak
+		\begin{minipage}{\linewidth}
+			\centering
+			\includegraphics[width=1\linewidth]{g1.png}%
+			\captionof{figure}{Métricas}
+			\label{direcGammaMet}
+		\end{minipage}
+	\end{multicols}
+	
+	\begin{itemize}
+		\item La \textbf{media} cercana a 0.41 sugiere que la mayoría de los valores en la serie de tiempo tienen una tendencia hacia la dirección 0.
+		\item Tanto la \textbf{mediana} como la \textbf{moda} son 0, indicando que el valor más frecuente y el punto medio de los datos es cero, lo que sugiere una alta frecuencia de eventos en esta dirección.
+		\item La \textbf{media geométrica} es 0, lo cual es coherente con una alta proporción de valores cero en la serie de tiempo.
+		\item El \textbf{rango} de 7 indica que, aunque el caminante se mueve más hacia la dirección 0, ocasionalmente también lo hace en las direcciones 1 a 7.
+		\item La \textbf{desviación estándar} de aproximadamente 0.7268 señala una variabilidad moderada de los datos desde la media.
+		\item El \textbf{percentil 20} es 0, lo que refuerza la presencia de muchos valores que apuntan a la dirección 0 en la serie de tiempo.
+		\item El \textbf{cuartil 3} de 1 muestra que hasta el 75\% de los datos tienen valores en las direcciones 0 o 1.
+		\item La \textbf{asimetría} positiva de aproximadamente 2.33 indica una distribución con una cola más larga hacia los valores mayores.
+		\item El \textbf{coeficiente de variación} de aproximadamente 1.76 muestra una variabilidad relativa alta en comparación con la media, que es un indicador de que los valores más altos son menos frecuentes pero significativamente diferentes de la mayoría de los valores.
+		\item Una \textbf{curtosis} alta de aproximadamente 8.07 indica una distribución con colas más pesadas y un pico más pronunciado alrededor del cero.
+		\item La \textbf{entropía} de aproximadamente 0.84, aunque más alta que en una distribución con una sola moda, sigue siendo relativamente baja, lo que indica un cierto grado de regularidad en la serie de tiempo.
+	\end{itemize}
+	
+	La combinación de una media baja, una alta frecuencia de ceros y una asimetría positiva con una curtosis alta sugiere que la serie de tiempo puede caracterizarse por una distribución gamma, con gran cantidad de eventos en la dirección cero. Esto podría reflejar un proceso donde el movimiento o el cambio es generalmente mínimo, con algunos picos esporádicos de actividad más alta.
+	
+	
+	
+	\newpage
+	\subsection{Distancias}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.6\textwidth]{graf_distancia_gamma.pdf}
+		\caption{Gráfica de la serie de tiempo para las distancias del caminante con distribución gamma.}
+		\label{fig:distGammaGraf}
+	\end{figure}
+	\begin{multicols}{2}
+		\begin{minipage}{\linewidth}
+			\centering
+			\includegraphics[width=1\linewidth]{hist_distancia_gamma.pdf}
+			\captionof{figure}{Histograma.}
+			\label{fig:distGammaHist}
+		\end{minipage}
+		\vfill\columnbreak
+		\begin{minipage}{\linewidth}
+			\centering
+			\includegraphics[width=1\linewidth]{g2.png}%
+			\captionof{figure}{Métricas}
+			\label{distGammaMet}
+		\end{minipage}
+	\end{multicols}
+	
+	\begin{itemize}
+		\item La \textbf{media} de 1.41 sugiere que el valor promedio de las distancias es moderado dentro del rango de datos.
+		\item Tanto la \textbf{mediana} como la \textbf{moda} son 1, lo que indica una concentración de valores alrededor de este punto. Esto puede significar que la mayoría de las distancias son consistentemente bajas, con menos instancias de distancias más largas.
+		\item La \textbf{media geométrica} de aproximadamente 1.28 es consistente con la presencia de valores no nulos, indicando que la distribución no está sesgada hacia el cero.
+		\item El \textbf{rango} de 7 muestra la diferencia entre las distancias más cortas y más largas observadas.
+		\item Una \textbf{desviación estándar} de aproximadamente 0.74 sugiere que hay una variación moderada de las distancias alrededor de la media.
+		\item El \textbf{percentil 20} de 1 indica que al menos el 20\% de los valores son 1 o menos.
+		\item El \textbf{cuartil 3} de 2 muestra que el 75\% de las distancias son 2 o menos, lo que apoya la existencia de una concentración de valores bajos.
+		\item Una \textbf{asimetría} de aproximadamente 2.29 sugiere una cola más pesada hacia las distancias más largas.
+		\item El \textbf{coeficiente de variación} de 0.52 indica que la variabilidad de las distancias es más de la mitad de la media, lo cual es notablemente alta.
+		\item Una \textbf{curtosis} de aproximadamente 7.17 indica que la distribución es cuenta con un pico más pronunciado que una distribución normal y colas más pesadas.
+		\item La \textbf{entropía} de 0.85 es relativamente baja, lo que podría sugerir cierta regularidad o predictibilidad en las distancias observadas.
+	\end{itemize}
+	
+	Estas métricas pueden indicar que, mientras que la mayoría de las distancias en la serie de tiempo son bajas, hay una cantidad significativa de instancias con distancias más altas. La presencia de una asimetría positiva y una curtosis alta sugiere que esas distancias más altas, aunque raras, pueden ser extremadamente altas en comparación con la mayoría de los datos. La baja entropía y la media geométrica mayor que cero sugieren que hay una tendencia general hacia distancias más bajas, pero con eventos intermitentes de distancias más largas, como se encontraría en una distribución gamma.
+	
+	
+	\subsection{Posiciones}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.5\textwidth]{graf_posiciones_gamma.pdf}
+		\caption{Gráfica de la serie de tiempo para las posiciones del caminante con distribución gamma.}
+		\label{fig:posGammaGraf}
+	\end{figure}
+	\begin{multicols}{2}
+		\begin{minipage}{\linewidth}
+			\centering
+			\includegraphics[width=0.8\linewidth]{hist_posiciones_gamma.pdf}
+			\captionof{figure}{Histograma.}
+			\label{fig:posGammaHist}
+		\end{minipage}
+		\vfill\columnbreak
+		\begin{minipage}{\linewidth}
+			\centering
+			\includegraphics[width=1\linewidth]{g3.png}%
+			\captionof{figure}{Métricas}
+			\label{posGammaMet}
+		\end{minipage}
+	\end{multicols}
+	
+	\begin{itemize}
+		\item La \textbf{media} en las coordenadas (392.09, 0.25) indica que, en promedio, las posiciones registradas tienden a ser cercanas a estas coordenadas, con una concentración significativa en la dirección 'x'.
+		\item La \textbf{mediana} y la \textbf{moda} en las coordenadas (399, 0) muestran que la mayoría de las observaciones se acumulan en este punto específico del espacio, lo que podría indicar un lugar de alta frecuencia o un punto de estancia común.
+		\item La \textbf{media geométrica} en (389.36, 0) sugiere que los valores de la serie de tiempo tienen una tendencia multiplicativa hacia estas coordenadas, excluyendo los valores de cero.
+		\item El \textbf{rango} de (293, 73) muestra la extensión total en el espacio de las coordenadas 'x' e 'y'.
+		\item La \textbf{desviación estándar} en (35.65, 2.96) indica una dispersión considerable alrededor de la media en ambas direcciones, especialmente en 'x'.
+		\item La \textbf{varianza} en (1271.54, 8.79) cuantifica esta dispersión y confirma la variabilidad significativa en 'x' y una menor en 'y'.
+		\item El \textbf{cuartil 3} en (399, 0) sugiere que hasta el 75\% de las observaciones caen dentro o por debajo de estas coordenadas.
+		\item La \textbf{asimetría} en (3.53, 9.17) indica una distribución sesgada, con una cola más larga hacia los valores mayores en ambas coordenadas.
+		\item La \textbf{curtosis} extremadamente alta en (35.42, 903.18) implica una distribución con picos muy pronunciados cerca de las modas y colas gruesas, indicando una alta frecuencia de valores comunes y la presencia de valores atípicos significativos.
+		\item La \textbf{entropía} baja en (0.66, 0.34) sugiere un cierto grado de regularidad o predecibilidad en la distribución de las posiciones, especialmente en 'y'.
+	\end{itemize}
+	
+	La alta concentración de valores en la coordenada 'x' cerca de 399 y la moda y mediana en cero para 'y', junto con la gran curtosis, indican que la serie de tiempo presenta una distribución donde hay un comportamiento dominante o un estado estacionario que el caminante ocupa con frecuencia, con variaciones ocasionales que pueden ser extremas. La baja entropía en la coordenada 'y' puede reflejar que el caminante cambia de posición en 'y' con menos frecuencia o dentro de un rango más limitado de valores.
+	
+	
+	\subsection{Choques con pared}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.6\textwidth]{graf_choques_gamma.pdf}
+		\caption{Gráfica de la serie de tiempo para los choques del caminante con distribución gamma.}
+		\label{fig:chGammaGraf}
+	\end{figure}
+	\begin{multicols}{2}
+		\begin{minipage}{\linewidth}
+			\centering
+			\includegraphics[width=1\linewidth]{hist_choques_gamma.pdf}
+			\captionof{figure}{Histograma.}
+			\label{fig:chGammaHist}
+		\end{minipage}
+		\vfill\columnbreak
+		\begin{minipage}{\linewidth}
+			\centering
+			\includegraphics[width=1\linewidth]{g4.png}%
+			\captionof{figure}{Métricas}
+			\label{chGammaMet}
+		\end{minipage}
+	\end{multicols}
+
+
+\begin{itemize}
+	\item La \textbf{media} de aproximadamente 0.85 sugiere que, en promedio, el número de choques se encuentra en la pared 1.
+	\item La \textbf{mediana} y la \textbf{moda} iguales a 1 reflejan que el valor más comúnmente observado y el valor central de la distribución de choques es 1.
+	\item El \textbf{rango} de 2 muestra que las paredes de los choques oscilan entre la 1 y 2.
+	\item Una \textbf{desviación estándar} baja de 0.39 indica que la mayoría de los choques tienden a estar cerca de la pared 1.
+	\item El \textbf{percentil 20} de 1 sugiere que al menos el 20\% de los choques se encuentran en la pared 1.
+	\item El \textbf{cuartil 3} también de 1 indica que hasta el 75\% de los choques tienden a estar en esta pared, mostrando una alta concentración de los datos en este valor.
+	\item La \textbf{asimetría} negativa de aproximadamente -1.23 sugiere que hay una cola más pesada hacia el extremo inferior de la distribución, es decir, hay más choques en paredes menores que la media (es decir,, sin choques).
+	\item Una \textbf{curtosis} de aproximadamente 1.71 sugiere una distribución con un pico más pronunciado que una distribución normal y colas moderadamente pesadas.
+\end{itemize}
+
+La combinación de la moda y la mediana en 1, junto con la baja media y la asimetría negativa, sugiere que la serie de tiempo de choques tiene una tendencia a los valores de la pared 1, indicando una concentración de choques alrededor de la pared 1 y baja frecuencia de eventos extremos.
+
+
 \end{document}

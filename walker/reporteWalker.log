@@ -1,6 +1,6 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.3.18)  3 APR 2024 20:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.3.16)  9 APR 2024 12:17
 entering extended mode
- \write18 enabled.
+ restricted \write18 enabled.
  %&-line parsing enabled.
 **reporteWalker.tex
 (./reporteWalker.tex
@@ -996,7 +996,7 @@ LaTeX Info: Redefining \nameref on input line 127.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-<cic.jpeg, id=139, 950.55125pt x 690.58pt>
+<cic.jpeg, id=147, 950.55125pt x 690.58pt>
 File: cic.jpeg Graphic file (type jpg)
 <use cic.jpeg>
 Package pdftex.def Info: cic.jpeg  used on input line 131.
@@ -1087,7 +1087,7 @@ LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
  (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-<../transformaciones/hist_uniform_Sturges.pdf, id=158, 421.33502pt x 289.3115pt
+<../transformaciones/hist_uniform_Sturges.pdf, id=166, 421.33502pt x 289.3115pt
 >
 File: ../transformaciones/hist_uniform_Sturges.pdf Graphic file (type pdf)
 <use ../transformaciones/hist_uniform_Sturges.pdf>
@@ -1097,7 +1097,7 @@ input line 188.
 LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <12> not available
 (Font)              Font shape `T1/lmss/bx/n' tried instead on input line 198.
  [2 <../transformaciones/hist_uniform_Sturges.pdf>]
-<../transformaciones/hist_normal_Rice.pdf, id=217, 401.65372pt x 289.3115pt>
+<../transformaciones/hist_normal_Rice.pdf, id=225, 401.65372pt x 289.3115pt>
 File: ../transformaciones/hist_normal_Rice.pdf Graphic file (type pdf)
 <use ../transformaciones/hist_normal_Rice.pdf>
 Package pdftex.def Info: ../transformaciones/hist_normal_Rice.pdf  used on inpu
@@ -1110,19 +1110,19 @@ ión gam-ma que se al-ma-ce-na-ron en \T1/lmtt/m/n/10.95 randomsGamma.txt\T1/lms
 s/m/n/10.95 .
  []
 
-<../transformaciones/hist_gamma_Rice.pdf, id=273, 401.65372pt x 289.3115pt>
+<../transformaciones/hist_gamma_Rice.pdf, id=281, 401.65372pt x 289.3115pt>
 File: ../transformaciones/hist_gamma_Rice.pdf Graphic file (type pdf)
 <use ../transformaciones/hist_gamma_Rice.pdf>
 Package pdftex.def Info: ../transformaciones/hist_gamma_Rice.pdf  used on input
  line 254.
 (pdftex.def)             Requested size: 328.82707pt x 236.87054pt.
 [4 <../transformaciones/hist_gamma_Rice.pdf>] [5] [6] [7] [8] [9] [10]
-<resultadosUniforme.png, id=632, 475.7775pt x 338.26375pt>
+<resultadosUniforme.png, id=640, 475.7775pt x 338.26375pt>
 File: resultadosUniforme.png Graphic file (type png)
 <use resultadosUniforme.png>
 Package pdftex.def Info: resultadosUniforme.png  used on input line 553.
 (pdftex.def)             Requested size: 230.18253pt x 163.65512pt.
-<resultadosNormal.png, id=633, 474.77374pt x 336.25626pt>
+<resultadosNormal.png, id=641, 474.77374pt x 336.25626pt>
 File: resultadosNormal.png Graphic file (type png)
 <use resultadosNormal.png>
 Package pdftex.def Info: resultadosNormal.png  used on input line 561.
@@ -1143,7 +1143,7 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 559--565
 []$[]$ 
  []
 
-<resultadosGamma.png, id=634, 476.78125pt x 337.26pt>
+<resultadosGamma.png, id=642, 476.78125pt x 337.26pt>
 File: resultadosGamma.png Graphic file (type png)
 <use resultadosGamma.png>
 Package pdftex.def Info: resultadosGamma.png  used on input line 568.
@@ -1179,13 +1179,13 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 655.
 
-<../transformaciones/cuad_uniforme1.pdf, id=651, 615.15135pt x 397.46681pt>
+<../transformaciones/cuad_uniforme1.pdf, id=659, 615.15135pt x 397.46681pt>
 File: ../transformaciones/cuad_uniforme1.pdf Graphic file (type pdf)
 <use ../transformaciones/cuad_uniforme1.pdf>
 Package pdftex.def Info: ../transformaciones/cuad_uniforme1.pdf  used on input 
 line 660.
 (pdftex.def)             Requested size: 328.82707pt x 212.46979pt.
-<../transformaciones/cuad_uniforme2.pdf, id=652, 401.65372pt x 289.3115pt>
+<../transformaciones/cuad_uniforme2.pdf, id=660, 401.65372pt x 289.3115pt>
 File: ../transformaciones/cuad_uniforme2.pdf Graphic file (type pdf)
 <use ../transformaciones/cuad_uniforme2.pdf>
 Package pdftex.def Info: ../transformaciones/cuad_uniforme2.pdf  used on input 
@@ -1201,7 +1201,7 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 666--672
 []$[]$ 
  []
 
-<../transformaciones/cuad_uniforme3.png, id=653, 454.69875pt x 304.13625pt>
+<../transformaciones/cuad_uniforme3.png, id=661, 454.69875pt x 304.13625pt>
 File: ../transformaciones/cuad_uniforme3.png Graphic file (type png)
 <use ../transformaciones/cuad_uniforme3.png>
 Package pdftex.def Info: ../transformaciones/cuad_uniforme3.png  used on input 
@@ -1219,13 +1219,13 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 673--679
 
 [14 <../transformaciones/cuad_uniforme1.pdf> <../transformaciones/cuad_uniforme
 2.pdf> <../transformaciones/cuad_uniforme3.png>] [15]
-<../transformaciones/cuad_normal1.pdf, id=765, 611.95189pt x 397.46681pt>
+<../transformaciones/cuad_normal1.pdf, id=773, 611.95189pt x 397.46681pt>
 File: ../transformaciones/cuad_normal1.pdf Graphic file (type pdf)
 <use ../transformaciones/cuad_normal1.pdf>
 Package pdftex.def Info: ../transformaciones/cuad_normal1.pdf  used on input li
 ne 716.
 (pdftex.def)             Requested size: 328.82707pt x 213.57965pt.
-<../transformaciones/cuad_normal2.pdf, id=766, 401.65372pt x 289.3115pt>
+<../transformaciones/cuad_normal2.pdf, id=774, 401.65372pt x 289.3115pt>
 File: ../transformaciones/cuad_normal2.pdf Graphic file (type pdf)
 <use ../transformaciones/cuad_normal2.pdf>
 Package pdftex.def Info: ../transformaciones/cuad_normal2.pdf  used on input li
@@ -1242,7 +1242,7 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 722--728
 []$[]$ 
  []
 
-<../transformaciones/cuad_normal3.png, id=767, 453.695pt x 309.155pt>
+<../transformaciones/cuad_normal3.png, id=775, 453.695pt x 309.155pt>
 File: ../transformaciones/cuad_normal3.png Graphic file (type png)
 <use ../transformaciones/cuad_normal3.png>
 Package pdftex.def Info: ../transformaciones/cuad_normal3.png  used on input li
@@ -1260,13 +1260,13 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 729--735
 
 [16 <../transformaciones/cuad_normal1.pdf> <../transformaciones/cuad_normal2.pd
 f> <../transformaciones/cuad_normal3.png>] [17]
-<../transformaciones/cuad_gamma1.pdf, id=878, 611.95189pt x 397.46681pt>
+<../transformaciones/cuad_gamma1.pdf, id=886, 611.95189pt x 397.46681pt>
 File: ../transformaciones/cuad_gamma1.pdf Graphic file (type pdf)
 <use ../transformaciones/cuad_gamma1.pdf>
 Package pdftex.def Info: ../transformaciones/cuad_gamma1.pdf  used on input lin
 e 772.
 (pdftex.def)             Requested size: 328.82707pt x 213.57965pt.
-<../transformaciones/cuad_gamma2.pdf, id=879, 402.82808pt x 289.3115pt>
+<../transformaciones/cuad_gamma2.pdf, id=887, 402.82808pt x 289.3115pt>
 File: ../transformaciones/cuad_gamma2.pdf Graphic file (type pdf)
 <use ../transformaciones/cuad_gamma2.pdf>
 Package pdftex.def Info: ../transformaciones/cuad_gamma2.pdf  used on input lin
@@ -1283,7 +1283,7 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 778--784
 []$[]$ 
  []
 
-<../transformaciones/cuad_gamma3.png, id=880, 650.43pt x 305.14pt>
+<../transformaciones/cuad_gamma3.png, id=888, 650.43pt x 305.14pt>
 File: ../transformaciones/cuad_gamma3.png Graphic file (type png)
 <use ../transformaciones/cuad_gamma3.png>
 Package pdftex.def Info: ../transformaciones/cuad_gamma3.png  used on input lin
@@ -1389,13 +1389,13 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\right' on input line 824.
 
-<../transformaciones/per_uniforme1.pdf, id=984, 620.3583pt x 397.46681pt>
+<../transformaciones/per_uniforme1.pdf, id=992, 620.3583pt x 397.46681pt>
 File: ../transformaciones/per_uniforme1.pdf Graphic file (type pdf)
 <use ../transformaciones/per_uniforme1.pdf>
 Package pdftex.def Info: ../transformaciones/per_uniforme1.pdf  used on input l
 ine 829.
 (pdftex.def)             Requested size: 328.82707pt x 210.68066pt.
-<../transformaciones/per_uniforme2.pdf, id=985, 424.2365pt x 289.3115pt>
+<../transformaciones/per_uniforme2.pdf, id=993, 424.2365pt x 289.3115pt>
 File: ../transformaciones/per_uniforme2.pdf Graphic file (type pdf)
 <use ../transformaciones/per_uniforme2.pdf>
 Package pdftex.def Info: ../transformaciones/per_uniforme2.pdf  used on input l
@@ -1411,7 +1411,7 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 835--841
 []$[]$ 
  []
 
-<../transformaciones/per_uniforme3.png, id=986, 437.635pt x 298.11375pt>
+<../transformaciones/per_uniforme3.png, id=994, 437.635pt x 298.11375pt>
 File: ../transformaciones/per_uniforme3.png Graphic file (type png)
 <use ../transformaciones/per_uniforme3.png>
 Package pdftex.def Info: ../transformaciones/per_uniforme3.png  used on input l
@@ -1429,13 +1429,13 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 842--848
 
 [20 <../transformaciones/per_uniforme1.pdf> <../transformaciones/per_uniforme2.
 pdf> <../transformaciones/per_uniforme3.png>] [21]
-<../transformaciones/per_normal1.pdf, id=1106, 620.3583pt x 397.46681pt>
+<../transformaciones/per_normal1.pdf, id=1114, 620.3583pt x 397.46681pt>
 File: ../transformaciones/per_normal1.pdf Graphic file (type pdf)
 <use ../transformaciones/per_normal1.pdf>
 Package pdftex.def Info: ../transformaciones/per_normal1.pdf  used on input lin
 e 885.
 (pdftex.def)             Requested size: 328.82707pt x 210.68066pt.
-<../transformaciones/per_normal2.pdf, id=1107, 401.84816pt x 289.3115pt>
+<../transformaciones/per_normal2.pdf, id=1115, 401.84816pt x 289.3115pt>
 File: ../transformaciones/per_normal2.pdf Graphic file (type pdf)
 <use ../transformaciones/per_normal2.pdf>
 Package pdftex.def Info: ../transformaciones/per_normal2.pdf  used on input lin
@@ -1452,7 +1452,7 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 891--897
 []$[]$ 
  []
 
-<../transformaciones/per_normal3.png, id=1108, 464.73625pt x 304.13625pt>
+<../transformaciones/per_normal3.png, id=1116, 464.73625pt x 304.13625pt>
 File: ../transformaciones/per_normal3.png Graphic file (type png)
 <use ../transformaciones/per_normal3.png>
 Package pdftex.def Info: ../transformaciones/per_normal3.png  used on input lin
@@ -1470,13 +1470,13 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 898--904
 
 [22 <../transformaciones/per_normal1.pdf> <../transformaciones/per_normal2.pdf>
  <../transformaciones/per_normal3.png>] [23]
-<../transformaciones/per_gamma1.pdf, id=1225, 620.3583pt x 397.46681pt>
+<../transformaciones/per_gamma1.pdf, id=1233, 620.3583pt x 397.46681pt>
 File: ../transformaciones/per_gamma1.pdf Graphic file (type pdf)
 <use ../transformaciones/per_gamma1.pdf>
 Package pdftex.def Info: ../transformaciones/per_gamma1.pdf  used on input line
  942.
 (pdftex.def)             Requested size: 328.82707pt x 210.68066pt.
-<../transformaciones/per_gamma2.pdf, id=1226, 403.64394pt x 289.3115pt>
+<../transformaciones/per_gamma2.pdf, id=1234, 403.64394pt x 289.3115pt>
 File: ../transformaciones/per_gamma2.pdf Graphic file (type pdf)
 <use ../transformaciones/per_gamma2.pdf>
 Package pdftex.def Info: ../transformaciones/per_gamma2.pdf  used on input line
@@ -1493,7 +1493,7 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 948--954
 []$[]$ 
  []
 
-<../transformaciones/per_gamma3.png, id=1227, 474.77374pt x 303.1325pt>
+<../transformaciones/per_gamma3.png, id=1235, 474.77374pt x 303.1325pt>
 File: ../transformaciones/per_gamma3.png Graphic file (type png)
 <use ../transformaciones/per_gamma3.png>
 Package pdftex.def Info: ../transformaciones/per_gamma3.png  used on input line
@@ -1511,12 +1511,12 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 955--961
 
 [24 <../transformaciones/per_gamma1.pdf> <../transformaciones/per_gamma2.pdf> <
 ../transformaciones/per_gamma3.png>] [25]
-<rectangulo.png, id=1344, 788.9475pt x 347.2975pt>
+<rectangulo.png, id=1352, 788.9475pt x 347.2975pt>
 File: rectangulo.png Graphic file (type png)
 <use rectangulo.png>
 Package pdftex.def Info: rectangulo.png  used on input line 1017.
 (pdftex.def)             Requested size: 281.85587pt x 124.07312pt.
-<walkerUniforme.png, id=1346, 1606.0pt x 803.0pt>
+<walkerUniforme.png, id=1354, 1606.0pt x 803.0pt>
 File: walkerUniforme.png Graphic file (type png)
 <use walkerUniforme.png>
 Package pdftex.def Info: walkerUniforme.png  used on input line 1028.
@@ -1527,14 +1527,14 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 1029.
 See the caption package documentation for explanation.
 
-<graf_direcciones_uniforme.pdf, id=1347, 605.56868pt x 403.97112pt>
+<graf_direcciones_uniforme.pdf, id=1355, 605.56868pt x 403.97112pt>
 File: graf_direcciones_uniforme.pdf Graphic file (type pdf)
 <use graf_direcciones_uniforme.pdf>
 Package pdftex.def Info: graf_direcciones_uniforme.pdf  used on input line 1036
 .
 (pdftex.def)             Requested size: 328.82707pt x 219.35547pt.
 [26 <./rectangulo.png> <./walkerUniforme.png (PNG copy)>]
-<hist_direcciones_uniforme.pdf, id=1355, 458.37561pt x 338.166pt>
+<hist_direcciones_uniforme.pdf, id=1363, 458.37561pt x 338.166pt>
 File: hist_direcciones_uniforme.pdf Graphic file (type pdf)
 <use hist_direcciones_uniforme.pdf>
 Package pdftex.def Info: hist_direcciones_uniforme.pdf  used on input line 1043
@@ -1551,7 +1551,7 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 1041--1047
 []$[]$ 
  []
 
-<u1.png, id=1356, 418.56375pt x 261.97874pt>
+<u1.png, id=1364, 418.56375pt x 261.97874pt>
 File: u1.png Graphic file (type png)
 <use u1.png>
 Package pdftex.def Info: u1.png  used on input line 1050.
@@ -1568,12 +1568,12 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 1048--1054
 
 [27 <./graf_direcciones_uniforme.pdf> <./hist_direcciones_uniforme.pdf> <./u1.p
 ng>]
-<graf_distancia_uniforme.pdf, id=1464, 605.56868pt x 403.97112pt>
+<graf_distancia_uniforme.pdf, id=1472, 605.56868pt x 403.97112pt>
 File: graf_distancia_uniforme.pdf Graphic file (type pdf)
 <use graf_distancia_uniforme.pdf>
 Package pdftex.def Info: graf_distancia_uniforme.pdf  used on input line 1081.
 (pdftex.def)             Requested size: 281.85587pt x 188.02338pt.
-<hist_distancia_uniforme.pdf, id=1465, 445.31902pt x 338.166pt>
+<hist_distancia_uniforme.pdf, id=1473, 445.31902pt x 338.166pt>
 File: hist_distancia_uniforme.pdf Graphic file (type pdf)
 <use hist_distancia_uniforme.pdf>
 Package pdftex.def Info: hist_distancia_uniforme.pdf  used on input line 1088.
@@ -1589,7 +1589,7 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 1086--1092
 []$[]$ 
  []
 
-<u2.png, id=1466, 418.56375pt x 261.97874pt>
+<u2.png, id=1474, 418.56375pt x 261.97874pt>
 File: u2.png Graphic file (type png)
 <use u2.png>
 Package pdftex.def Info: u2.png  used on input line 1095.
@@ -1609,14 +1609,14 @@ Overfull \vbox (9.86148pt too high) has occurred while \output is active []
 
 
 [28 <./graf_distancia_uniforme.pdf> <./hist_distancia_uniforme.pdf> <./u2.png>]
-<graf_posiciones_uniforme.pdf, id=1578, 428.834pt x 419.64154pt>
+<graf_posiciones_uniforme.pdf, id=1586, 428.834pt x 419.64154pt>
 File: graf_posiciones_uniforme.pdf Graphic file (type pdf)
 <use graf_posiciones_uniforme.pdf>
 Package pdftex.def Info: graf_posiciones_uniforme.pdf  used on input line 1118.
 
 (pdftex.def)             Requested size: 234.8775pt x 229.84306pt.
 [29 <./graf_posiciones_uniforme.pdf>]
-<hist_posiciones_uniforme.pdf, id=1620, 429.21855pt x 419.17104pt>
+<hist_posiciones_uniforme.pdf, id=1628, 429.21855pt x 419.17104pt>
 File: hist_posiciones_uniforme.pdf Graphic file (type pdf)
 <use hist_posiciones_uniforme.pdf>
 Package pdftex.def Info: hist_posiciones_uniforme.pdf  used on input line 1127.
@@ -1633,7 +1633,7 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 1125--1131
 []$[]$ 
  []
 
-<u3.png, id=1621, 603.25375pt x 283.0575pt>
+<u3.png, id=1629, 603.25375pt x 283.0575pt>
 File: u3.png Graphic file (type png)
 <use u3.png>
 Package pdftex.def Info: u3.png  used on input line 1134.
@@ -1649,12 +1649,12 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 1132--1138
  []
 
 [30 <./hist_posiciones_uniforme.pdf> <./u3.png>]
-<graf_choques_uniforme.pdf, id=1664, 615.15135pt x 403.97112pt>
+<graf_choques_uniforme.pdf, id=1672, 615.15135pt x 403.97112pt>
 File: graf_choques_uniforme.pdf Graphic file (type pdf)
 <use graf_choques_uniforme.pdf>
 Package pdftex.def Info: graf_choques_uniforme.pdf  used on input line 1166.
 (pdftex.def)             Requested size: 328.82707pt x 215.94673pt.
-<hist_choques_uniforme.pdf, id=1665, 447.31082pt x 338.166pt>
+<hist_choques_uniforme.pdf, id=1673, 447.31082pt x 338.166pt>
 File: hist_choques_uniforme.pdf Graphic file (type pdf)
 <use hist_choques_uniforme.pdf>
 Package pdftex.def Info: hist_choques_uniforme.pdf  used on input line 1173.
@@ -1670,7 +1670,7 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 1171--1177
 []$[]$ 
  []
 
-<u4.png, id=1666, 394.47375pt x 274.02374pt>
+<u4.png, id=1674, 394.47375pt x 274.02374pt>
 File: u4.png Graphic file (type png)
 <use u4.png>
 Package pdftex.def Info: u4.png  used on input line 1180.
@@ -1687,7 +1687,7 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 1178--1184
 
 [31 <./graf_choques_uniforme.pdf> <./hist_choques_uniforme.pdf> <./u4.png>]
 [32]
-<walkerNormal.png, id=1778, 1606.0pt x 803.0pt>
+<walkerNormal.png, id=1786, 1606.0pt x 803.0pt>
 File: walkerNormal.png Graphic file (type png)
 <use walkerNormal.png>
 Package pdftex.def Info: walkerNormal.png  used on input line 1204.
@@ -1698,12 +1698,12 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 1205.
 See the caption package documentation for explanation.
 
-<graf_direcciones_normal.pdf, id=1779, 605.56868pt x 403.97112pt>
+<graf_direcciones_normal.pdf, id=1787, 605.56868pt x 403.97112pt>
 File: graf_direcciones_normal.pdf Graphic file (type pdf)
 <use graf_direcciones_normal.pdf>
 Package pdftex.def Info: graf_direcciones_normal.pdf  used on input line 1213.
 (pdftex.def)             Requested size: 281.85587pt x 188.02338pt.
-<hist_direcciones_normal.pdf, id=1780, 453.2157pt x 338.166pt>
+<hist_direcciones_normal.pdf, id=1788, 453.2157pt x 338.166pt>
 File: hist_direcciones_normal.pdf Graphic file (type pdf)
 <use hist_direcciones_normal.pdf>
 Package pdftex.def Info: hist_direcciones_normal.pdf  used on input line 1220.
@@ -1718,7 +1718,7 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 1218--1224
 []$[]$ 
  []
 
-<n1.png, id=1781, 436.63126pt x 272.01625pt>
+<n1.png, id=1789, 436.63126pt x 272.01625pt>
 File: n1.png Graphic file (type png)
 <use n1.png>
 Package pdftex.def Info: n1.png  used on input line 1227.
@@ -1742,7 +1742,7 @@ Overfull \vbox (13.45122pt too high) has occurred while \output is active []
 
 [33 <./walkerNormal.png (PNG copy)> <./graf_direcciones_normal.pdf> <./hist_dir
 ecciones_normal.pdf> <./n1.png>]
-<graf_distancia_normal.pdf, id=1888, 605.56868pt x 403.97112pt>
+<graf_distancia_normal.pdf, id=1896, 605.56868pt x 403.97112pt>
 File: graf_distancia_normal.pdf Graphic file (type pdf)
 <use graf_distancia_normal.pdf>
 Package pdftex.def Info: graf_distancia_normal.pdf  used on input line 1251.
@@ -1751,7 +1751,7 @@ Package pdftex.def Info: graf_distancia_normal.pdf  used on input line 1251.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<hist_distancia_normal.pdf, id=1889, 440.1591pt x 338.166pt>
+<hist_distancia_normal.pdf, id=1897, 440.1591pt x 338.166pt>
 File: hist_distancia_normal.pdf Graphic file (type pdf)
 <use hist_distancia_normal.pdf>
 Package pdftex.def Info: hist_distancia_normal.pdf  used on input line 1258.
@@ -1766,7 +1766,7 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 1256--1262
 []$[]$ 
  []
 
-<n2.png, id=1890, 436.63126pt x 272.01625pt>
+<n2.png, id=1898, 436.63126pt x 272.01625pt>
 File: n2.png Graphic file (type png)
 <use n2.png>
 Package pdftex.def Info: n2.png  used on input line 1265.
@@ -1782,13 +1782,13 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 1263--1269
  []
 
 [34 <./hist_distancia_normal.pdf> <./n2.png>]
-<graf_posiciones_normal.pdf, id=1948, 428.834pt x 419.64154pt>
+<graf_posiciones_normal.pdf, id=1956, 428.834pt x 419.64154pt>
 File: graf_posiciones_normal.pdf Graphic file (type pdf)
 <use graf_posiciones_normal.pdf>
 Package pdftex.def Info: graf_posiciones_normal.pdf  used on input line 1290.
 (pdftex.def)             Requested size: 211.38832pt x 206.85556pt.
  [35 <./graf_distancia_normal.pdf>]
-<hist_posiciones_normal.pdf, id=2004, 429.21855pt x 419.17104pt>
+<hist_posiciones_normal.pdf, id=2012, 429.21855pt x 419.17104pt>
 File: hist_posiciones_normal.pdf Graphic file (type pdf)
 <use hist_posiciones_normal.pdf>
 Package pdftex.def Info: hist_posiciones_normal.pdf  used on input line 1297.
@@ -1804,7 +1804,7 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 1295--1301
 []$[]$ 
  []
 
-<n3.png, id=2005, 584.1825pt x 274.02374pt>
+<n3.png, id=2013, 584.1825pt x 274.02374pt>
 File: n3.png Graphic file (type png)
 <use n3.png>
 Package pdftex.def Info: n3.png  used on input line 1304.
@@ -1820,12 +1820,12 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 1302--1308
  []
 
 [36 <./graf_posiciones_normal.pdf> <./hist_posiciones_normal.pdf> <./n3.png>]
-<graf_choques_normal.pdf, id=2081, 615.15135pt x 403.97112pt>
+<graf_choques_normal.pdf, id=2089, 615.15135pt x 403.97112pt>
 File: graf_choques_normal.pdf Graphic file (type pdf)
 <use graf_choques_normal.pdf>
 Package pdftex.def Info: graf_choques_normal.pdf  used on input line 1326.
 (pdftex.def)             Requested size: 234.8775pt x 154.24414pt.
-<hist_choques_normal.pdf, id=2082, 435.7677pt x 338.166pt>
+<hist_choques_normal.pdf, id=2090, 435.7677pt x 338.166pt>
 File: hist_choques_normal.pdf Graphic file (type pdf)
 <use hist_choques_normal.pdf>
 Package pdftex.def Info: hist_choques_normal.pdf  used on input line 1333.
@@ -1841,7 +1841,7 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 1331--1337
 []$[]$ 
  []
 
-<n4.png, id=2083, 401.5pt x 260.975pt>
+<n4.png, id=2091, 401.5pt x 260.975pt>
 File: n4.png Graphic file (type png)
 <use n4.png>
 Package pdftex.def Info: n4.png  used on input line 1340.
@@ -1858,7 +1858,7 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 1338--1344
 
 [37 <./graf_choques_normal.pdf> <./hist_choques_normal.pdf> <./n4.png>]
 [38]
-<walkerGamma.png, id=2198, 1606.0pt x 803.0pt>
+<walkerGamma.png, id=2206, 1606.0pt x 803.0pt>
 File: walkerGamma.png Graphic file (type png)
 <use walkerGamma.png>
 Package pdftex.def Info: walkerGamma.png  used on input line 1366.
@@ -1869,12 +1869,12 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 1367.
 See the caption package documentation for explanation.
 
-<graf_direcciones_gamma.pdf, id=2199, 605.56868pt x 403.97112pt>
+<graf_direcciones_gamma.pdf, id=2207, 605.56868pt x 403.97112pt>
 File: graf_direcciones_gamma.pdf Graphic file (type pdf)
 <use graf_direcciones_gamma.pdf>
 Package pdftex.def Info: graf_direcciones_gamma.pdf  used on input line 1374.
 (pdftex.def)             Requested size: 258.36668pt x 172.35425pt.
-<hist_direcciones_gamma.pdf, id=2200, 455.20752pt x 338.166pt>
+<hist_direcciones_gamma.pdf, id=2208, 455.20752pt x 338.166pt>
 File: hist_direcciones_gamma.pdf Graphic file (type pdf)
 <use hist_direcciones_gamma.pdf>
 Package pdftex.def Info: hist_direcciones_gamma.pdf  used on input line 1381.
@@ -1889,7 +1889,7 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 1379--1385
 []$[]$ 
  []
 
-<g1.png, id=2201, 397.485pt x 270.00874pt>
+<g1.png, id=2209, 397.485pt x 270.00874pt>
 File: g1.png Graphic file (type png)
 <use g1.png>
 Package pdftex.def Info: g1.png  used on input line 1388.
@@ -1919,12 +1919,12 @@ Overfull \vbox (11.30489pt too high) has occurred while \output is active []
 
 [39 <./walkerGamma.png (PNG copy)> <./graf_direcciones_gamma.pdf> <./hist_direc
 ciones_gamma.pdf> <./g1.png>] [40]
-<graf_distancia_gamma.pdf, id=2311, 605.56868pt x 403.97112pt>
+<graf_distancia_gamma.pdf, id=2320, 605.56868pt x 403.97112pt>
 File: graf_distancia_gamma.pdf Graphic file (type pdf)
 <use graf_distancia_gamma.pdf>
 Package pdftex.def Info: graf_distancia_gamma.pdf  used on input line 1416.
 (pdftex.def)             Requested size: 281.85587pt x 188.02338pt.
-<hist_distancia_gamma.pdf, id=2312, 442.15092pt x 338.166pt>
+<hist_distancia_gamma.pdf, id=2321, 442.15092pt x 338.166pt>
 File: hist_distancia_gamma.pdf Graphic file (type pdf)
 <use hist_distancia_gamma.pdf>
 Package pdftex.def Info: hist_distancia_gamma.pdf  used on input line 1423.
@@ -1940,7 +1940,7 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 1421--1427
 []$[]$ 
  []
 
-<g2.png, id=2313, 397.485pt x 270.00874pt>
+<g2.png, id=2322, 397.485pt x 270.00874pt>
 File: g2.png Graphic file (type png)
 <use g2.png>
 Package pdftex.def Info: g2.png  used on input line 1430.
@@ -1956,14 +1956,14 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 1428--1434
  []
 
 [41 <./graf_distancia_gamma.pdf> <./hist_distancia_gamma.pdf> <./g2.png>]
-<graf_posiciones_gamma.pdf, id=2422, 428.834pt x 419.64154pt>
+<graf_posiciones_gamma.pdf, id=2430, 428.834pt x 419.64154pt>
 File: graf_posiciones_gamma.pdf Graphic file (type pdf)
 <use graf_posiciones_gamma.pdf>
 Package pdftex.def Info: graf_posiciones_gamma.pdf  used on input line 1456.
 (pdftex.def)             Requested size: 234.8775pt x 229.84306pt.
 
 [42 <./graf_posiciones_gamma.pdf>]
-<hist_posiciones_gamma.pdf, id=2466, 429.21855pt x 419.17104pt>
+<hist_posiciones_gamma.pdf, id=2474, 429.21855pt x 419.17104pt>
 File: hist_posiciones_gamma.pdf Graphic file (type pdf)
 <use hist_posiciones_gamma.pdf>
 Package pdftex.def Info: hist_posiciones_gamma.pdf  used on input line 1463.
@@ -1979,7 +1979,7 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 1461--1467
 []$[]$ 
  []
 
-<g3.png, id=2467, 602.25pt x 273.02pt>
+<g3.png, id=2475, 602.25pt x 273.02pt>
 File: g3.png Graphic file (type png)
 <use g3.png>
 Package pdftex.def Info: g3.png  used on input line 1470.
@@ -1995,12 +1995,12 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 1468--1474
  []
 
 [43 <./hist_posiciones_gamma.pdf> <./g3.png>]
-<graf_choques_gamma.pdf, id=2509, 621.53458pt x 403.97112pt>
+<graf_choques_gamma.pdf, id=2517, 621.53458pt x 403.97112pt>
 File: graf_choques_gamma.pdf Graphic file (type pdf)
 <use graf_choques_gamma.pdf>
 Package pdftex.def Info: graf_choques_gamma.pdf  used on input line 1495.
 (pdftex.def)             Requested size: 281.85587pt x 183.19073pt.
-<hist_choques_gamma.pdf, id=2510, 437.75952pt x 338.166pt>
+<hist_choques_gamma.pdf, id=2518, 437.75952pt x 338.166pt>
 File: hist_choques_gamma.pdf Graphic file (type pdf)
 <use hist_choques_gamma.pdf>
 Package pdftex.def Info: hist_choques_gamma.pdf  used on input line 1502.
@@ -2016,7 +2016,7 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 1500--1506
 []$[]$ 
  []
 
-<g4.png, id=2511, 406.51875pt x 255.95625pt>
+<g4.png, id=2519, 406.51875pt x 255.95625pt>
 File: g4.png Graphic file (type png)
 <use g4.png>
 Package pdftex.def Info: g4.png  used on input line 1509.
@@ -2032,7 +2032,25 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 1507--1513
  []
 
 [44 <./graf_choques_gamma.pdf> <./hist_choques_gamma.pdf> <./g4.png>] [45]
-(./reporteWalker.aux
+[46]
+Overfull \hbox (1.0668pt too wide) in paragraph at lines 1551--1552
+[][][]\T1/lmss/m/sl/10.95 https://colab.research.google.com/drive/1OqFebhbSkwtj
+nMdEeamEgZu9fpV-zu0s?usp=sharing[][]\T1/lmss/m/n/10.95 . 
+ []
+
+
+Overfull \hbox (9.70424pt too wide) in paragraph at lines 1556--1557
+[][][]\T1/lmss/m/sl/10.95 https://colab.research.google.com/drive/1bUJ5eagMzJEx
+Hf9ogONdEHd8UiY8B5Te?usp=sharing[][]\T1/lmss/m/n/10.95 . 
+ []
+
+
+Overfull \hbox (10.6947pt too wide) in paragraph at lines 1566--1567
+[][][]\T1/lmss/m/sl/10.95 https://colab.research.google.com/drive/15WKghgRJQMI1
+qNjLo5keUrGBhxV8Y-Ps?usp=sharing[][]\T1/lmss/m/n/10.95 . 
+ []
+
+[47] (./reporteWalker.aux
 LaTeX Info: Redefining \. on input line 26.
 LaTeX Info: Redefining \% on input line 26.
 )
@@ -2040,13 +2058,13 @@ LaTeX Info: Redefining \% on input line 26.
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `reporteWalker.out' has not changed.
-(rerunfilecheck)             Checksum: 76D0F08C04419783808E99E8D1A715D4;6656.
+(rerunfilecheck)             Checksum: 152423AB2A63E868E89A419A02296502;6834.
  ) 
 Here is how much of TeX's memory you used:
- 28094 strings out of 478287
- 506586 string characters out of 5849289
- 1037528 words of memory out of 5000000
- 45349 multiletter control sequences out of 15000+600000
+ 28100 strings out of 478287
+ 506640 string characters out of 5849289
+ 1037524 words of memory out of 5000000
+ 45351 multiletter control sequences out of 15000+600000
  540093 words of font info for 70 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,12n,80p,646b,2049s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2062,10 +2080,10 @@ type1/public/lm/lmss10.pfb></usr/share/texmf/fonts/type1/public/lm/lmss12.pfb><
 /share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/p
 ublic/lm/lmsso10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsso17.pfb></usr/
 share/texmf/fonts/type1/public/lm/lmtt10.pfb>
-Output written on reporteWalker.pdf (46 pages, 3941087 bytes).
+Output written on reporteWalker.pdf (48 pages, 3950597 bytes).
 PDF statistics:
- 2767 PDF objects out of 2984 (max. 8388607)
- 1157 compressed objects within 12 object streams
- 417 named destinations out of 1000 (max. 500000)
- 602 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2788 PDF objects out of 2984 (max. 8388607)
+ 1176 compressed objects within 12 object streams
+ 421 named destinations out of 1000 (max. 500000)
+ 618 words of extra memory for PDF output out of 10000 (max. 10000000)
 

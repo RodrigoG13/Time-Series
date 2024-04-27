@@ -1,6 +1,6 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.3.16)  9 APR 2024 14:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.3.18)  20 APR 2024 18:30
 entering extended mode
- restricted \write18 enabled.
+ \write18 enabled.
  %&-line parsing enabled.
 **reporteWalker.tex
 (./reporteWalker.tex
@@ -337,12 +337,7 @@ File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
 (/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
-LaTeX Font Info:    Trying to load font information for T1+cmss on input line 1
-12.
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmss.fd
-File: t1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-))
+)
 (/usr/share/texmf/tex/latex/lm/lmodern.sty
 Package: lmodern 2009/10/30 v1.6 Latin Modern Fonts
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
@@ -601,7 +596,7 @@ Package caption Info: changepage package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 121.
+Package hyperref Info: Option `colorlinks' set `true' on input line 124.
 
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
@@ -873,7 +868,7 @@ zlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 )))
 LaTeX Font Info:    Trying to load font information for T1+lmss on input line 1
-27.
+30.
  (/usr/share/texmf/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -888,26 +883,26 @@ LaTeX Info: Redefining \% on input line 26.
 )
 \openout1 = `reporteWalker.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 127.
-LaTeX Font Info:    ... okay on input line 127.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 127.
-LaTeX Font Info:    ... okay on input line 127.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 127.
-LaTeX Font Info:    ... okay on input line 127.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 127.
-LaTeX Font Info:    ... okay on input line 127.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 127.
-LaTeX Font Info:    ... okay on input line 127.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 127.
-LaTeX Font Info:    ... okay on input line 127.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 127.
-LaTeX Font Info:    ... okay on input line 127.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 127.
-LaTeX Font Info:    ... okay on input line 127.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 127.
-LaTeX Font Info:    ... okay on input line 127.
-LaTeX Info: Redefining \. on input line 127.
-LaTeX Info: Redefining \% on input line 127.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Info: Redefining \. on input line 130.
+LaTeX Info: Redefining \% on input line 130.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -973,7 +968,7 @@ LaTeX Info: Redefining \BPBI on input line 138.
 LaTeX Info: Redefining \BHBI on input line 139.
 )
 \c@lstlisting=\count344
-Package hyperref Info: Link coloring ON on input line 127.
+Package hyperref Info: Link coloring ON on input line 130.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -986,9 +981,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count345
 )
-LaTeX Info: Redefining \ref on input line 127.
-LaTeX Info: Redefining \pageref on input line 127.
-LaTeX Info: Redefining \nameref on input line 127.
+LaTeX Info: Redefining \ref on input line 130.
+LaTeX Info: Redefining \pageref on input line 130.
+LaTeX Info: Redefining \nameref on input line 130.
 
 (./reporteWalker.out) (./reporteWalker.out)
 \@outlinefile=\write4
@@ -999,91 +994,91 @@ Package caption Info: End \AtBeginDocument code.
 <cic.jpeg, id=147, 950.55125pt x 690.58pt>
 File: cic.jpeg Graphic file (type jpg)
 <use cic.jpeg>
-Package pdftex.def Info: cic.jpeg  used on input line 131.
+Package pdftex.def Info: cic.jpeg  used on input line 134.
 (pdftex.def)             Requested size: 117.43875pt x 85.31068pt.
 LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <10.95> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 133.
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 136.
 LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <20.74> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 133.
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 13
-8.
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 136.
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 14
+1.
 
 (/usr/share/texmf/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 
 LaTeX Font Warning: Font shape `T1/lmss/m/sc' in size <10.95> not available
-(Font)              Font shape `T1/lmr/m/sc' tried instead on input line 138.
+(Font)              Font shape `T1/lmr/m/sc' tried instead on input line 141.
 
 
 LaTeX Font Warning: Font shape `T1/lmss/m/sc' in size <24.88> not available
-(Font)              Font shape `T1/lmr/m/sc' tried instead on input line 138.
+(Font)              Font shape `T1/lmr/m/sc' tried instead on input line 141.
 
 
 LaTeX Font Warning: Font shape `T1/lmss/b/sc' undefined
-(Font)              using `T1/lmss/b/n' instead on input line 138.
+(Font)              using `T1/lmss/b/n' instead on input line 141.
 
 LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <24.88> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 138.
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 141.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <17.28> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 140.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 143.
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./cic.jpeg>]
 LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <14.4> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 154.
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 157.
 LaTeX Font Info:    Font shape `T1/lmss/b/it' in size <14.4> not available
-(Font)              Font shape `T1/lmss/bx/it' tried instead on input line 154.
+(Font)              Font shape `T1/lmss/bx/it' tried instead on input line 157.
 
 LaTeX Font Info:    Font shape `T1/lmss/bx/it' in size <14.4> not available
-(Font)              Font shape `T1/lmss/bx/sl' tried instead on input line 154.
+(Font)              Font shape `T1/lmss/bx/sl' tried instead on input line 157.
 
 LaTeX Font Info:    Trying to load font information for OT1+iwonalm on input li
-ne 159.
+ne 162.
 
 (/usr/share/texlive/texmf-dist/tex/latex/iwona/ot1iwonalm.fd
 File: ot1iwonalm.fd 2005/10/05 v1.2 font definition file for OT1/iwonalm (MW)
 )
 LaTeX Font Info:    Trying to load font information for OML+iwonal on input lin
-e 159.
+e 162.
 
 (/usr/share/texlive/texmf-dist/tex/latex/iwona/omliwonal.fd
 File: omliwonal.fd 2008/07/22 v0.995 font definition file for OML/iwonal (MW)
 )
 LaTeX Font Info:    Trying to load font information for OMS+iwonal on input lin
-e 159.
+e 162.
 
 (/usr/share/texlive/texmf-dist/tex/latex/iwona/omsiwonal.fd
 File: omsiwonal.fd 2008/07/22 v0.995 font definition file for OMS/iwonal (MW)
 )
 LaTeX Font Info:    Trying to load font information for OMX+iwonal on input lin
-e 159.
+e 162.
 
 (/usr/share/texlive/texmf-dist/tex/latex/iwona/omxiwonal.fd
 File: omxiwonal.fd 2008/07/22 v0.995 font definition file for OMX/iwonal (MW)
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 159
+LaTeX Font Info:    Trying to load font information for U+msa on input line 162
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 159
+LaTeX Font Info:    Trying to load font information for U+msb on input line 162
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10.95> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 176.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 179.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.180 	\newpage
+l.183 	\newpage
                 [1]
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
-84.
+87.
  (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -1092,19 +1087,19 @@ File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 File: ../transformaciones/hist_uniform_Sturges.pdf Graphic file (type pdf)
 <use ../transformaciones/hist_uniform_Sturges.pdf>
 Package pdftex.def Info: ../transformaciones/hist_uniform_Sturges.pdf  used on 
-input line 188.
+input line 191.
 (pdftex.def)             Requested size: 328.82707pt x 225.79889pt.
 LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <12> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 198.
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 201.
  [2 <../transformaciones/hist_uniform_Sturges.pdf>]
 <../transformaciones/hist_normal_Rice.pdf, id=225, 401.65372pt x 289.3115pt>
 File: ../transformaciones/hist_normal_Rice.pdf Graphic file (type pdf)
 <use ../transformaciones/hist_normal_Rice.pdf>
 Package pdftex.def Info: ../transformaciones/hist_normal_Rice.pdf  used on inpu
-t line 225.
+t line 228.
 (pdftex.def)             Requested size: 328.82707pt x 236.87054pt.
  [3 <../transformaciones/hist_normal_Rice.pdf>]
-Overfull \hbox (21.13777pt too wide) in paragraph at lines 250--251
+Overfull \hbox (21.13777pt too wide) in paragraph at lines 253--254
 []\T1/lmss/m/n/10.95 De es-ta ma-ne-ra, ob-te-ne-mos nú-me-ros con dis-tri-bu-c
 ión gam-ma que se al-ma-ce-na-ron en \T1/lmtt/m/n/10.95 randomsGamma.txt\T1/lms
 s/m/n/10.95 .
@@ -1114,90 +1109,90 @@ s/m/n/10.95 .
 File: ../transformaciones/hist_gamma_Rice.pdf Graphic file (type pdf)
 <use ../transformaciones/hist_gamma_Rice.pdf>
 Package pdftex.def Info: ../transformaciones/hist_gamma_Rice.pdf  used on input
- line 254.
+ line 257.
 (pdftex.def)             Requested size: 328.82707pt x 236.87054pt.
 [4 <../transformaciones/hist_gamma_Rice.pdf>] [5] [6] [7] [8] [9] [10]
 <resultadosUniforme.png, id=640, 475.7775pt x 338.26375pt>
 File: resultadosUniforme.png Graphic file (type png)
 <use resultadosUniforme.png>
-Package pdftex.def Info: resultadosUniforme.png  used on input line 553.
+Package pdftex.def Info: resultadosUniforme.png  used on input line 556.
 (pdftex.def)             Requested size: 230.18253pt x 163.65512pt.
 <resultadosNormal.png, id=641, 474.77374pt x 336.25626pt>
 File: resultadosNormal.png Graphic file (type png)
 <use resultadosNormal.png>
-Package pdftex.def Info: resultadosNormal.png  used on input line 561.
+Package pdftex.def Info: resultadosNormal.png  used on input line 564.
 (pdftex.def)             Requested size: 206.88834pt x 146.52682pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 562.
+(caption)                particular \caption on input line 565.
 See the caption package documentation for explanation.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 562--562
+Underfull \hbox (badness 10000) in paragraph at lines 565--565
 []\T1/lmss/m/n/10.95 Figura 5: |[]Métricas pa-ra el set
  []
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 559--565
+Overfull \hbox (17.0pt too wide) in paragraph at lines 562--568
 []$[]$ 
  []
 
 <resultadosGamma.png, id=642, 476.78125pt x 337.26pt>
 File: resultadosGamma.png Graphic file (type png)
 <use resultadosGamma.png>
-Package pdftex.def Info: resultadosGamma.png  used on input line 568.
+Package pdftex.def Info: resultadosGamma.png  used on input line 571.
 (pdftex.def)             Requested size: 206.88834pt x 146.34668pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 569.
+(caption)                particular \caption on input line 572.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 566--572
+Overfull \hbox (17.0pt too wide) in paragraph at lines 569--575
 []$[]$ 
  []
 
 [11 <./resultadosUniforme.png> <./resultadosNormal.png> <./resultadosGamma.png>
 ] [12]
 LaTeX Font Info:    Font shape `T1/lmss/b/it' in size <10.95> not available
-(Font)              Font shape `T1/lmss/bx/it' tried instead on input line 651.
+(Font)              Font shape `T1/lmss/bx/it' tried instead on input line 654.
 
 LaTeX Font Info:    Font shape `T1/lmss/bx/it' in size <10.95> not available
-(Font)              Font shape `T1/lmss/bx/sl' tried instead on input line 651.
+(Font)              Font shape `T1/lmss/bx/sl' tried instead on input line 654.
 
  [13]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 655.
+(hyperref)                removing `math shift' on input line 658.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 655.
+(hyperref)                removing `superscript' on input line 658.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 655.
+(hyperref)                removing `math shift' on input line 658.
 
 <../transformaciones/cuad_uniforme1.pdf, id=659, 615.15135pt x 397.46681pt>
 File: ../transformaciones/cuad_uniforme1.pdf Graphic file (type pdf)
 <use ../transformaciones/cuad_uniforme1.pdf>
 Package pdftex.def Info: ../transformaciones/cuad_uniforme1.pdf  used on input 
-line 660.
+line 663.
 (pdftex.def)             Requested size: 328.82707pt x 212.46979pt.
 <../transformaciones/cuad_uniforme2.pdf, id=660, 401.65372pt x 289.3115pt>
 File: ../transformaciones/cuad_uniforme2.pdf Graphic file (type pdf)
 <use ../transformaciones/cuad_uniforme2.pdf>
 Package pdftex.def Info: ../transformaciones/cuad_uniforme2.pdf  used on input 
-line 668.
+line 671.
 (pdftex.def)             Requested size: 229.8775pt x 165.58467pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 669.
+(caption)                particular \caption on input line 672.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 666--672
+Overfull \hbox (17.0pt too wide) in paragraph at lines 669--675
 []$[]$ 
  []
 
@@ -1205,15 +1200,15 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 666--672
 File: ../transformaciones/cuad_uniforme3.png Graphic file (type png)
 <use ../transformaciones/cuad_uniforme3.png>
 Package pdftex.def Info: ../transformaciones/cuad_uniforme3.png  used on input 
-line 675.
+line 678.
 (pdftex.def)             Requested size: 229.8775pt x 153.76161pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 676.
+(caption)                particular \caption on input line 679.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 673--679
+Overfull \hbox (17.0pt too wide) in paragraph at lines 676--682
 []$[]$ 
  []
 
@@ -1223,22 +1218,22 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 673--679
 File: ../transformaciones/cuad_normal1.pdf Graphic file (type pdf)
 <use ../transformaciones/cuad_normal1.pdf>
 Package pdftex.def Info: ../transformaciones/cuad_normal1.pdf  used on input li
-ne 716.
+ne 719.
 (pdftex.def)             Requested size: 328.82707pt x 213.57965pt.
 <../transformaciones/cuad_normal2.pdf, id=774, 401.65372pt x 289.3115pt>
 File: ../transformaciones/cuad_normal2.pdf Graphic file (type pdf)
 <use ../transformaciones/cuad_normal2.pdf>
 Package pdftex.def Info: ../transformaciones/cuad_normal2.pdf  used on input li
-ne 724.
+ne 727.
 (pdftex.def)             Requested size: 229.8775pt x 165.58467pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 725.
+(caption)                particular \caption on input line 728.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 722--728
+Overfull \hbox (17.0pt too wide) in paragraph at lines 725--731
 []$[]$ 
  []
 
@@ -1246,15 +1241,15 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 722--728
 File: ../transformaciones/cuad_normal3.png Graphic file (type png)
 <use ../transformaciones/cuad_normal3.png>
 Package pdftex.def Info: ../transformaciones/cuad_normal3.png  used on input li
-ne 731.
+ne 734.
 (pdftex.def)             Requested size: 229.8775pt x 156.6433pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 732.
+(caption)                particular \caption on input line 735.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 729--735
+Overfull \hbox (17.0pt too wide) in paragraph at lines 732--738
 []$[]$ 
  []
 
@@ -1264,22 +1259,22 @@ f> <../transformaciones/cuad_normal3.png>] [17]
 File: ../transformaciones/cuad_gamma1.pdf Graphic file (type pdf)
 <use ../transformaciones/cuad_gamma1.pdf>
 Package pdftex.def Info: ../transformaciones/cuad_gamma1.pdf  used on input lin
-e 772.
+e 775.
 (pdftex.def)             Requested size: 328.82707pt x 213.57965pt.
 <../transformaciones/cuad_gamma2.pdf, id=887, 402.82808pt x 289.3115pt>
 File: ../transformaciones/cuad_gamma2.pdf Graphic file (type pdf)
 <use ../transformaciones/cuad_gamma2.pdf>
 Package pdftex.def Info: ../transformaciones/cuad_gamma2.pdf  used on input lin
-e 780.
+e 783.
 (pdftex.def)             Requested size: 229.8775pt x 165.1035pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 781.
+(caption)                particular \caption on input line 784.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 778--784
+Overfull \hbox (17.0pt too wide) in paragraph at lines 781--787
 []$[]$ 
  []
 
@@ -1287,15 +1282,15 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 778--784
 File: ../transformaciones/cuad_gamma3.png Graphic file (type png)
 <use ../transformaciones/cuad_gamma3.png>
 Package pdftex.def Info: ../transformaciones/cuad_gamma3.png  used on input lin
-e 787.
+e 790.
 (pdftex.def)             Requested size: 229.8775pt x 107.84354pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 788.
+(caption)                particular \caption on input line 791.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 785--791
+Overfull \hbox (17.0pt too wide) in paragraph at lines 788--794
 []$[]$ 
  []
 
@@ -1303,111 +1298,111 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 785--791
  <../transformaciones/cuad_gamma3.png>] [19]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 824.
+(hyperref)                removing `math shift' on input line 827.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cdot' on input line 824.
+(hyperref)                removing `\cdot' on input line 827.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathop' on input line 824.
+(hyperref)                removing `\mathop' on input line 827.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathgroup' on input line 824.
+(hyperref)                removing `\mathgroup' on input line 827.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\symoperators' on input line 824.
+(hyperref)                removing `\symoperators' on input line 827.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@ifnextchar' on input line 824.
+(hyperref)                removing `\@ifnextchar' on input line 827.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\left' on input line 824.
+(hyperref)                removing `\left' on input line 827.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\begingroup' on input line 824.
+(hyperref)                removing `\begingroup' on input line 827.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\endgroup' on input line 824.
+(hyperref)                removing `\endgroup' on input line 827.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@@over' on input line 824.
+(hyperref)                removing `\@@over' on input line 827.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\right' on input line 824.
+(hyperref)                removing `\right' on input line 827.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cdot' on input line 824.
+(hyperref)                removing `\cdot' on input line 827.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathop' on input line 824.
+(hyperref)                removing `\mathop' on input line 827.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathgroup' on input line 824.
+(hyperref)                removing `\mathgroup' on input line 827.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\symoperators' on input line 824.
+(hyperref)                removing `\symoperators' on input line 827.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@ifnextchar' on input line 824.
+(hyperref)                removing `\@ifnextchar' on input line 827.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\left' on input line 824.
+(hyperref)                removing `\left' on input line 827.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\begingroup' on input line 824.
+(hyperref)                removing `\begingroup' on input line 827.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 824.
+(hyperref)                removing `superscript' on input line 827.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\endgroup' on input line 824.
+(hyperref)                removing `\endgroup' on input line 827.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@@over' on input line 824.
+(hyperref)                removing `\@@over' on input line 827.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\right' on input line 824.
+(hyperref)                removing `\right' on input line 827.
 
 <../transformaciones/per_uniforme1.pdf, id=992, 620.3583pt x 397.46681pt>
 File: ../transformaciones/per_uniforme1.pdf Graphic file (type pdf)
 <use ../transformaciones/per_uniforme1.pdf>
 Package pdftex.def Info: ../transformaciones/per_uniforme1.pdf  used on input l
-ine 829.
+ine 832.
 (pdftex.def)             Requested size: 328.82707pt x 210.68066pt.
 <../transformaciones/per_uniforme2.pdf, id=993, 424.2365pt x 289.3115pt>
 File: ../transformaciones/per_uniforme2.pdf Graphic file (type pdf)
 <use ../transformaciones/per_uniforme2.pdf>
 Package pdftex.def Info: ../transformaciones/per_uniforme2.pdf  used on input l
-ine 837.
+ine 840.
 (pdftex.def)             Requested size: 229.8775pt x 156.76443pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 838.
+(caption)                particular \caption on input line 841.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 835--841
+Overfull \hbox (17.0pt too wide) in paragraph at lines 838--844
 []$[]$ 
  []
 
@@ -1415,15 +1410,15 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 835--841
 File: ../transformaciones/per_uniforme3.png Graphic file (type png)
 <use ../transformaciones/per_uniforme3.png>
 Package pdftex.def Info: ../transformaciones/per_uniforme3.png  used on input l
-ine 844.
+ine 847.
 (pdftex.def)             Requested size: 229.8775pt x 156.59393pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 845.
+(caption)                particular \caption on input line 848.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 842--848
+Overfull \hbox (17.0pt too wide) in paragraph at lines 845--851
 []$[]$ 
  []
 
@@ -1433,22 +1428,22 @@ pdf> <../transformaciones/per_uniforme3.png>] [21]
 File: ../transformaciones/per_normal1.pdf Graphic file (type pdf)
 <use ../transformaciones/per_normal1.pdf>
 Package pdftex.def Info: ../transformaciones/per_normal1.pdf  used on input lin
-e 885.
+e 888.
 (pdftex.def)             Requested size: 328.82707pt x 210.68066pt.
 <../transformaciones/per_normal2.pdf, id=1115, 401.84816pt x 289.3115pt>
 File: ../transformaciones/per_normal2.pdf Graphic file (type pdf)
 <use ../transformaciones/per_normal2.pdf>
 Package pdftex.def Info: ../transformaciones/per_normal2.pdf  used on input lin
-e 893.
+e 896.
 (pdftex.def)             Requested size: 229.8775pt x 165.5008pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 894.
+(caption)                particular \caption on input line 897.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 891--897
+Overfull \hbox (17.0pt too wide) in paragraph at lines 894--900
 []$[]$ 
  []
 
@@ -1456,15 +1451,15 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 891--897
 File: ../transformaciones/per_normal3.png Graphic file (type png)
 <use ../transformaciones/per_normal3.png>
 Package pdftex.def Info: ../transformaciones/per_normal3.png  used on input lin
-e 900.
+e 903.
 (pdftex.def)             Requested size: 229.8775pt x 150.4342pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 901.
+(caption)                particular \caption on input line 904.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 898--904
+Overfull \hbox (17.0pt too wide) in paragraph at lines 901--907
 []$[]$ 
  []
 
@@ -1474,22 +1469,22 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 898--904
 File: ../transformaciones/per_gamma1.pdf Graphic file (type pdf)
 <use ../transformaciones/per_gamma1.pdf>
 Package pdftex.def Info: ../transformaciones/per_gamma1.pdf  used on input line
- 942.
+ 945.
 (pdftex.def)             Requested size: 328.82707pt x 210.68066pt.
 <../transformaciones/per_gamma2.pdf, id=1234, 403.64394pt x 289.3115pt>
 File: ../transformaciones/per_gamma2.pdf Graphic file (type pdf)
 <use ../transformaciones/per_gamma2.pdf>
 Package pdftex.def Info: ../transformaciones/per_gamma2.pdf  used on input line
- 950.
+ 953.
 (pdftex.def)             Requested size: 229.8775pt x 164.76358pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 951.
+(caption)                particular \caption on input line 954.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 948--954
+Overfull \hbox (17.0pt too wide) in paragraph at lines 951--957
 []$[]$ 
  []
 
@@ -1497,15 +1492,15 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 948--954
 File: ../transformaciones/per_gamma3.png Graphic file (type png)
 <use ../transformaciones/per_gamma3.png>
 Package pdftex.def Info: ../transformaciones/per_gamma3.png  used on input line
- 957.
+ 960.
 (pdftex.def)             Requested size: 229.8775pt x 146.7693pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 958.
+(caption)                particular \caption on input line 961.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 955--961
+Overfull \hbox (17.0pt too wide) in paragraph at lines 958--964
 []$[]$ 
  []
 
@@ -1514,55 +1509,55 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 955--961
 <rectangulo.png, id=1352, 788.9475pt x 347.2975pt>
 File: rectangulo.png Graphic file (type png)
 <use rectangulo.png>
-Package pdftex.def Info: rectangulo.png  used on input line 1017.
+Package pdftex.def Info: rectangulo.png  used on input line 1020.
 (pdftex.def)             Requested size: 281.85587pt x 124.07312pt.
 <walkerUniforme.png, id=1354, 1606.0pt x 803.0pt>
 File: walkerUniforme.png Graphic file (type png)
 <use walkerUniforme.png>
-Package pdftex.def Info: walkerUniforme.png  used on input line 1028.
+Package pdftex.def Info: walkerUniforme.png  used on input line 1031.
 (pdftex.def)             Requested size: 375.80544pt x 187.89635pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1029.
+(caption)                particular \caption on input line 1032.
 See the caption package documentation for explanation.
 
 <graf_direcciones_uniforme.pdf, id=1355, 605.56868pt x 403.97112pt>
 File: graf_direcciones_uniforme.pdf Graphic file (type pdf)
 <use graf_direcciones_uniforme.pdf>
-Package pdftex.def Info: graf_direcciones_uniforme.pdf  used on input line 1036
+Package pdftex.def Info: graf_direcciones_uniforme.pdf  used on input line 1039
 .
 (pdftex.def)             Requested size: 328.82707pt x 219.35547pt.
 [26 <./rectangulo.png> <./walkerUniforme.png (PNG copy)>]
 <hist_direcciones_uniforme.pdf, id=1363, 458.37561pt x 338.166pt>
 File: hist_direcciones_uniforme.pdf Graphic file (type pdf)
 <use hist_direcciones_uniforme.pdf>
-Package pdftex.def Info: hist_direcciones_uniforme.pdf  used on input line 1043
+Package pdftex.def Info: hist_direcciones_uniforme.pdf  used on input line 1046
 .
 (pdftex.def)             Requested size: 229.8775pt x 169.59341pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1044.
+(caption)                particular \caption on input line 1047.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 1041--1047
+Overfull \hbox (17.0pt too wide) in paragraph at lines 1044--1050
 []$[]$ 
  []
 
 <u1.png, id=1364, 418.56375pt x 261.97874pt>
 File: u1.png Graphic file (type png)
 <use u1.png>
-Package pdftex.def Info: u1.png  used on input line 1050.
+Package pdftex.def Info: u1.png  used on input line 1053.
 (pdftex.def)             Requested size: 229.8775pt x 143.87688pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1051.
+(caption)                particular \caption on input line 1054.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 1048--1054
+Overfull \hbox (17.0pt too wide) in paragraph at lines 1051--1057
 []$[]$ 
  []
 
@@ -1571,36 +1566,36 @@ ng>]
 <graf_distancia_uniforme.pdf, id=1472, 605.56868pt x 403.97112pt>
 File: graf_distancia_uniforme.pdf Graphic file (type pdf)
 <use graf_distancia_uniforme.pdf>
-Package pdftex.def Info: graf_distancia_uniforme.pdf  used on input line 1081.
+Package pdftex.def Info: graf_distancia_uniforme.pdf  used on input line 1084.
 (pdftex.def)             Requested size: 281.85587pt x 188.02338pt.
 <hist_distancia_uniforme.pdf, id=1473, 445.31902pt x 338.166pt>
 File: hist_distancia_uniforme.pdf Graphic file (type pdf)
 <use hist_distancia_uniforme.pdf>
-Package pdftex.def Info: hist_distancia_uniforme.pdf  used on input line 1088.
+Package pdftex.def Info: hist_distancia_uniforme.pdf  used on input line 1091.
 (pdftex.def)             Requested size: 229.8775pt x 174.56248pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1089.
+(caption)                particular \caption on input line 1092.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 1086--1092
+Overfull \hbox (17.0pt too wide) in paragraph at lines 1089--1095
 []$[]$ 
  []
 
 <u2.png, id=1474, 418.56375pt x 261.97874pt>
 File: u2.png Graphic file (type png)
 <use u2.png>
-Package pdftex.def Info: u2.png  used on input line 1095.
+Package pdftex.def Info: u2.png  used on input line 1098.
 (pdftex.def)             Requested size: 229.8775pt x 143.87688pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1096.
+(caption)                particular \caption on input line 1099.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 1093--1099
+Overfull \hbox (17.0pt too wide) in paragraph at lines 1096--1102
 []$[]$ 
  []
 
@@ -1612,39 +1607,39 @@ Overfull \vbox (9.86148pt too high) has occurred while \output is active []
 <graf_posiciones_uniforme.pdf, id=1586, 428.834pt x 419.64154pt>
 File: graf_posiciones_uniforme.pdf Graphic file (type pdf)
 <use graf_posiciones_uniforme.pdf>
-Package pdftex.def Info: graf_posiciones_uniforme.pdf  used on input line 1118.
+Package pdftex.def Info: graf_posiciones_uniforme.pdf  used on input line 1121.
 
 (pdftex.def)             Requested size: 234.8775pt x 229.84306pt.
 [29 <./graf_posiciones_uniforme.pdf>]
 <hist_posiciones_uniforme.pdf, id=1628, 429.21855pt x 419.17104pt>
 File: hist_posiciones_uniforme.pdf Graphic file (type pdf)
 <use hist_posiciones_uniforme.pdf>
-Package pdftex.def Info: hist_posiciones_uniforme.pdf  used on input line 1127.
+Package pdftex.def Info: hist_posiciones_uniforme.pdf  used on input line 1130.
 
 (pdftex.def)             Requested size: 183.9027pt x 179.60042pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1128.
+(caption)                particular \caption on input line 1131.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 1125--1131
+Overfull \hbox (17.0pt too wide) in paragraph at lines 1128--1134
 []$[]$ 
  []
 
 <u3.png, id=1629, 603.25375pt x 283.0575pt>
 File: u3.png Graphic file (type png)
 <use u3.png>
-Package pdftex.def Info: u3.png  used on input line 1134.
+Package pdftex.def Info: u3.png  used on input line 1137.
 (pdftex.def)             Requested size: 229.8775pt x 107.86098pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1135.
+(caption)                particular \caption on input line 1138.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 1132--1138
+Overfull \hbox (17.0pt too wide) in paragraph at lines 1135--1141
 []$[]$ 
  []
 
@@ -1652,36 +1647,36 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 1132--1138
 <graf_choques_uniforme.pdf, id=1672, 615.15135pt x 403.97112pt>
 File: graf_choques_uniforme.pdf Graphic file (type pdf)
 <use graf_choques_uniforme.pdf>
-Package pdftex.def Info: graf_choques_uniforme.pdf  used on input line 1166.
+Package pdftex.def Info: graf_choques_uniforme.pdf  used on input line 1169.
 (pdftex.def)             Requested size: 328.82707pt x 215.94673pt.
 <hist_choques_uniforme.pdf, id=1673, 447.31082pt x 338.166pt>
 File: hist_choques_uniforme.pdf Graphic file (type pdf)
 <use hist_choques_uniforme.pdf>
-Package pdftex.def Info: hist_choques_uniforme.pdf  used on input line 1173.
+Package pdftex.def Info: hist_choques_uniforme.pdf  used on input line 1176.
 (pdftex.def)             Requested size: 229.8775pt x 173.78848pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1174.
+(caption)                particular \caption on input line 1177.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 1171--1177
+Overfull \hbox (17.0pt too wide) in paragraph at lines 1174--1180
 []$[]$ 
  []
 
 <u4.png, id=1674, 394.47375pt x 274.02374pt>
 File: u4.png Graphic file (type png)
 <use u4.png>
-Package pdftex.def Info: u4.png  used on input line 1180.
+Package pdftex.def Info: u4.png  used on input line 1183.
 (pdftex.def)             Requested size: 229.8775pt x 159.68651pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1181.
+(caption)                particular \caption on input line 1184.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 1178--1184
+Overfull \hbox (17.0pt too wide) in paragraph at lines 1181--1187
 []$[]$ 
  []
 
@@ -1690,46 +1685,46 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 1178--1184
 <walkerNormal.png, id=1786, 1606.0pt x 803.0pt>
 File: walkerNormal.png Graphic file (type png)
 <use walkerNormal.png>
-Package pdftex.def Info: walkerNormal.png  used on input line 1204.
+Package pdftex.def Info: walkerNormal.png  used on input line 1207.
 (pdftex.def)             Requested size: 305.33789pt x 152.6696pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1205.
+(caption)                particular \caption on input line 1208.
 See the caption package documentation for explanation.
 
 <graf_direcciones_normal.pdf, id=1787, 605.56868pt x 403.97112pt>
 File: graf_direcciones_normal.pdf Graphic file (type pdf)
 <use graf_direcciones_normal.pdf>
-Package pdftex.def Info: graf_direcciones_normal.pdf  used on input line 1213.
+Package pdftex.def Info: graf_direcciones_normal.pdf  used on input line 1216.
 (pdftex.def)             Requested size: 281.85587pt x 188.02338pt.
 <hist_direcciones_normal.pdf, id=1788, 453.2157pt x 338.166pt>
 File: hist_direcciones_normal.pdf Graphic file (type pdf)
 <use hist_direcciones_normal.pdf>
-Package pdftex.def Info: hist_direcciones_normal.pdf  used on input line 1220.
+Package pdftex.def Info: hist_direcciones_normal.pdf  used on input line 1223.
 (pdftex.def)             Requested size: 206.88834pt x 154.37144pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1221.
+(caption)                particular \caption on input line 1224.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 1218--1224
+Overfull \hbox (17.0pt too wide) in paragraph at lines 1221--1227
 []$[]$ 
  []
 
 <n1.png, id=1789, 436.63126pt x 272.01625pt>
 File: n1.png Graphic file (type png)
 <use n1.png>
-Package pdftex.def Info: n1.png  used on input line 1227.
+Package pdftex.def Info: n1.png  used on input line 1230.
 (pdftex.def)             Requested size: 229.8775pt x 143.20912pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1228.
+(caption)                particular \caption on input line 1231.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 1225--1231
+Overfull \hbox (17.0pt too wide) in paragraph at lines 1228--1234
 []$[]$ 
  []
 
@@ -1745,7 +1740,7 @@ ecciones_normal.pdf> <./n1.png>]
 <graf_distancia_normal.pdf, id=1896, 605.56868pt x 403.97112pt>
 File: graf_distancia_normal.pdf Graphic file (type pdf)
 <use graf_distancia_normal.pdf>
-Package pdftex.def Info: graf_distancia_normal.pdf  used on input line 1251.
+Package pdftex.def Info: graf_distancia_normal.pdf  used on input line 1254.
 (pdftex.def)             Requested size: 281.85587pt x 188.02338pt.
 
 
@@ -1754,30 +1749,30 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 <hist_distancia_normal.pdf, id=1897, 440.1591pt x 338.166pt>
 File: hist_distancia_normal.pdf Graphic file (type pdf)
 <use hist_distancia_normal.pdf>
-Package pdftex.def Info: hist_distancia_normal.pdf  used on input line 1258.
+Package pdftex.def Info: hist_distancia_normal.pdf  used on input line 1261.
 (pdftex.def)             Requested size: 206.88834pt x 158.94835pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1259.
+(caption)                particular \caption on input line 1262.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 1256--1262
+Overfull \hbox (17.0pt too wide) in paragraph at lines 1259--1265
 []$[]$ 
  []
 
 <n2.png, id=1898, 436.63126pt x 272.01625pt>
 File: n2.png Graphic file (type png)
 <use n2.png>
-Package pdftex.def Info: n2.png  used on input line 1265.
+Package pdftex.def Info: n2.png  used on input line 1268.
 (pdftex.def)             Requested size: 229.8775pt x 143.20912pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1266.
+(caption)                particular \caption on input line 1269.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 1263--1269
+Overfull \hbox (17.0pt too wide) in paragraph at lines 1266--1272
 []$[]$ 
  []
 
@@ -1785,37 +1780,37 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 1263--1269
 <graf_posiciones_normal.pdf, id=1956, 428.834pt x 419.64154pt>
 File: graf_posiciones_normal.pdf Graphic file (type pdf)
 <use graf_posiciones_normal.pdf>
-Package pdftex.def Info: graf_posiciones_normal.pdf  used on input line 1290.
+Package pdftex.def Info: graf_posiciones_normal.pdf  used on input line 1293.
 (pdftex.def)             Requested size: 211.38832pt x 206.85556pt.
  [35 <./graf_distancia_normal.pdf>]
 <hist_posiciones_normal.pdf, id=2012, 429.21855pt x 419.17104pt>
 File: hist_posiciones_normal.pdf Graphic file (type pdf)
 <use hist_posiciones_normal.pdf>
-Package pdftex.def Info: hist_posiciones_normal.pdf  used on input line 1297.
+Package pdftex.def Info: hist_posiciones_normal.pdf  used on input line 1300.
 (pdftex.def)             Requested size: 183.9027pt x 179.60042pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1298.
+(caption)                particular \caption on input line 1301.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 1295--1301
+Overfull \hbox (17.0pt too wide) in paragraph at lines 1298--1304
 []$[]$ 
  []
 
 <n3.png, id=2013, 584.1825pt x 274.02374pt>
 File: n3.png Graphic file (type png)
 <use n3.png>
-Package pdftex.def Info: n3.png  used on input line 1304.
+Package pdftex.def Info: n3.png  used on input line 1307.
 (pdftex.def)             Requested size: 229.8775pt x 107.8305pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1305.
+(caption)                particular \caption on input line 1308.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 1302--1308
+Overfull \hbox (17.0pt too wide) in paragraph at lines 1305--1311
 []$[]$ 
  []
 
@@ -1823,36 +1818,36 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 1302--1308
 <graf_choques_normal.pdf, id=2089, 615.15135pt x 403.97112pt>
 File: graf_choques_normal.pdf Graphic file (type pdf)
 <use graf_choques_normal.pdf>
-Package pdftex.def Info: graf_choques_normal.pdf  used on input line 1326.
+Package pdftex.def Info: graf_choques_normal.pdf  used on input line 1329.
 (pdftex.def)             Requested size: 234.8775pt x 154.24414pt.
 <hist_choques_normal.pdf, id=2090, 435.7677pt x 338.166pt>
 File: hist_choques_normal.pdf Graphic file (type pdf)
 <use hist_choques_normal.pdf>
-Package pdftex.def Info: hist_choques_normal.pdf  used on input line 1333.
+Package pdftex.def Info: hist_choques_normal.pdf  used on input line 1336.
 (pdftex.def)             Requested size: 206.88834pt x 160.54794pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1334.
+(caption)                particular \caption on input line 1337.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 1331--1337
+Overfull \hbox (17.0pt too wide) in paragraph at lines 1334--1340
 []$[]$ 
  []
 
 <n4.png, id=2091, 401.5pt x 260.975pt>
 File: n4.png Graphic file (type png)
 <use n4.png>
-Package pdftex.def Info: n4.png  used on input line 1340.
+Package pdftex.def Info: n4.png  used on input line 1343.
 (pdftex.def)             Requested size: 229.8775pt x 149.42232pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1341.
+(caption)                particular \caption on input line 1344.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 1338--1344
+Overfull \hbox (17.0pt too wide) in paragraph at lines 1341--1347
 []$[]$ 
  []
 
@@ -1861,46 +1856,46 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 1338--1344
 <walkerGamma.png, id=2206, 1606.0pt x 803.0pt>
 File: walkerGamma.png Graphic file (type png)
 <use walkerGamma.png>
-Package pdftex.def Info: walkerGamma.png  used on input line 1366.
+Package pdftex.def Info: walkerGamma.png  used on input line 1369.
 (pdftex.def)             Requested size: 328.82707pt x 164.40776pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1367.
+(caption)                particular \caption on input line 1370.
 See the caption package documentation for explanation.
 
 <graf_direcciones_gamma.pdf, id=2207, 605.56868pt x 403.97112pt>
 File: graf_direcciones_gamma.pdf Graphic file (type pdf)
 <use graf_direcciones_gamma.pdf>
-Package pdftex.def Info: graf_direcciones_gamma.pdf  used on input line 1374.
+Package pdftex.def Info: graf_direcciones_gamma.pdf  used on input line 1377.
 (pdftex.def)             Requested size: 258.36668pt x 172.35425pt.
 <hist_direcciones_gamma.pdf, id=2208, 455.20752pt x 338.166pt>
 File: hist_direcciones_gamma.pdf Graphic file (type pdf)
 <use hist_direcciones_gamma.pdf>
-Package pdftex.def Info: hist_direcciones_gamma.pdf  used on input line 1381.
+Package pdftex.def Info: hist_direcciones_gamma.pdf  used on input line 1384.
 (pdftex.def)             Requested size: 229.8775pt x 170.7699pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1382.
+(caption)                particular \caption on input line 1385.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 1379--1385
+Overfull \hbox (17.0pt too wide) in paragraph at lines 1382--1388
 []$[]$ 
  []
 
 <g1.png, id=2209, 397.485pt x 270.00874pt>
 File: g1.png Graphic file (type png)
 <use g1.png>
-Package pdftex.def Info: g1.png  used on input line 1388.
+Package pdftex.def Info: g1.png  used on input line 1391.
 (pdftex.def)             Requested size: 229.8775pt x 156.15608pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1389.
+(caption)                particular \caption on input line 1392.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 1386--1392
+Overfull \hbox (17.0pt too wide) in paragraph at lines 1389--1395
 []$[]$ 
  []
 
@@ -1922,36 +1917,36 @@ ciones_gamma.pdf> <./g1.png>] [40]
 <graf_distancia_gamma.pdf, id=2320, 605.56868pt x 403.97112pt>
 File: graf_distancia_gamma.pdf Graphic file (type pdf)
 <use graf_distancia_gamma.pdf>
-Package pdftex.def Info: graf_distancia_gamma.pdf  used on input line 1416.
+Package pdftex.def Info: graf_distancia_gamma.pdf  used on input line 1419.
 (pdftex.def)             Requested size: 281.85587pt x 188.02338pt.
 <hist_distancia_gamma.pdf, id=2321, 442.15092pt x 338.166pt>
 File: hist_distancia_gamma.pdf Graphic file (type pdf)
 <use hist_distancia_gamma.pdf>
-Package pdftex.def Info: hist_distancia_gamma.pdf  used on input line 1423.
+Package pdftex.def Info: hist_distancia_gamma.pdf  used on input line 1426.
 (pdftex.def)             Requested size: 229.8775pt x 175.81636pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1424.
+(caption)                particular \caption on input line 1427.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 1421--1427
+Overfull \hbox (17.0pt too wide) in paragraph at lines 1424--1430
 []$[]$ 
  []
 
 <g2.png, id=2322, 397.485pt x 270.00874pt>
 File: g2.png Graphic file (type png)
 <use g2.png>
-Package pdftex.def Info: g2.png  used on input line 1430.
+Package pdftex.def Info: g2.png  used on input line 1433.
 (pdftex.def)             Requested size: 229.8775pt x 156.15608pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1431.
+(caption)                particular \caption on input line 1434.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 1428--1434
+Overfull \hbox (17.0pt too wide) in paragraph at lines 1431--1437
 []$[]$ 
  []
 
@@ -1959,38 +1954,38 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 1428--1434
 <graf_posiciones_gamma.pdf, id=2430, 428.834pt x 419.64154pt>
 File: graf_posiciones_gamma.pdf Graphic file (type pdf)
 <use graf_posiciones_gamma.pdf>
-Package pdftex.def Info: graf_posiciones_gamma.pdf  used on input line 1456.
+Package pdftex.def Info: graf_posiciones_gamma.pdf  used on input line 1459.
 (pdftex.def)             Requested size: 234.8775pt x 229.84306pt.
 
 [42 <./graf_posiciones_gamma.pdf>]
 <hist_posiciones_gamma.pdf, id=2474, 429.21855pt x 419.17104pt>
 File: hist_posiciones_gamma.pdf Graphic file (type pdf)
 <use hist_posiciones_gamma.pdf>
-Package pdftex.def Info: hist_posiciones_gamma.pdf  used on input line 1463.
+Package pdftex.def Info: hist_posiciones_gamma.pdf  used on input line 1466.
 (pdftex.def)             Requested size: 183.9027pt x 179.60042pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1464.
+(caption)                particular \caption on input line 1467.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 1461--1467
+Overfull \hbox (17.0pt too wide) in paragraph at lines 1464--1470
 []$[]$ 
  []
 
 <g3.png, id=2475, 602.25pt x 273.02pt>
 File: g3.png Graphic file (type png)
 <use g3.png>
-Package pdftex.def Info: g3.png  used on input line 1470.
+Package pdftex.def Info: g3.png  used on input line 1473.
 (pdftex.def)             Requested size: 229.8775pt x 104.21109pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1471.
+(caption)                particular \caption on input line 1474.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 1468--1474
+Overfull \hbox (17.0pt too wide) in paragraph at lines 1471--1477
 []$[]$ 
  []
 
@@ -1998,54 +1993,54 @@ Overfull \hbox (17.0pt too wide) in paragraph at lines 1468--1474
 <graf_choques_gamma.pdf, id=2517, 621.53458pt x 403.97112pt>
 File: graf_choques_gamma.pdf Graphic file (type pdf)
 <use graf_choques_gamma.pdf>
-Package pdftex.def Info: graf_choques_gamma.pdf  used on input line 1495.
+Package pdftex.def Info: graf_choques_gamma.pdf  used on input line 1498.
 (pdftex.def)             Requested size: 281.85587pt x 183.19073pt.
 <hist_choques_gamma.pdf, id=2518, 437.75952pt x 338.166pt>
 File: hist_choques_gamma.pdf Graphic file (type pdf)
 <use hist_choques_gamma.pdf>
-Package pdftex.def Info: hist_choques_gamma.pdf  used on input line 1502.
+Package pdftex.def Info: hist_choques_gamma.pdf  used on input line 1505.
 (pdftex.def)             Requested size: 229.8775pt x 177.58109pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1503.
+(caption)                particular \caption on input line 1506.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 1500--1506
+Overfull \hbox (17.0pt too wide) in paragraph at lines 1503--1509
 []$[]$ 
  []
 
 <g4.png, id=2519, 406.51875pt x 255.95625pt>
 File: g4.png Graphic file (type png)
 <use g4.png>
-Package pdftex.def Info: g4.png  used on input line 1509.
+Package pdftex.def Info: g4.png  used on input line 1512.
 (pdftex.def)             Requested size: 229.8775pt x 144.73662pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1510.
+(caption)                particular \caption on input line 1513.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 1507--1513
+Overfull \hbox (17.0pt too wide) in paragraph at lines 1510--1516
 []$[]$ 
  []
 
 [44 <./graf_choques_gamma.pdf> <./hist_choques_gamma.pdf> <./g4.png>] [45]
 [46]
-Overfull \hbox (1.0668pt too wide) in paragraph at lines 1551--1552
+Overfull \hbox (1.0668pt too wide) in paragraph at lines 1554--1555
 [][][]\T1/lmss/m/sl/10.95 https://colab.research.google.com/drive/1OqFebhbSkwtj
 nMdEeamEgZu9fpV-zu0s?usp=sharing[][]\T1/lmss/m/n/10.95 . 
  []
 
 
-Overfull \hbox (9.70424pt too wide) in paragraph at lines 1556--1557
+Overfull \hbox (9.70424pt too wide) in paragraph at lines 1559--1560
 [][][]\T1/lmss/m/sl/10.95 https://colab.research.google.com/drive/1bUJ5eagMzJEx
 Hf9ogONdEHd8UiY8B5Te?usp=sharing[][]\T1/lmss/m/n/10.95 . 
  []
 
 
-Overfull \hbox (10.6947pt too wide) in paragraph at lines 1566--1567
+Overfull \hbox (10.6947pt too wide) in paragraph at lines 1569--1570
 [][][]\T1/lmss/m/sl/10.95 https://colab.research.google.com/drive/15WKghgRJQMI1
 qNjLo5keUrGBhxV8Y-Ps?usp=sharing[][]\T1/lmss/m/n/10.95 . 
  []
@@ -2061,11 +2056,11 @@ Package rerunfilecheck Info: File `reporteWalker.out' has not changed.
 (rerunfilecheck)             Checksum: 152423AB2A63E868E89A419A02296502;6834.
  ) 
 Here is how much of TeX's memory you used:
- 28100 strings out of 478287
- 506640 string characters out of 5849289
- 1037524 words of memory out of 5000000
- 45351 multiletter control sequences out of 15000+600000
- 540093 words of font info for 70 fonts, out of 8000000 for 9000
+ 28078 strings out of 478287
+ 505968 string characters out of 5849289
+ 1037438 words of memory out of 5000000
+ 45333 multiletter control sequences out of 15000+600000
+ 539320 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,12n,80p,646b,2049s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texlive/texmf-dist
@@ -2080,7 +2075,7 @@ type1/public/lm/lmss10.pfb></usr/share/texmf/fonts/type1/public/lm/lmss12.pfb><
 /share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/p
 ublic/lm/lmsso10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsso17.pfb></usr/
 share/texmf/fonts/type1/public/lm/lmtt10.pfb>
-Output written on reporteWalker.pdf (48 pages, 3950597 bytes).
+Output written on reporteWalker.pdf (48 pages, 3950595 bytes).
 PDF statistics:
  2788 PDF objects out of 2984 (max. 8388607)
  1176 compressed objects within 12 object streams

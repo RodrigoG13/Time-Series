@@ -271,7 +271,7 @@ class Animation3D:
         self.ax.legend(loc='upper left')  # Update the legend
 
     def animate(self):
-        ani = FuncAnimation(self.fig, self.update, interval=20)
+        ani = FuncAnimation(self.fig, self.update, interval=10)
         plt.show()
 
 
@@ -279,9 +279,9 @@ class Animation3D:
 
 if __name__ == '__main__':
     
-    lim_x = 30
-    lim_y = 30
-    lim_z = 30
+    lim_x = 50
+    lim_y = 50
+    lim_z = 50
     
     distribucion = 'FeigenbaumTriangular'
 

@@ -103,7 +103,7 @@ class Particula(threading.Thread):
 
     def __init__(self, x, y, map_obj, id):
 
-        distr = "Feigenbaum"
+        distr = "FeigenbaumExponencial"
 
         super().__init__()
         self.id = id
@@ -124,6 +124,8 @@ class Particula(threading.Thread):
         aux = leer_col_csv(f"datos{distr}.csv", "Valores x")
         #self.datos = desordenar_lista(aux)
         self.datos = aux
+        print(self.datos)
+        input()
 
 
     def algortimo_random_t2(self, valor_minimo, valor_maximo, valor_prueba):
@@ -170,7 +172,7 @@ class Particula(threading.Thread):
     def move(self):
         val_prueba_dir = self.datos[0]
         self.datos = np.delete(self.datos, 0)
-        posicion_random = random.randint(len(self.datos)- len(self.datos), len(self.datos))
+        posicion_random = random.randint(0, len(self.datos))
         #posicion_random = len(self.datos) - 5
         self.datos = np.insert(self.datos, posicion_random, val_prueba_dir)
         direction = definir_direccion(np.array_split(self.datos, 8), val_prueba_dir)
@@ -178,7 +180,7 @@ class Particula(threading.Thread):
 
         val_prueba_long = self.datos[0]
         self.datos = np.delete(self.datos, 0)
-        posicion_random = random.randint(len(self.datos)-5, len(self.datos))
+        posicion_random = random.randint(len(self.datos)-1, len(self.datos))
         #posicion_random = len(self.datos) -5
         self.datos = np.insert(self.datos, posicion_random, val_prueba_long)
         pasos = definir_tam_paso(np.array_split(self.datos, 8), val_prueba_long)

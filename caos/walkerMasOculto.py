@@ -3,9 +3,7 @@ import sys
 import random
 import threading
 import time
-import datetime
-import pandas as pd
-import numpy as np
+import datetime 
 
 
 def cargar_set(archivo):
@@ -13,14 +11,7 @@ def cargar_set(archivo):
         contenido = file.read()
     numeros_str = contenido.split(',')
     numeros_enteros = [float(numero) for numero in numeros_str]
-    return np.array(numeros_enteros)
-    
-
-def leer_col_csv(file_path, column_name):
-    data = pd.read_csv(file_path)
-    column_data = data[column_name]
-    aux = np.array(column_data)
-    return aux
+    return numeros_enteros
 
 
 def desordenar_lista(lista):
@@ -29,16 +20,6 @@ def desordenar_lista(lista):
             j = random.randint(0, i)
             lista[i], lista[j] = lista[j], lista[i]
         return lista
-    
-
-
-def partir_conjunto(numeros, n_partes):
-    min_val = np.min(numeros)
-    max_val = np.max(numeros)
-    paso = round((max_val - min_val) / n_partes, 4)
-    limites = [min_val + paso * i for i in range(n_partes)]
-    limites.append(max_val)
-    return limites
 
 
 class Button:
@@ -113,7 +94,7 @@ class Particula(threading.Thread):
 
     def __init__(self, x, y, map_obj, id):
 
-        distr = "Feigenbaum"
+        distr = "Gamma"
 
         super().__init__()
         self.id = id
@@ -123,16 +104,12 @@ class Particula(threading.Thread):
         self.running = True
         self.paused = False  
         self.pause_cond = threading.Condition(threading.Lock())
-        """self.arch_direccion = open(f'direcciones_{distr.lower()}4.txt', 'w+')
-        self.arch_distancia = open(f'distancia_{distr.lower()}4.txt', 'w+')
-        self.arch_posiciones = open(f'posiciones_{distr.lower()}4.txt', 'w+')
-        self.arch_choques_pared = open(f'choques_{distr.lower()}4.txt', 'w+')"""
-        """self.arch_direccion = open(f'z.txt', 'w+')
-        self.arch_distancia = open(f'z', 'w+')
-        self.arch_posiciones = open(f'z', 'w+')"""
-        #self.arch_choques_pared = open(f'z.txt', 'w+')
-        aux = leer_col_csv(f"datos{distr}.csv", "Valores x")
-        self.datos = aux
+        self.arch_direccion = open(f'direcciones_{distr.lower()}1.txt', 'w+')
+        self.arch_distancia = open(f'distancia_{distr.lower()}1.txt', 'w+')
+        self.arch_posiciones = open(f'posiciones_{distr.lower()}1.txt', 'w+')
+        self.arch_choques_pared = open(f'choques_{distr.lower()}1.txt', 'w+')
+        aux = cargar_set(f"randoms{distr}.txt")
+        self.datos = desordenar_lista(aux)
 
 
     def algortimo_random_t2(self, valor_minimo, valor_maximo, valor_prueba):
@@ -177,19 +154,16 @@ class Particula(threading.Thread):
 
 
     def move(self):
-        val_prueba_dir = self.datos[0]
-        self.datos = np.delete(self.datos, 0)
-        posicion_random = random.randint(0, len(self.datos))
-        self.datos = np.insert(self.datos, posicion_random, val_prueba_dir)
+        val_prueba_dir = self.datos.pop(0)
+        #self.datos.append(val_prueba_dir)
+        self.datos.insert(random.randint(0, len(self.datos)-1), val_prueba_dir)
         direction = definir_direccion(partir_conjunto(self.datos, 8), val_prueba_dir)
-        #self.arch_direccion.write(f"{direction},")
-
-        val_prueba_long = self.datos[0]
-        self.datos = np.delete(self.datos, 0)
-        posicion_random = random.randint(len(self.datos)-1, len(self.datos))
-        self.datos = np.insert(self.datos, posicion_random, val_prueba_long)
+        self.arch_direccion.write(f"{direction},")
+        val_prueba_long = self.datos.pop(0)
+        #self.datos.append(val_prueba_long)
+        self.datos.insert(random.randint(0, len(self.datos)), val_prueba_long)
         pasos = definir_tam_paso(partir_conjunto(self.datos, 8), val_prueba_long)
-        #self.arch_distancia.write(f"{pasos},")
+        self.arch_distancia.write(f"{pasos},")
 
         bandera_choque = 0
 
@@ -233,8 +207,8 @@ class Particula(threading.Thread):
             
             self.map.update_cell(self.y, self.x, self.id)
 
-        #self.arch_posiciones.write(f"{self.x},{self.y};")
-        #self.arch_choques_pared.write(f"{bandera_choque},")
+        self.arch_posiciones.write(f"{self.x},{self.y};")
+        self.arch_choques_pared.write(f"{bandera_choque},")
 
 
 
@@ -286,6 +260,12 @@ def run_simulation(screen, game_map, particulas):
     sys.exit()
 
 
+def partir_conjunto(numeros, n_partes):
+    archivo = numeros
+    paso =  round((max(archivo) - min(archivo)) / n_partes , 4)
+    limites = [min(archivo)+paso*i for i in range(n_partes)]
+    limites.append(max(archivo))
+    return limites
 
 
 def definir_direccion(intervalos, valor):
@@ -295,14 +275,12 @@ def definir_direccion(intervalos, valor):
     if valor >= intervalos[-1]:
         return len(intervalos) - 2
     else:
-        return None 
+        return None  
     
     
 def definir_tam_paso(intervalos, valor):
     intervalo = definir_direccion(intervalos, valor)
     return intervalo + 1
-
-
 
 
 if __name__ == "__main__":

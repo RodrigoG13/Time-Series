@@ -103,7 +103,7 @@ class Particula(threading.Thread):
 
     def __init__(self, x, y, map_obj, id):
 
-        distr = "FeigenbaumExponencial"
+        distr = "FeigenbaumExpo"
 
         super().__init__()
         self.id = id

@@ -20,7 +20,7 @@ def leer_col_csv(file_path, column_name):
     data = pd.read_csv(file_path)
     column_data = data[column_name]
     aux = np.array(column_data)
-    return aux
+    return aux[100000:]
 
 
 def desordenar_lista(lista):
@@ -179,14 +179,14 @@ class Particula(threading.Thread):
     def move(self):
         val_prueba_dir = self.datos[0]
         self.datos = np.delete(self.datos, 0)
-        posicion_random = random.randint(0, len(self.datos))
+        posicion_random = random.randint(len(self.datos), len(self.datos))
         self.datos = np.insert(self.datos, posicion_random, val_prueba_dir)
         direction = definir_direccion(partir_conjunto(self.datos, 8), val_prueba_dir)
         #self.arch_direccion.write(f"{direction},")
 
         val_prueba_long = self.datos[0]
         self.datos = np.delete(self.datos, 0)
-        posicion_random = random.randint(len(self.datos)-1, len(self.datos))
+        posicion_random = random.randint(len(self.datos), len(self.datos))
         self.datos = np.insert(self.datos, posicion_random, val_prueba_long)
         pasos = definir_tam_paso(partir_conjunto(self.datos, 8), val_prueba_long)
         #self.arch_distancia.write(f"{pasos},")

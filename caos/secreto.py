@@ -9,18 +9,23 @@ import pandas as pd
 
 
 def partir_conjunto(numeros, n_partes):
-    archivo = numeros
-    paso =  round((max(archivo) - min(archivo)) / n_partes , 4)
-    limites = [min(archivo)+paso*i for i in range(n_partes)]
-    limites.append(max(archivo))
+    min_val = np.min(numeros)
+    max_val = np.max(numeros)
+    paso = round((max_val - min_val) / n_partes, 4)
+    limites = [min_val + paso * i for i in range(n_partes)]
+    limites.append(max_val)
     return limites
 
 
 def definir_direccion(intervalos, valor):
-    for i, segmento in enumerate(intervalos):
-        if valor in segmento:
+    for i in range(len(intervalos) - 1):
+        if valor >= intervalos[i] and valor < intervalos[i + 1]:
             return i
-    return None
+    if valor >= intervalos[-1]:
+        return len(intervalos) - 2
+    else:
+        print("U")
+        return None 
     
     
 def definir_tam_paso(intervalos, valor):
@@ -32,14 +37,14 @@ def leer_col_csv(file_path, column_name):
     data = pd.read_csv(file_path)
     column_data = data[column_name]
     aux = np.array(column_data)
-    return aux
+    return aux[120000:]
 
 
 def desordenar_lista(lista):
         n = len(lista)
         for i in range(n-1, 0, -1):
             j = random.randint(0, i)
-            lista[i], lista[j] = lista[j], lista[i]
+            lista[i], lista[j] = lista[i], lista[j]
         return lista
 
 
@@ -55,7 +60,7 @@ class Particula(threading.Thread):
         self.lim_z = lim_z
         self.pid = pid
         aux = leer_col_csv(f"datos{distr}.csv", "Valores x")
-        self.datos = desordenar_lista(aux)
+        self.datos = aux
         self.arch_direccion = open(f'direcciones_{distr.lower()}{pid}.txt', 'w+')
         self.arch_distancia = open(f'distancia_{distr.lower()}{pid}.txt', 'w+')
         self.arch_posiciones = open(f'posiciones_{distr.lower()}{pid}.txt', 'w+')
@@ -70,15 +75,15 @@ class Particula(threading.Thread):
     def move(self):
         val_prueba_dir = self.datos[0]
         self.datos = np.delete(self.datos, 0)
-        posicion_random = random.randint(len(self.datos)- len(self.datos), len(self.datos))
+        posicion_random = random.randint(len(self.datos), len(self.datos))
         self.datos = np.insert(self.datos, posicion_random, val_prueba_dir)
-        direction = definir_direccion(np.array_split(self.datos, 26), val_prueba_dir)
+        direction = definir_direccion(partir_conjunto(self.datos, 26), val_prueba_dir)
         self.arch_direccion.write(f"{direction},")
         val_prueba_long = self.datos[0]
         self.datos = np.delete(self.datos, 0)
-        posicion_random = random.randint(len(self.datos)-5, len(self.datos))
+        posicion_random = random.randint(len(self.datos), len(self.datos))
         self.datos = np.insert(self.datos, posicion_random, val_prueba_long)
-        pasos = definir_tam_paso(np.array_split(self.datos, 4), val_prueba_long)
+        pasos = definir_tam_paso(partir_conjunto(self.datos, 8), val_prueba_long)
         self.arch_distancia.write(f"{pasos},")
 
         bandera_choque = 0
@@ -271,7 +276,7 @@ class Animation3D:
         self.ax.legend(loc='upper left')  # Update the legend
 
     def animate(self):
-        ani = FuncAnimation(self.fig, self.update, interval=10)
+        ani = FuncAnimation(self.fig, self.update, interval=0.0001)
         plt.show()
 
 
@@ -283,7 +288,7 @@ if __name__ == '__main__':
     lim_y = 50
     lim_z = 50
     
-    distribucion = 'FeigenbaumTriangular'
+    distribucion = 'Feigenbaum'
 
     colores_predefinidos = [np.array([0.01987796, 0.90759959, 0.11349599]), np.array([0.09161601, 0.75869024, 0.76659079]), 
                             np.array([0.1252212 , 0.05280823, 0.71721886]), np.array([0.77492683, 0.59771033, 0.10067767]), 

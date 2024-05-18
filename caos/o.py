@@ -1,3 +1,10 @@
-import numpy as np
-x = np.array([3, 2, 3, 4, 5, 6, 7, 8, 5, 10])
-print(np.split(x, 5))
+def contar_numeros(archivo):
+    with open(archivo, 'r') as file:
+        contenido = file.read()
+        numeros = contenido.split(',')
+        cantidad_numeros = len(numeros)
+    return cantidad_numeros
+
+# Ejemplo de uso
+archivo = 'direcciones_feigenbaum0.txt'
+print(f'El archivo tiene {contar_numeros(archivo)} números.')

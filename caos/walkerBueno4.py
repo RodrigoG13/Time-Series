@@ -25,7 +25,7 @@ def leer_col_csv(file_path, column_name):
     data = pd.read_csv(file_path)
     column_data = data[column_name]
     aux = np.array(column_data)
-    return aux
+    return aux[70000:]
 
 
 def desordenar_lista(lista):

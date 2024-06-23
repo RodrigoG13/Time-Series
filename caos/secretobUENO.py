@@ -294,7 +294,7 @@ if __name__ == '__main__':
     lim_z = 50
     valores = 0
     
-    distribucion = 'transfLorentz'
+    distribucion = 'Feigenbaum'
 
     colores_predefinidos = [np.array([0.01987796, 0.90759959, 0.11349599]), np.array([0.09161601, 0.75869024, 0.76659079]), 
                             np.array([0.1252212 , 0.05280823, 0.71721886]), np.array([0.77492683, 0.59771033, 0.10067767]), 

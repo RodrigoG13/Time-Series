@@ -1,0 +1,3093 @@
+\documentclass[11pt]{article}
+
+    \usepackage[breakable]{tcolorbox}
+    \usepackage{parskip} % Stop auto-indenting (to mimic markdown behaviour)
+    
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % Maintain compatibility with old templates. Remove in nbconvert 6.0
+    \let\Oldincludegraphics\includegraphics
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionFormat{nocaption}{}
+    \captionsetup{format=nocaption,aboveskip=0pt,belowskip=0pt}
+
+    \usepackage{float}
+    \floatplacement{figure}{H} % forces figures to be placed at the correct location
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+
+    \usepackage{iftex}
+    \ifPDFTeX
+        \usepackage[T1]{fontenc}
+        \IfFileExists{alphabeta.sty}{
+              \usepackage{alphabeta}
+          }{
+              \usepackage[mathletters]{ucs}
+              \usepackage[utf8x]{inputenc}
+          }
+    \else
+        \usepackage{fontspec}
+        \usepackage{unicode-math}
+    \fi
+
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage[Export]{adjustbox} % Used to constrain images to a maximum size
+    \adjustboxset{max size={0.9\linewidth}{0.9\paperheight}}
+
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    % The default LaTeX title has an obnoxious amount of whitespace. By default,
+    % titling removes some of it. It also provides customization options.
+    \usepackage{titling}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage{array}     % table support for pandoc >= 2.11.3
+    \usepackage{calc}      % table minipage width calculation for pandoc >= 2.11.1
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    \usepackage{mathrsfs}
+    
+
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+    \definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
+    \definecolor{ansi-default-inverse-bg}{HTML}{000000}
+
+    % common color for the border for error outputs.
+    \definecolor{outerrorbackground}{HTML}{FFDFDF}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatibility definitions
+    \def\gt{>}
+    \def\lt{<}
+    \let\Oldtex\TeX
+    \let\Oldlatex\LaTeX
+    \renewcommand{\TeX}{\textrm{\Oldtex}}
+    \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
+    % Document parameters
+    % Document title
+    \title{analisisCaos2}
+    
+    
+    
+    
+    
+% Pygments definitions
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\@namedef{PY@tok@w}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\@namedef{PY@tok@c}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cp}{\def\PY@tc##1{\textcolor[rgb]{0.61,0.40,0.00}{##1}}}
+\@namedef{PY@tok@k}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kt}{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\@namedef{PY@tok@o}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@ow}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\@namedef{PY@tok@nb}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@nf}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@nc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@nn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@ne}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.80,0.25,0.22}{##1}}}
+\@namedef{PY@tok@nv}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@no}{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\@namedef{PY@tok@nl}{\def\PY@tc##1{\textcolor[rgb]{0.46,0.46,0.00}{##1}}}
+\@namedef{PY@tok@ni}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.44,0.44,0.44}{##1}}}
+\@namedef{PY@tok@na}{\def\PY@tc##1{\textcolor[rgb]{0.41,0.47,0.13}{##1}}}
+\@namedef{PY@tok@nt}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@nd}{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\@namedef{PY@tok@s}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sd}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@si}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.64,0.35,0.47}{##1}}}
+\@namedef{PY@tok@se}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.36,0.12}{##1}}}
+\@namedef{PY@tok@sr}{\def\PY@tc##1{\textcolor[rgb]{0.64,0.35,0.47}{##1}}}
+\@namedef{PY@tok@ss}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@sx}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@m}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@gh}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\@namedef{PY@tok@gu}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\@namedef{PY@tok@gd}{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\@namedef{PY@tok@gi}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.52,0.00}{##1}}}
+\@namedef{PY@tok@gr}{\def\PY@tc##1{\textcolor[rgb]{0.89,0.00,0.00}{##1}}}
+\@namedef{PY@tok@ge}{\let\PY@it=\textit}
+\@namedef{PY@tok@gs}{\let\PY@bf=\textbf}
+\@namedef{PY@tok@ges}{\let\PY@bf=\textbf\let\PY@it=\textit}
+\@namedef{PY@tok@gp}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\@namedef{PY@tok@go}{\def\PY@tc##1{\textcolor[rgb]{0.44,0.44,0.44}{##1}}}
+\@namedef{PY@tok@gt}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\@namedef{PY@tok@err}{\def\PY@bc##1{{\setlength{\fboxsep}{\string -\fboxrule}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}}
+\@namedef{PY@tok@kc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kd}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kr}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@bp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@fm}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@vc}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vg}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vi}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vm}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@sa}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sb}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sc}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@dl}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@s2}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sh}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@s1}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@mb}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mf}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mh}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mi}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@il}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mo}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@ch}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cm}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cpf}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@c1}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cs}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % For linebreaks inside Verbatim environment from package fancyvrb. 
+    \makeatletter
+        \newbox\Wrappedcontinuationbox 
+        \newbox\Wrappedvisiblespacebox 
+        \newcommand*\Wrappedvisiblespace {\textcolor{red}{\textvisiblespace}} 
+        \newcommand*\Wrappedcontinuationsymbol {\textcolor{red}{\llap{\tiny$\m@th\hookrightarrow$}}} 
+        \newcommand*\Wrappedcontinuationindent {3ex } 
+        \newcommand*\Wrappedafterbreak {\kern\Wrappedcontinuationindent\copy\Wrappedcontinuationbox} 
+        % Take advantage of the already applied Pygments mark-up to insert 
+        % potential linebreaks for TeX processing. 
+        %        {, <, #, %, $, ' and ": go to next line. 
+        %        _, }, ^, &, >, - and ~: stay at end of broken line. 
+        % Use of \textquotesingle for straight quote. 
+        \newcommand*\Wrappedbreaksatspecials {% 
+            \def\PYGZus{\discretionary{\char`\_}{\Wrappedafterbreak}{\char`\_}}% 
+            \def\PYGZob{\discretionary{}{\Wrappedafterbreak\char`\{}{\char`\{}}% 
+            \def\PYGZcb{\discretionary{\char`\}}{\Wrappedafterbreak}{\char`\}}}% 
+            \def\PYGZca{\discretionary{\char`\^}{\Wrappedafterbreak}{\char`\^}}% 
+            \def\PYGZam{\discretionary{\char`\&}{\Wrappedafterbreak}{\char`\&}}% 
+            \def\PYGZlt{\discretionary{}{\Wrappedafterbreak\char`\<}{\char`\<}}% 
+            \def\PYGZgt{\discretionary{\char`\>}{\Wrappedafterbreak}{\char`\>}}% 
+            \def\PYGZsh{\discretionary{}{\Wrappedafterbreak\char`\#}{\char`\#}}% 
+            \def\PYGZpc{\discretionary{}{\Wrappedafterbreak\char`\%}{\char`\%}}% 
+            \def\PYGZdl{\discretionary{}{\Wrappedafterbreak\char`\$}{\char`\$}}% 
+            \def\PYGZhy{\discretionary{\char`\-}{\Wrappedafterbreak}{\char`\-}}% 
+            \def\PYGZsq{\discretionary{}{\Wrappedafterbreak\textquotesingle}{\textquotesingle}}% 
+            \def\PYGZdq{\discretionary{}{\Wrappedafterbreak\char`\"}{\char`\"}}% 
+            \def\PYGZti{\discretionary{\char`\~}{\Wrappedafterbreak}{\char`\~}}% 
+        } 
+        % Some characters . , ; ? ! / are not pygmentized. 
+        % This macro makes them "active" and they will insert potential linebreaks 
+        \newcommand*\Wrappedbreaksatpunct {% 
+            \lccode`\~`\.\lowercase{\def~}{\discretionary{\hbox{\char`\.}}{\Wrappedafterbreak}{\hbox{\char`\.}}}% 
+            \lccode`\~`\,\lowercase{\def~}{\discretionary{\hbox{\char`\,}}{\Wrappedafterbreak}{\hbox{\char`\,}}}% 
+            \lccode`\~`\;\lowercase{\def~}{\discretionary{\hbox{\char`\;}}{\Wrappedafterbreak}{\hbox{\char`\;}}}% 
+            \lccode`\~`\:\lowercase{\def~}{\discretionary{\hbox{\char`\:}}{\Wrappedafterbreak}{\hbox{\char`\:}}}% 
+            \lccode`\~`\?\lowercase{\def~}{\discretionary{\hbox{\char`\?}}{\Wrappedafterbreak}{\hbox{\char`\?}}}% 
+            \lccode`\~`\!\lowercase{\def~}{\discretionary{\hbox{\char`\!}}{\Wrappedafterbreak}{\hbox{\char`\!}}}% 
+            \lccode`\~`\/\lowercase{\def~}{\discretionary{\hbox{\char`\/}}{\Wrappedafterbreak}{\hbox{\char`\/}}}% 
+            \catcode`\.\active
+            \catcode`\,\active 
+            \catcode`\;\active
+            \catcode`\:\active
+            \catcode`\?\active
+            \catcode`\!\active
+            \catcode`\/\active 
+            \lccode`\~`\~ 	
+        }
+    \makeatother
+
+    \let\OriginalVerbatim=\Verbatim
+    \makeatletter
+    \renewcommand{\Verbatim}[1][1]{%
+        %\parskip\z@skip
+        \sbox\Wrappedcontinuationbox {\Wrappedcontinuationsymbol}%
+        \sbox\Wrappedvisiblespacebox {\FV@SetupFont\Wrappedvisiblespace}%
+        \def\FancyVerbFormatLine ##1{\hsize\linewidth
+            \vtop{\raggedright\hyphenpenalty\z@\exhyphenpenalty\z@
+                \doublehyphendemerits\z@\finalhyphendemerits\z@
+                \strut ##1\strut}%
+        }%
+        % If the linebreak is at a space, the latter will be displayed as visible
+        % space at end of first line, and a continuation symbol starts next line.
+        % Stretch/shrink are however usually zero for typewriter font.
+        \def\FV@Space {%
+            \nobreak\hskip\z@ plus\fontdimen3\font minus\fontdimen4\font
+            \discretionary{\copy\Wrappedvisiblespacebox}{\Wrappedafterbreak}
+            {\kern\fontdimen2\font}%
+        }%
+        
+        % Allow breaks at special characters using \PYG... macros.
+        \Wrappedbreaksatspecials
+        % Breaks at punctuation characters . , ; ? ! and / need catcode=\active 	
+        \OriginalVerbatim[#1,codes*=\Wrappedbreaksatpunct]%
+    }
+    \makeatother
+
+    % Exact colors from NB
+    \definecolor{incolor}{HTML}{303F9F}
+    \definecolor{outcolor}{HTML}{D84315}
+    \definecolor{cellborder}{HTML}{CFCFCF}
+    \definecolor{cellbackground}{HTML}{F7F7F7}
+    
+    % prompt
+    \makeatletter
+    \newcommand{\boxspacing}{\kern\kvtcb@left@rule\kern\kvtcb@boxsep}
+    \makeatother
+    \newcommand{\prompt}[4]{
+        {\ttfamily\llap{{\color{#2}[#3]:\hspace{3pt}#4}}\vspace{-\baselineskip}}
+    }
+    
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+\begin{document}
+    
+    \maketitle
+    
+    
+
+    
+    \hypertarget{anuxe1lisis-estaduxedstico-de-series-de-tiempo-cauxf3ticas}{%
+\section{Análisis Estadístico de Series de Tiempo
+Caóticas}\label{anuxe1lisis-estaduxedstico-de-series-de-tiempo-cauxf3ticas}}
+
+\hypertarget{alumno-rodrigo-gerardo-trejo-arriaga}{%
+\subsection{Alumno: Rodrigo Gerardo Trejo
+Arriaga}\label{alumno-rodrigo-gerardo-trejo-arriaga}}
+
+\hypertarget{tuxedtulo-de-la-pruxe1ctica-estaduxedsticas-descriptivas-de-atractores-cauxf3ticos}{%
+\subsubsection{Título de la Práctica: Estadísticas descriptivas de
+atractores
+caóticos}\label{tuxedtulo-de-la-pruxe1ctica-estaduxedsticas-descriptivas-de-atractores-cauxf3ticos}}
+
+Este segmento de la práctica explora las propiedades estadísticas de los
+conjuntos de datos generados por modelos caóticos. Se calcularán
+métricas como la media, mediana, entropía, kurtosis, varianza y
+desviación estándar para demostrar que los datos no siguen
+distribuciones de probabilidad convencionales como las normales,
+uniformes o gamma.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+Fecha de Entrega: \textbf{24 de Junio, 2024}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{2}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+\PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{stats} \PY{k+kn}{import} \PY{n}{gmean}\PY{p}{,} \PY{n}{skew}\PY{p}{,} \PY{n}{kurtosis}\PY{p}{,} \PY{n}{mode}
+\PY{k+kn}{from} \PY{n+nn}{scipy} \PY{k+kn}{import} \PY{n}{stats}
+\PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+\PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+\PY{k+kn}{import} \PY{n+nn}{plotly}\PY{n+nn}{.}\PY{n+nn}{graph\PYZus{}objects} \PY{k}{as} \PY{n+nn}{go}
+\PY{k+kn}{import} \PY{n+nn}{plotly}\PY{n+nn}{.}\PY{n+nn}{io} \PY{k}{as} \PY{n+nn}{pio}
+\PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{neighbors} \PY{k+kn}{import} \PY{n}{KDTree}
+\PY{k+kn}{from} \PY{n+nn}{joblib} \PY{k+kn}{import} \PY{n}{Parallel}\PY{p}{,} \PY{n}{delayed}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{9}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{convertir\PYZus{}camelCase}\PY{p}{(}\PY{n}{text}\PY{p}{)}\PY{p}{:}
+    \PY{n}{cleaned\PYZus{}text} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{char} \PY{k}{for} \PY{n}{char} \PY{o+ow}{in} \PY{n}{text} \PY{k}{if} \PY{n}{char}\PY{o}{.}\PY{n}{isalnum}\PY{p}{(}\PY{p}{)} \PY{o+ow}{or} \PY{n}{char}\PY{o}{.}\PY{n}{isspace}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+    \PY{n}{words} \PY{o}{=} \PY{n}{cleaned\PYZus{}text}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)}
+    \PY{k}{return} \PY{n}{words}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{lower}\PY{p}{(}\PY{p}{)} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{word}\PY{o}{.}\PY{n}{capitalize}\PY{p}{(}\PY{p}{)} \PY{k}{for} \PY{n}{word} \PY{o+ow}{in} \PY{n}{words}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \hypertarget{clase-distribucionprobabilidad}{%
+\subsection{\texorpdfstring{Clase
+\texttt{DistribucionProbabilidad}}{Clase DistribucionProbabilidad}}\label{clase-distribucionprobabilidad}}
+
+La clase \texttt{DistribucionProbabilidad} está diseñada para analizar
+conjuntos de datos mediante una variedad de métricas estadísticas. Es
+útil en estudios de series de tiempo y análisis de datos donde se
+requiere un entendimiento profundo de las propiedades estadísticas de
+una o más variables.
+
+\hypertarget{muxe9todos-y-muxe9tricas-estaduxedsticas}{%
+\subsubsection{Métodos y Métricas
+Estadísticas:}\label{muxe9todos-y-muxe9tricas-estaduxedsticas}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Media}: Calcula el promedio de los valores en el conjunto de
+  datos.
+\item
+  \textbf{Mediana}: Determina el valor medio que divide el conjunto de
+  datos en dos partes iguales.
+\item
+  \textbf{Moda}: Identifica el valor o valores más frecuentes en el
+  conjunto de datos.
+\item
+  \textbf{Media Geométrica}: Calcula la media multiplicativa de los
+  valores del conjunto.
+\item
+  \textbf{Asimetría (Skewness)}: Mide la asimetría de la distribución de
+  los datos.
+\item
+  \textbf{Rango}: La diferencia entre el valor máximo y mínimo en el
+  conjunto.
+\item
+  \textbf{Desviación Estándar}: Mide la cantidad de variación o
+  dispersión de los datos.
+\item
+  \textbf{Varianza}: Calcula la varianza de los datos.
+\item
+  \textbf{Coeficiente de Variación}: Relaciona la desviación estándar
+  con la media, útil para comparar la dispersión entre distribuciones
+  con diferentes escalas.
+\item
+  \textbf{Percentiles y Cuartiles}: Determina valores específicos que
+  dividen el conjunto de datos en intervalos iguales.
+\item
+  \textbf{Curtosis}: Mide la `agudeza' o `achatamiento' de la
+  distribución respecto a una distribución normal.
+\item
+  \textbf{Entropía}: Mide la incertidumbre o la cantidad de información
+  `sorpresa' en la distribución de los datos.
+\end{itemize}
+
+    Además, se realiza un análisis caótico de cada uno de los modelos
+presentados con el objetivo de demostrar que estas series de tiempo
+están influenciadas por atractores caóticos en lugar de comportamientos
+estocásticos. Para ello, proponemos utilizar las siguientes métricas:
+
+\hypertarget{exponentes-de-lyapunov}{%
+\subsection{Exponentes de Lyapunov}\label{exponentes-de-lyapunov}}
+
+\hypertarget{definiciuxf3n}{%
+\subsubsection{Definición}\label{definiciuxf3n}}
+
+Los exponentes de Lyapunov son una medida cuantitativa de la
+sensibilidad a las condiciones iniciales en un sistema dinámico.
+Describen la tasa a la cual dos trayectorias infinitesimalmente cercanas
+en el espacio de fases divergen (o convergen) con el tiempo.
+
+\hypertarget{interpretaciuxf3n}{%
+\subsubsection{Interpretación}\label{interpretaciuxf3n}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Exponente de Lyapunov positivo}: Indica que las trayectorias
+  divergen exponencialmente, lo que es una característica del
+  comportamiento caótico. Cuanto mayor sea el valor positivo, más rápido
+  divergen las trayectorias.
+\item
+  \textbf{Exponente de Lyapunov negativo}: Indica que las trayectorias
+  convergen exponencialmente, lo que es típico en sistemas estables.
+\item
+  \textbf{Exponente de Lyapunov cero}: Indica un comportamiento neutral,
+  típico de sistemas en los que las trayectorias son paralelas y no se
+  separan ni convergen.
+\end{itemize}
+
+\hypertarget{cuxe1lculo}{%
+\subsubsection{Cálculo}\label{cuxe1lculo}}
+
+Para calcular el exponente de Lyapunov, se sigue el siguiente
+procedimiento:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{División de la serie temporal}: Se divide la serie temporal en
+  ventanas de tamaño \texttt{window\_size}.
+\item
+  \textbf{Cálculo de la derivada del sistema}: En cada punto dentro de
+  una ventana, se calcula la derivada del sistema dinámico. Para el mapa
+  logístico, la función es:
+
+  \$ x\_\{n+1\} = r x\_n (1 - x\_n) \$
+
+  y su derivada es:
+
+  \$ f'(x) = r (1 - 2x) \$
+\item
+  \textbf{suma de los logaritmos}: Para cada ventana, se suma el
+  logaritmo de los valores absolutos de la derivada:
+
+  \$ \sum\_\{i=1\}\^{}\{N\} \log \left\textbar{} f'(x\_i)
+  \right\textbar{} \$
+\item
+  \textbf{Promedio del suma}: Se promedia esta suma sobre el tamaño de
+  la ventana para obtener el exponente de Lyapunov:
+
+  \$ \lambda = \frac{1}{N} \sum\_\{i=1\}\^{}\{N\} \log \left\textbar{}
+  f'(x\_i) \right\textbar{} \$
+\end{enumerate}
+
+\hypertarget{dimensiuxf3n-de-kaplan-yorke}{%
+\subsection{Dimensión de
+Kaplan-Yorke}\label{dimensiuxf3n-de-kaplan-yorke}}
+
+\hypertarget{definiciuxf3n-1}{%
+\subsubsection{Definición}\label{definiciuxf3n-1}}
+
+La dimensión de Kaplan-Yorke, también conocida como dimensión de
+Lyapunov, es una métrica utilizada para caracterizar la estructura
+fractal de un atractor caótico en un sistema dinámico. Esta dimensión se
+basa en los exponentes de Lyapunov y proporciona una estimación del
+número de grados de libertad que intervienen en la dinámica caótica del
+sistema.
+
+\hypertarget{fuxf3rmula}{%
+\subsubsection{Fórmula}\label{fuxf3rmula}}
+
+La dimensión de Kaplan-Yorke se calcula utilizando los exponentes de
+Lyapunov ordenados de mayor a menor (\(\lambda_i\)). La fórmula es la
+siguiente:
+
+\$ D\_\{KY\} = j + \frac{\sum_{i=1}^{j} \lambda_i}{|\lambda_{j+1}|} \$
+
+donde: - \(\lambda_i\) son los exponentes de Lyapunov ordenados de mayor
+a menor. - \(j\) es el mayor entero tal que la suma de los \(j\)
+primeros exponentes de Lyapunov es positiva.
+
+\hypertarget{interpretaciuxf3n-1}{%
+\subsubsection{Interpretación}\label{interpretaciuxf3n-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Dimensión alta}: Una dimensión de Kaplan-Yorke alta indica un
+  sistema más caótico, con una estructura fractal más compleja y un
+  mayor número de grados de libertad.
+\item
+  \textbf{Dimensión baja}: Una dimensión baja sugiere un comportamiento
+  menos caótico y una estructura fractal más simple.
+\end{itemize}
+
+\hypertarget{cuxe1lculo-1}{%
+\subsubsection{Cálculo}\label{cuxe1lculo-1}}
+
+Para calcular la dimensión de Kaplan-Yorke, se sigue el siguiente
+procedimiento:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Ordenar los exponentes de Lyapunov}: Los exponentes de
+  Lyapunov (\(\lambda_i\)) se ordenan de mayor a menor.
+\item
+  \textbf{Suma acumulativa de los exponentes}: Se calcula la suma
+  acumulativa de los exponentes ordenados.
+\item
+  \textbf{Determinar \(j\)}: Se encuentra el mayor índice \(j\) tal que
+  la suma de los \(j\) primeros exponentes de Lyapunov es positiva.
+\item
+  \textbf{Cálculo final}: Se utiliza la fórmula para obtener la
+  dimensión de Kaplan-Yorke.
+\end{enumerate}
+
+La dimensión de Kaplan-Yorke proporciona una visión clara de la
+naturaleza caótica del sistema y es una herramienta valiosa en el
+análisis de atractores caóticos.
+
+\hypertarget{dimensiuxf3n-de-grassberger-procaccia}{%
+\subsection{Dimensión de
+Grassberger-Procaccia}\label{dimensiuxf3n-de-grassberger-procaccia}}
+
+\hypertarget{definiciuxf3n-2}{%
+\subsubsection{Definición}\label{definiciuxf3n-2}}
+
+La dimensión de Grassberger-Procaccia es una medida utilizada en el
+análisis de sistemas dinámicos para cuantificar la complejidad de un
+atractor extraño. Fue propuesta por Peter Grassberger e Itamar Procaccia
+en 1983. Esta dimensión describe cuántas variables independientes son
+necesarias para modelar el comportamiento de un sistema dinámico.
+
+\hypertarget{interpretaciuxf3n-2}{%
+\subsubsection{Interpretación}\label{interpretaciuxf3n-2}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Dimensión fractal}: Proporciona una idea sobre la estructura
+  fractal de los atractores del sistema. Una dimensión más alta indica
+  una mayor complejidad y un comportamiento más caótico del sistema.
+\end{itemize}
+
+\hypertarget{cuxe1lculo-2}{%
+\subsubsection{Cálculo}\label{cuxe1lculo-2}}
+
+Para calcular la dimensión de Grassberger-Procaccia, se sigue el
+siguiente procedimiento:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Construcción de Embeddings}: A partir de una serie temporal,
+  se construyen vectores de dimensión \texttt{m} con un retraso temporal
+  \texttt{tau} para reconstruir el espacio de fases. Esto se realiza
+  mediante la técnica de embeddings retardados.
+\item
+  \textbf{Cálculo de la Correlación Integral}: Se calcula la función de
+  correlación integral \(C(r)\), que mide la probabilidad de que dos
+  puntos en el espacio de fases reconstruido estén a una distancia menor
+  que \(r\). La correlación integral se calcula como:
+
+  \$ C(r) = \frac{1}{N(N-1)} \sum\_\{i \ne j\} \Theta(r - \textbar{}
+  \mathbf{x}\_i - \mathbf{x}\_j \textbar) \$
+
+  donde \(N\) es el número de puntos en el espacio de fases,
+  \(\mathbf{x}_i\) y \(\mathbf{x}_j\) son puntos en el espacio de fases,
+  \(\| \cdot \|\) es la distancia euclidiana, y \(\Theta\) es la función
+  escalón de Heaviside.
+\item
+  \textbf{Estimación de la Dimensión Correlativa}: Se grafica \$
+  \log(C(r)) \$ frente a \$ \log(r) \$ y se estima la pendiente de la
+  región lineal de la gráfica. La pendiente proporciona la dimensión
+  correlativa \(D_2\):
+
+  \$ D\_2 = \lim\_\{r \to 0\} \frac{\log C(r)}{\log r} \$
+
+  donde \(D_2\) es la dimensión correlativa, también conocida como la
+  dimensión de Grassberger-Procaccia.
+\end{enumerate}
+
+\hypertarget{ventajas}{%
+\subsubsection{Ventajas}\label{ventajas}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{No linealidad}: Es útil para identificar y cuantificar la no
+  linealidad en sistemas caóticos.
+\item
+  \textbf{Complejidad del sistema}: Permite determinar la complejidad
+  del sistema y la mínima cantidad de variables necesarias para
+  describirlo.
+\end{itemize}
+
+\hypertarget{limitaciones}{%
+\subsubsection{Limitaciones}\label{limitaciones}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Tamaño de los datos}: Requiere una gran cantidad de datos para
+  obtener una estimación precisa.
+\item
+  \textbf{Selección de parámetros}: La elección de los parámetros de
+  embedding (dimensión \texttt{m} y retraso \texttt{tau}) puede influir
+  en el resultado.
+\end{itemize}
+
+La dimensión de Grassberger-Procaccia es una herramienta poderosa para
+el análisis de sistemas dinámicos y la identificación de comportamientos
+caóticos en series temporales.
+
+    \hypertarget{funciones-adicionales}{%
+\subsubsection{Funciones Adicionales:}\label{funciones-adicionales}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{\texttt{calcular\_metricas\_individual(i)}:} Calcula todas las
+  métricas estadísticas para la i-ésima variable y devuelve un
+  diccionario con los resultados.
+\item
+  \textbf{\texttt{mostrar\_metricas()}:} Imprime las métricas calculadas
+  para todas las variables almacenadas en la clase. Si hay múltiples
+  variables, también calcula y muestra la matriz de correlación y
+  gráficos de dispersión entre todas las combinaciones de variables.
+\item
+  \textbf{\texttt{grafico\_dispersion()}:} Genera gráficos de dispersión
+  para visualizar las relaciones entre diferentes pares de variables,
+  útil para identificar correlaciones visuales.
+\end{itemize}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{511}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{class} \PY{n+nc}{DistribucionProbabilidad}\PY{p}{:}
+    \PY{k}{def} \PY{n+nf+fm}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{o}{*}\PY{n}{args}\PY{p}{)}\PY{p}{:}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{datos} \PY{o}{=} \PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{arg}\PY{p}{)} \PY{k}{for} \PY{n}{arg} \PY{o+ow}{in} \PY{n}{args}\PY{p}{]}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{n\PYZus{}vars} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{args}\PY{p}{)}
+    
+    \PY{k}{def} \PY{n+nf}{media}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{i}\PY{p}{)}\PY{p}{:}
+        \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{datos}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+    
+    \PY{k}{def} \PY{n+nf}{mediana}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{i}\PY{p}{)}\PY{p}{:}
+        \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{median}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{datos}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+    
+    \PY{k}{def} \PY{n+nf}{moda}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{i}\PY{p}{)}\PY{p}{:}
+        \PY{n}{mode\PYZus{}res} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{mode}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{datos}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+        \PY{k}{if} \PY{n}{np}\PY{o}{.}\PY{n}{isscalar}\PY{p}{(}\PY{n}{mode\PYZus{}res}\PY{o}{.}\PY{n}{count}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n}{mode\PYZus{}res}\PY{o}{.}\PY{n}{mode}
+        \PY{k}{else}\PY{p}{:}
+            \PY{k}{return} \PY{n}{mode\PYZus{}res}\PY{o}{.}\PY{n}{mode} \PY{k}{if} \PY{n}{mode\PYZus{}res}\PY{o}{.}\PY{n}{count}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{l+m+mi}{1} \PY{k}{else} \PY{n}{mode\PYZus{}res}\PY{o}{.}\PY{n}{mode}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+    
+    \PY{k}{def} \PY{n+nf}{media\PYZus{}geometrica}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{i}\PY{p}{)}\PY{p}{:}
+        \PY{k}{return} \PY{n}{gmean}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{datos}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+    
+    \PY{k}{def} \PY{n+nf}{asimetria}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{i}\PY{p}{)}\PY{p}{:}
+        \PY{k}{return} \PY{n}{skew}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{datos}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+    
+    \PY{k}{def} \PY{n+nf}{rango}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{i}\PY{p}{)}\PY{p}{:}
+        \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{datos}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{datos}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+    
+    \PY{k}{def} \PY{n+nf}{desviacion\PYZus{}estandar}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{i}\PY{p}{)}\PY{p}{:}
+        \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{datos}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{ddof}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+    
+    \PY{k}{def} \PY{n+nf}{varianza}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{i}\PY{p}{)}\PY{p}{:}
+        \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{var}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{datos}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{ddof}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+    
+    \PY{k}{def} \PY{n+nf}{coeficiente\PYZus{}variacion}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{i}\PY{p}{)}\PY{p}{:}
+        \PY{k}{return} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{desviacion\PYZus{}estandar}\PY{p}{(}\PY{n}{i}\PY{p}{)} \PY{o}{/} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{media}\PY{p}{(}\PY{n}{i}\PY{p}{)}
+    
+    \PY{k}{def} \PY{n+nf}{percentil}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{p}\PY{p}{)}\PY{p}{:}
+        \PY{k}{if} \PY{l+m+mi}{0} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{p} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mi}{100}\PY{p}{:}
+            \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{percentile}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{datos}\PY{p}{,} \PY{n}{p}\PY{p}{)}
+        \PY{k}{else}\PY{p}{:}
+            \PY{k}{raise} \PY{n+ne}{ValueError}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{El percentil debe estar entre 0 y 100.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+    
+    \PY{k}{def} \PY{n+nf}{cuartil}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{q}\PY{p}{)}\PY{p}{:}
+        \PY{k}{if} \PY{n}{q} \PY{o+ow}{in} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{]}\PY{p}{:}
+            \PY{k}{return} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{percentil}\PY{p}{(}\PY{n}{q} \PY{o}{*} \PY{l+m+mi}{25}\PY{p}{)}
+        \PY{k}{else}\PY{p}{:}
+            \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{nan}
+    
+    \PY{k}{def} \PY{n+nf}{curtosis}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{i}\PY{p}{)}\PY{p}{:}
+        \PY{k}{return} \PY{n}{kurtosis}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{datos}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+    
+    \PY{k}{def} \PY{n+nf}{entropia}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{i}\PY{p}{)}\PY{p}{:}
+        \PY{n}{p}\PY{p}{,} \PY{n}{counts} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{datos}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{return\PYZus{}counts}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+        \PY{n}{p} \PY{o}{=} \PY{n}{counts} \PY{o}{/} \PY{n+nb}{len}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{datos}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+        \PY{k}{return} \PY{o}{\PYZhy{}}\PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{p} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{p}\PY{p}{)}\PY{p}{)}
+    
+    \PY{k}{def} \PY{n+nf}{calcular\PYZus{}metricas\PYZus{}individual}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{i}\PY{p}{)}\PY{p}{:}
+        \PY{n}{resultados} \PY{o}{=} \PY{p}{\PYZob{}}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Media}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{media}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{p}{,}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mediana}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{mediana}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{p}{,}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Moda}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{moda}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{p}{,}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Media Geométrica}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{media\PYZus{}geometrica}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{p}{,}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Rango}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{rango}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{p}{,}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Desviación Estándar}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{desviacion\PYZus{}estandar}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{p}{,}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Varianza}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{varianza}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{p}{,}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Asimetría}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{asimetria}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{p}{,}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Curtosis}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{curtosis}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{p}{,}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Entropia}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{entropia}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{p}{,}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Coeficiente de Variación}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{coeficiente\PYZus{}variacion}\PY{p}{(}\PY{n}{i}\PY{p}{)}
+        \PY{p}{\PYZcb{}}
+        \PY{k}{return} \PY{n}{resultados}
+    
+    \PY{k}{def} \PY{n+nf}{mostrar\PYZus{}metricas}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+        \PY{k}{for} \PY{n}{index}\PY{p}{,} \PY{n}{datos} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{datos}\PY{p}{)}\PY{p}{:}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZhy{}\PYZhy{}\PYZhy{} Métricas para Variable }\PY{l+s+si}{\PYZob{}}\PY{n}{index}\PY{+w}{ }\PY{o}{+}\PY{+w}{ }\PY{l+m+mi}{1}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ \PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+            \PY{n}{metricas} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{calcular\PYZus{}metricas\PYZus{}individual}\PY{p}{(}\PY{n}{index}\PY{p}{)}
+            \PY{k}{for} \PY{n}{metrica}\PY{p}{,} \PY{n}{valor} \PY{o+ow}{in} \PY{n}{metricas}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+                \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}}\PY{n}{metrica}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{: }\PY{l+s+si}{\PYZob{}}\PY{n}{valor}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{end}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+        \PY{k}{if} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{n\PYZus{}vars} \PY{o}{\PYZgt{}} \PY{l+m+mi}{1}\PY{p}{:}
+            \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{mostrar\PYZus{}correlacion\PYZus{}y\PYZus{}graficos}\PY{p}{(}\PY{p}{)}
+    
+    \PY{k}{def} \PY{n+nf}{mostrar\PYZus{}correlacion\PYZus{}y\PYZus{}graficos}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Matriz de Correlación:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{corrcoef}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{datos}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{grafico\PYZus{}dispersion}\PY{p}{(}\PY{p}{)}
+
+    \PY{k}{def} \PY{n+nf}{grafico\PYZus{}dispersion}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}
+        \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{n\PYZus{}vars}\PY{p}{)}\PY{p}{:}
+            \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{i} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{n\PYZus{}vars}\PY{p}{)}\PY{p}{:}
+                \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{n\PYZus{}vars} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{n\PYZus{}vars} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{i} \PY{o}{*} \PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{n\PYZus{}vars} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{)} \PY{o}{+} \PY{n}{j}\PY{p}{)}
+                \PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{datos}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{datos}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.6}\PY{p}{,} \PY{n}{s}\PY{o}{=}\PY{l+m+mf}{0.1}\PY{p}{)}
+                \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Dispersion }\PY{l+s+si}{\PYZob{}}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ vs }\PY{l+s+si}{\PYZob{}}\PY{n}{j}\PY{o}{+}\PY{l+m+mi}{1}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+                \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Variable }\PY{l+s+si}{\PYZob{}}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+                \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Variable }\PY{l+s+si}{\PYZob{}}\PY{n}{j}\PY{o}{+}\PY{l+m+mi}{1}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{512}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{plotear\PYZus{}hist}\PY{p}{(}\PY{n}{array}\PY{p}{:} \PY{n}{np}\PY{o}{.}\PY{n}{ndarray}\PY{p}{,} \PY{n}{titulo}\PY{p}{:} \PY{n+nb}{str}\PY{p}{,} \PY{n}{label\PYZus{}x}\PY{p}{:} \PY{n+nb}{str}\PY{p}{,} \PY{n}{label\PYZus{}y}\PY{p}{:} \PY{n+nb}{str}\PY{p}{,} \PY{n}{criterio}\PY{p}{:} \PY{n+nb}{str} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sturges}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{guardar}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)} \PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}} \PY{k+kc}{None}\PY{p}{:}
+\PY{+w}{    }\PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+\PY{l+s+sd}{    Genera y guarda un histograma con estilos personalizados, colores aleatorios para cada barra,}
+\PY{l+s+sd}{    y el número de bins determinado por el criterio especificado.}
+
+\PY{l+s+sd}{    Args:}
+\PY{l+s+sd}{        array (np.ndarray): Array de Numpy con los datos que se quieren plasmar en el histograma.}
+\PY{l+s+sd}{        titulo (str): Título del histograma.}
+\PY{l+s+sd}{        label\PYZus{}x (str): Etiqueta del eje x del histograma.}
+\PY{l+s+sd}{        label\PYZus{}y (str): Etiqueta del eje y del histograma.}
+\PY{l+s+sd}{        ruta\PYZus{}img (str): Ruta donde se guardará la imagen del histograma.}
+\PY{l+s+sd}{        criterio (str): Método para calcular el número de bins (\PYZsq{}sturges\PYZsq{}, \PYZsq{}freedman\PYZhy{}diaconis\PYZsq{}, \PYZsq{}scott\PYZsq{}, \PYZsq{}raiz\PYZus{}cuadrada\PYZsq{}, \PYZsq{}rice\PYZsq{}).}
+
+\PY{l+s+sd}{    Returns:}
+\PY{l+s+sd}{        None: La función no retorna nada.}
+\PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+    
+    \PY{k}{match} \PY{n}{criterio}\PY{p}{:}
+        \PY{k}{case} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sturges}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+            \PY{n}{bins} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{+} \PY{n}{np}\PY{o}{.}\PY{n}{log2}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{array}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+        \PY{k}{case} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{freedman\PYZhy{}diaconis}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+            \PY{n}{iqr} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{subtract}\PY{p}{(}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{percentile}\PY{p}{(}\PY{n}{array}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{75}\PY{p}{,} \PY{l+m+mi}{25}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+            \PY{n}{bin\PYZus{}width} \PY{o}{=} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{iqr} \PY{o}{*} \PY{n+nb}{len}\PY{p}{(}\PY{n}{array}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{3}\PY{p}{)}
+            \PY{n}{bins} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{ptp}\PY{p}{(}\PY{n}{array}\PY{p}{)} \PY{o}{/} \PY{n}{bin\PYZus{}width}\PY{p}{)}
+        \PY{k}{case} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scott}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+            \PY{n}{bin\PYZus{}width} \PY{o}{=} \PY{l+m+mf}{3.5} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{array}\PY{p}{)} \PY{o}{*} \PY{n+nb}{len}\PY{p}{(}\PY{n}{array}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{3}\PY{p}{)}
+            \PY{n}{bins} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{ptp}\PY{p}{(}\PY{n}{array}\PY{p}{)} \PY{o}{/} \PY{n}{bin\PYZus{}width}\PY{p}{)}
+        \PY{k}{case} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{raiz\PYZus{}cuadrada}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+            \PY{n}{bins} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{array}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+        \PY{k}{case} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rice}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+            \PY{n}{bins} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{l+m+mi}{2} \PY{o}{*} \PY{n+nb}{len}\PY{p}{(}\PY{n}{array}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{p}{(}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+        \PY{k}{case}\PY{+w}{ }\PY{k}{\PYZus{}}\PY{p}{:}
+            \PY{k}{raise} \PY{n+ne}{ValueError}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Criterio no reconocido. Usa }\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{sturges}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{, }\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{freedman\PYZhy{}diaconis}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{, }\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{scott}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{, }\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{raiz\PYZus{}cuadrada}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{, o }\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{rice}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+    \PY{n}{n}\PY{p}{,} \PY{n}{bins}\PY{p}{,} \PY{n}{patches} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{array}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{n}{bins}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.75}\PY{p}{,} \PY{n}{rwidth}\PY{o}{=}\PY{l+m+mf}{0.85}\PY{p}{)}
+
+    \PY{k}{for} \PY{n}{patch} \PY{o+ow}{in} \PY{n}{patches}\PY{p}{:}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{setp}\PY{p}{(}\PY{n}{patch}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{facecolor}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{p}{)}\PY{p}{)}
+        
+    \PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linestyle}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.6}\PY{p}{)}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{n}{titulo}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{,} \PY{n}{fontweight}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bold}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{p}{)}\PY{p}{)}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{n}{label\PYZus{}x}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{15}\PY{p}{,} \PY{n}{fontstyle}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{italic}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{p}{)}\PY{p}{)}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{n}{label\PYZus{}y}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{15}\PY{p}{,} \PY{n}{fontstyle}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{italic}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{p}{)}\PY{p}{)}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n+nb}{max}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{o}{*}\PY{l+m+mf}{1.1}\PY{p}{)}
+
+    \PY{k}{if} \PY{n}{guardar}\PY{p}{:}
+        \PY{n}{ruta\PYZus{}img} \PY{o}{=} \PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}}\PY{n}{convertir\PYZus{}camelCase}\PY{p}{(}\PY{n}{titulo}\PY{p}{)}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{.pdf}\PY{l+s+s2}{\PYZdq{}}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{n}{ruta\PYZus{}img}\PY{p}{,} \PY{n+nb}{format}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pdf}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bbox\PYZus{}inches}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tight}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    
+    \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{513}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{kaplan\PYZus{}yorke\PYZus{}dimension}\PY{p}{(}\PY{n}{lyapunov\PYZus{}exponents}\PY{p}{)}\PY{p}{:}
+    \PY{n}{sorted\PYZus{}exponents} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{lyapunov\PYZus{}exponents}\PY{p}{,} \PY{n}{reverse}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+    \PY{n}{sum\PYZus{}exponents} \PY{o}{=} \PY{l+m+mi}{0}
+    
+    \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{exponent} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{sorted\PYZus{}exponents}\PY{p}{)}\PY{p}{:}
+        \PY{n}{sum\PYZus{}exponents} \PY{o}{+}\PY{o}{=} \PY{n}{exponent}
+        \PY{k}{if} \PY{n}{sum\PYZus{}exponents} \PY{o}{\PYZlt{}} \PY{l+m+mi}{0}\PY{p}{:}
+            \PY{n}{k} \PY{o}{=} \PY{n}{i}
+            \PY{k}{break}
+    \PY{k}{else}\PY{p}{:}
+        \PY{k}{return} \PY{n+nb}{len}\PY{p}{(}\PY{n}{sorted\PYZus{}exponents}\PY{p}{)}
+    
+    \PY{k}{if} \PY{n}{k} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+        \PY{k}{return} \PY{l+m+mi}{0}
+    \PY{k}{else}\PY{p}{:}
+        \PY{k}{return} \PY{n}{k} \PY{o}{+} \PY{n}{sum\PYZus{}exponents} \PY{o}{/} \PY{n+nb}{abs}\PY{p}{(}\PY{n}{sorted\PYZus{}exponents}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{514}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{graficar}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{plot\PYZus{}type}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scatter}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{width}\PY{o}{=}\PY{l+m+mi}{15}\PY{p}{,} \PY{n}{height}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{save\PYZus{}as\PYZus{}pdf}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{titulo}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Diagrama de bifurcación cúbica de Feigenbaum}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{:}
+\PY{+w}{    }\PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+\PY{l+s+sd}{    Crea un gráfico utilizando Matplotlib con estilo personalizado y márgenes ajustados.}
+\PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{axes.facecolor}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsh{}e9f0fb}\PY{l+s+s1}{\PYZsq{}}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{grid.color}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{white}\PY{l+s+s1}{\PYZsq{}}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{grid.linestyle}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{grid.linewidth}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+m+mf}{1.5}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{font.size}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{10}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{font.family}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sans\PYZhy{}serif}\PY{l+s+s1}{\PYZsq{}}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{text.color}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{black}\PY{l+s+s1}{\PYZsq{}}
+
+    \PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{n}{width}\PY{o}{*}\PY{l+m+mf}{1.5}\PY{p}{,} \PY{n}{height}\PY{o}{*}\PY{l+m+mf}{1.5}\PY{p}{)}\PY{p}{)}
+    \PY{n}{fig}\PY{o}{.}\PY{n}{subplots\PYZus{}adjust}\PY{p}{(}\PY{n}{left}\PY{o}{=}\PY{l+m+mf}{0.15}\PY{p}{,} \PY{n}{right}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{top}\PY{o}{=}\PY{l+m+mf}{0.85}\PY{p}{,} \PY{n}{bottom}\PY{o}{=}\PY{l+m+mf}{0.15}\PY{p}{)}
+
+    \PY{c+c1}{\PYZsh{} Crear el gráfico}
+    \PY{k}{if} \PY{n}{plot\PYZus{}type} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scatter}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+        \PY{n}{ax}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{n}{x}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{blue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{marker}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{o}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{s}\PY{o}{=}\PY{l+m+mf}{0.1}\PY{p}{)}
+    \PY{k}{elif} \PY{n}{plot\PYZus{}type} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{line}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+        \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{n}{x}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{blue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+
+    \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n}{titulo}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{16}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{pad}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{black}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tasa de crecimiento t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{13}\PY{p}{,} \PY{n}{labelpad}\PY{o}{=}\PY{l+m+mi}{15}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{black}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Valor de x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{13}\PY{p}{,} \PY{n}{labelpad}\PY{o}{=}\PY{l+m+mi}{15}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{black}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    \PY{n}{ax}\PY{o}{.}\PY{n}{tick\PYZus{}params}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{both}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{which}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{major}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{labelsize}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
+
+    \PY{k}{if} \PY{n}{save\PYZus{}as\PYZus{}pdf}\PY{p}{:}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}}\PY{n}{titulo}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{+w}{ }\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZus{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{.pdf}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{format}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pdf}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{dpi}\PY{o}{=}\PY{l+m+mi}{300}\PY{p}{)}
+
+    \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{7}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{graficar\PYZus{}3d}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{,} \PY{n}{width}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{height}\PY{o}{=}\PY{l+m+mi}{7}\PY{p}{,} \PY{n}{titulo}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Figura2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+    \PY{n}{file\PYZus{}name} \PY{o}{=} \PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}}\PY{n}{convertir\PYZus{}camelCase}\PY{p}{(}\PY{n}{titulo}\PY{p}{)}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{.pdf}\PY{l+s+s2}{\PYZdq{}}
+    
+    \PY{n}{figura} \PY{o}{=} \PY{n}{go}\PY{o}{.}\PY{n}{Figure}\PY{p}{(}\PY{n}{data}\PY{o}{=}\PY{p}{[}\PY{n}{go}\PY{o}{.}\PY{n}{Scatter3d}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{o}{=}\PY{n}{z}\PY{p}{,} \PY{n}{mode}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lines}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+    
+    \PY{n}{figura}\PY{o}{.}\PY{n}{update\PYZus{}layout}\PY{p}{(}
+        \PY{n}{title}\PY{o}{=}\PY{n}{titulo}\PY{p}{,}
+        \PY{n}{width}\PY{o}{=}\PY{n}{width}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{,}
+        \PY{n}{height}\PY{o}{=}\PY{n}{height}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{,}
+        \PY{n}{scene}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}
+            \PY{n}{xaxis}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X\PYZhy{}axis}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,}
+            \PY{n}{yaxis}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Y\PYZhy{}axis}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,}
+            \PY{n}{zaxis}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Z\PYZhy{}axis}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,}
+            \PY{n}{camera}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}
+                \PY{n}{eye}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+m+mf}{1.5}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mf}{1.3}\PY{p}{,} \PY{n}{z}\PY{o}{=}\PY{l+m+mf}{0.5}\PY{p}{)}\PY{p}{,}
+                \PY{n}{center}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{z}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,}
+                \PY{n}{up}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{z}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+            \PY{p}{)}
+        \PY{p}{)}\PY{p}{,}
+        \PY{n}{scene\PYZus{}aspectmode}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cube}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+        \PY{n}{margin}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{t}\PY{o}{=}\PY{l+m+mi}{50}\PY{p}{)}
+    \PY{p}{)}
+    
+    \PY{n}{pio}\PY{o}{.}\PY{n}{write\PYZus{}image}\PY{p}{(}\PY{n}{figura}\PY{p}{,} \PY{n}{file\PYZus{}name}\PY{p}{,} \PY{n+nb}{format}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pdf}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    \PY{n}{figura}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{5}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{leer\PYZus{}col\PYZus{}csv}\PY{p}{(}\PY{n}{file\PYZus{}path}\PY{p}{,} \PY{n}{column\PYZus{}name}\PY{p}{)}\PY{p}{:}
+    \PY{n}{data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n}{file\PYZus{}path}\PY{p}{)}
+    \PY{n}{column\PYZus{}data} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{n}{column\PYZus{}name}\PY{p}{]}
+    \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{column\PYZus{}data}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \hypertarget{bifurcaciuxf3n-de-feigenbaum}{%
+\section{Bifurcación de Feigenbaum}\label{bifurcaciuxf3n-de-feigenbaum}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{517}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{valores\PYZus{}x} \PY{o}{=} \PY{n}{leer\PYZus{}col\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{datosFeigenbaum.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Valores x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{valores\PYZus{}k} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{)}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{graficar}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{n}{valores\PYZus{}k}\PY{p}{,} \PY{n}{width}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{height}\PY{o}{=}\PY{l+m+mi}{7} \PY{p}{,}\PY{n}{titulo}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Bifurcaciones de Feigenbaum}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_13_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{probabiluxedstico}{%
+\subsection{Probabilístico}\label{probabiluxedstico}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{518}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{feigen} \PY{o}{=} \PY{n}{DistribucionProbabilidad}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{)}
+\PY{n}{feigen}\PY{o}{.}\PY{n}{mostrar\PYZus{}metricas}\PY{p}{(}\PY{p}{)}
+\PY{n}{plotear\PYZus{}hist}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Histograma de Feigenbaum}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Valor}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Frecuencia}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sturges}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+--- Métricas para Variable 1 ---
+Media: 0.638408580608167
+Mediana: 0.6630207856104768
+Moda: 0.00044602653658490046
+Media Geométrica: 0.5866915605238021
+Rango: 0.9994424435173831
+Desviación Estándar: 0.21597657197735343
+Varianza: 0.04664587964308893
+Asimetría: -0.47948989536842423
+Curtosis: -0.6073557991822351
+Entropia: 11.512925464970223
+Coeficiente de Variación: 0.3383046195456955
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_15_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{anuxe1lisis-de-muxe9tricas-estaduxedsticas-para-el-modelo-de-bifurcaciones-de-feigenbaum}{%
+\subsection{Análisis de Métricas Estadísticas para el Modelo de
+Bifurcaciones de
+Feigenbaum}\label{anuxe1lisis-de-muxe9tricas-estaduxedsticas-para-el-modelo-de-bifurcaciones-de-feigenbaum}}
+
+\begin{itemize}
+\item
+  \textbf{Media (0.637)}: La media está más cerca del extremo superior
+  del intervalo {[}0,1{]}, lo que indica una tendencia de los valores a
+  ser relativamente altos. Esto puede sugerir que hay regiones dentro
+  del rango de parámetros donde el comportamiento tiende a estabilizarse
+  en valores más altos.
+\item
+  \textbf{Mediana (0.6393)}: Al estar muy cerca de la media, refuerza la
+  idea de que la distribución de los valores puede ser simétrica
+  alrededor de este punto medio, aunque esto no es concluyente por sí
+  solo.
+\item
+  \textbf{Moda (0.000217509)}: La moda es significativamente baja, lo
+  que indica que el valor más frecuente en los datos es cercano a 0.
+  Esto puede ser indicativo de que hay una concentración de iteraciones
+  que convergen a valores bajos, posiblemente representando estabilidad
+  temporal en esas regiones.
+\item
+  \textbf{Media Geométrica (0.6021)}: La media geométrica, siendo menor
+  que la media aritmética, sugiere una distribución asimétrica con una
+  cola hacia valores menores.
+\item
+  \textbf{Rango (0.9997)}: Un rango muy cercano al máximo teórico
+  {[}0,1{]} indica una amplia dispersión de los datos a lo largo del
+  intervalo completo, característico de un sistema que experimenta
+  dinámicas desde estables a caóticas.
+\item
+  \textbf{Desviación Estándar (0.1769)} y \textbf{Varianza (0.0313)}:
+  Ambos indican una variabilidad considerable en los datos, lo cual es
+  típico en sistemas caóticos donde pequeñas diferencias en condiciones
+  iniciales o parámetros pueden llevar a grandes diferencias en el
+  comportamiento.
+\item
+  \textbf{Asimetría (-0.5606)}: Una asimetría negativa sugiere una cola
+  más pesada hacia valores más bajos. Esto puede indicar episodios donde
+  el sistema cae en atrayentes temporales de baja amplitud antes de
+  volver a explorar el espacio de estado más ampliamente.
+\item
+  \textbf{Curtosis (0.5446)}: La curtosis positiva indica una
+  distribución más puntiaguda que una normal, sugiriendo un
+  comportamiento de clustering de valores con colas gruesas, típico en
+  dinámicas caóticas.
+\item
+  \textbf{Entropía (11.9184)}: La alta entropía refleja una alta
+  incertidumbre y diversidad en los valores de la variable, reafirmando
+  el comportamiento caótico y la sensibilidad a condiciones iniciales.
+\item
+  \textbf{Coeficiente de Variación (0.2771)}: Este valor, siendo
+  relativamente bajo, sugiere que la desviación estándar es pequeña en
+  comparación con la media, indicando una dispersión proporcionalmente
+  moderada en relación con el nivel de la media.
+\end{itemize}
+
+\hypertarget{conclusiuxf3n}{%
+\subsubsection{Conclusión}\label{conclusiuxf3n}}
+
+El análisis de estas métricas estadísticas revela un sistema con un
+comportamiento extremadamente variado y sensible a las condiciones
+iniciales, características claves de la dinámica caótica. Los patrones
+observados en las métricas como la moda, asimetría y curtosis son
+particularmente útiles para discernir la naturaleza no lineal y no
+periódica del sistema modelado.
+
+    \hypertarget{cauxf3tico}{%
+\subsection{Caótico}\label{cauxf3tico}}
+
+    \hypertarget{exponentes-de-lyapounov}{%
+\subsubsection{Exponentes de Lyapounov}\label{exponentes-de-lyapounov}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{519}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{leer\PYZus{}csv\PYZus{}a\PYZus{}numpy}\PY{p}{(}\PY{n}{file\PYZus{}path}\PY{p}{)}\PY{p}{:}
+    \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n}{file\PYZus{}path}\PY{p}{)}
+    \PY{n}{valores\PYZus{}x} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Valores x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{to\PYZus{}numpy}\PY{p}{(}\PY{p}{)}
+    \PY{n}{valores\PYZus{}r} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Valores r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{to\PYZus{}numpy}\PY{p}{(}\PY{p}{)}
+    \PY{k}{return} \PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{n}{valores\PYZus{}r}
+
+
+\PY{k}{def} \PY{n+nf}{lyapunov\PYZus{}spectrum\PYZus{}n}\PY{p}{(}\PY{n}{datos}\PY{p}{,} \PY{n}{valores\PYZus{}r}\PY{p}{,} \PY{n}{window\PYZus{}size}\PY{p}{)}\PY{p}{:}
+\PY{+w}{    }\PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+\PY{l+s+sd}{    Calcula los exponentes de Lyapunov para el sistema logístico de Feigenbaum.}
+
+\PY{l+s+sd}{    :param datos: Serie temporal del sistema de Feigenbaum.}
+\PY{l+s+sd}{    :param valores\PYZus{}r: Array de valores de r (uno para cada punto de la serie temporal).}
+\PY{l+s+sd}{    :param window\PYZus{}size: Tamaño de la ventana para el cálculo del exponente de Lyapunov.}
+\PY{l+s+sd}{    :return: Array con los exponentes de Lyapunov.}
+\PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+    \PY{n}{n} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{datos}\PY{p}{)}
+    \PY{n}{n\PYZus{}windows} \PY{o}{=} \PY{n}{n} \PY{o}{/}\PY{o}{/} \PY{n}{window\PYZus{}size}
+    \PY{n}{exponentes\PYZus{}lyapunov} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+
+    \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{n\PYZus{}windows}\PY{p}{)}\PY{p}{:}
+        \PY{n}{suma\PYZus{}logaritmos\PYZus{}derivadas} \PY{o}{=} \PY{l+m+mi}{0}
+        \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{window\PYZus{}size}\PY{p}{)}\PY{p}{:}
+            \PY{n}{x\PYZus{}k} \PY{o}{=} \PY{n}{datos}\PY{p}{[}\PY{n}{j} \PY{o}{*} \PY{n}{window\PYZus{}size} \PY{o}{+} \PY{n}{i}\PY{p}{]}
+            \PY{n}{r\PYZus{}val} \PY{o}{=} \PY{n}{valores\PYZus{}r}\PY{p}{[}\PY{n}{j} \PY{o}{*} \PY{n}{window\PYZus{}size} \PY{o}{+} \PY{n}{i}\PY{p}{]}
+            \PY{n}{derivada} \PY{o}{=} \PY{n}{r\PYZus{}val} \PY{o}{*} \PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{x\PYZus{}k}\PY{p}{)}
+            \PY{n}{suma\PYZus{}logaritmos\PYZus{}derivadas} \PY{o}{+}\PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n+nb}{abs}\PY{p}{(}\PY{n}{derivada}\PY{p}{)}\PY{p}{)}
+        
+        \PY{n}{exponente\PYZus{}lyapunov} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{1} \PY{o}{/} \PY{n}{window\PYZus{}size}\PY{p}{)} \PY{o}{*} \PY{n}{suma\PYZus{}logaritmos\PYZus{}derivadas}
+        \PY{n}{exponentes\PYZus{}lyapunov}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{exponente\PYZus{}lyapunov}\PY{p}{)}
+
+    \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{exponentes\PYZus{}lyapunov}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{520}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{window\PYZus{}size} \PY{o}{=} \PY{l+m+mi}{50}
+\PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{n}{valores\PYZus{}r} \PY{o}{=} \PY{n}{leer\PYZus{}csv\PYZus{}a\PYZus{}numpy}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{datosFeigenbaum.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{pasos} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{)}\PY{p}{)}
+\PY{n}{lyapunov\PYZus{}exponents} \PY{o}{=} \PY{n}{lyapunov\PYZus{}spectrum\PYZus{}n}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{n}{valores\PYZus{}r}\PY{p}{,} \PY{n}{window\PYZus{}size}\PY{p}{)}
+
+\PY{n}{fig}\PY{p}{,} \PY{n}{ax1} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
+\PY{n}{color} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tab:blue}\PY{l+s+s1}{\PYZsq{}}
+\PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tiempo}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Serie Temporal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{n}{color}\PY{p}{)}
+\PY{n}{ax1}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{pasos}\PY{p}{,} \PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{n}{color}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Serie Temporal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{marker}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{o}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{s}\PY{o}{=}\PY{l+m+mf}{0.1}\PY{p}{)}
+\PY{n}{ax1}\PY{o}{.}\PY{n}{tick\PYZus{}params}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{labelcolor}\PY{o}{=}\PY{n}{color}\PY{p}{)}
+
+\PY{n}{ax2} \PY{o}{=} \PY{n}{ax1}\PY{o}{.}\PY{n}{twinx}\PY{p}{(}\PY{p}{)}
+\PY{n}{color} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tab:red}\PY{l+s+s1}{\PYZsq{}}
+\PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Exponente de Lyapunov}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{n}{color}\PY{p}{)}
+\PY{n}{ax2}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{lyapunov\PYZus{}exponents}\PY{p}{)}\PY{p}{)} \PY{o}{*} \PY{n}{window\PYZus{}size} \PY{o}{+} \PY{n}{window\PYZus{}size} \PY{o}{/}\PY{o}{/} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{lyapunov\PYZus{}exponents}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{n}{color}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Exponente de Lyapunov}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{ax2}\PY{o}{.}\PY{n}{tick\PYZus{}params}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{labelcolor}\PY{o}{=}\PY{n}{color}\PY{p}{)}
+
+\PY{n}{fig}\PY{o}{.}\PY{n}{suptitle}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Serie Temporal y Espectro de Exponentes de Lyapunov}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{fig}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_20_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{interpretaciuxf3n}{%
+\paragraph{Interpretación:}\label{interpretaciuxf3n}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Serie Temporal (Azul):} Esta gráfica muestra la evolución
+  temporal del sistema de bifurcación de Feigenbaum. Observamos la
+  característica bifurcación del sistema, donde a medida que avanzamos
+  en el tiempo, el sistema exhibe comportamientos cada vez más complejos
+  y caóticos.
+\item
+  \textbf{Exponentes de Lyapunov (Rojo):} Los exponentes de Lyapunov
+  superpuestos a la serie temporal indican la sensibilidad a las
+  condiciones iniciales del sistema. Un exponente de Lyapunov positivo
+  indica comportamiento caótico. En este gráfico, podemos observar que
+  los exponentes de Lyapunov se vuelven positivos en varias regiones, lo
+  cual confirma la presencia de caos en el sistema.
+\end{itemize}
+
+    \hypertarget{dimensiuxf3n-de-kaplan-yorke}{%
+\subsection{Dimensión de
+Kaplan-Yorke}\label{dimensiuxf3n-de-kaplan-yorke}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{521}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{calcular\PYZus{}dimension\PYZus{}kaplan\PYZus{}yorke}\PY{p}{(}\PY{n}{exponentes\PYZus{}lyapunov}\PY{p}{)}\PY{p}{:}
+\PY{+w}{    }\PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+\PY{l+s+sd}{    Calcula la dimensión de Kaplan\PYZhy{}Yorke a partir de los exponentes de Lyapunov.}
+
+\PY{l+s+sd}{    :param exponentes\PYZus{}lyapunov: Array con los exponentes de Lyapunov.}
+\PY{l+s+sd}{    :return: Dimensión de Kaplan\PYZhy{}Yorke.}
+\PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+    \PY{n}{exponentes\PYZus{}lyapunov} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sort}\PY{p}{(}\PY{n}{exponentes\PYZus{}lyapunov}\PY{p}{)}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+    \PY{n}{suma} \PY{o}{=} \PY{l+m+mf}{0.0}
+    \PY{n}{j} \PY{o}{=} \PY{l+m+mi}{0}
+    \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{exponentes\PYZus{}lyapunov}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+        \PY{n}{suma} \PY{o}{+}\PY{o}{=} \PY{n}{exponentes\PYZus{}lyapunov}\PY{p}{[}\PY{n}{j}\PY{p}{]}
+        \PY{k}{if} \PY{n}{suma} \PY{o}{\PYZlt{}} \PY{l+m+mi}{0}\PY{p}{:}
+            \PY{n}{j} \PY{o}{\PYZhy{}}\PY{o}{=} \PY{l+m+mi}{1}
+            \PY{k}{break}
+        
+    \PY{k}{if} \PY{n}{j} \PY{o}{\PYZlt{}} \PY{l+m+mi}{0}\PY{p}{:}
+        \PY{k}{return} \PY{l+m+mi}{0}
+    \PY{k}{elif} \PY{n}{j} \PY{o}{==} \PY{n+nb}{len}\PY{p}{(}\PY{n}{exponentes\PYZus{}lyapunov}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{:}
+        \PY{n}{suma\PYZus{}positiva} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{exponentes\PYZus{}lyapunov}\PY{p}{[}\PY{p}{:}\PY{n}{j}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+        \PY{n}{dimension\PYZus{}kaplan\PYZus{}yorke} \PY{o}{=} \PY{n}{j} \PY{o}{+} \PY{n}{suma\PYZus{}positiva} \PY{o}{/} \PY{n+nb}{abs}\PY{p}{(}\PY{n}{exponentes\PYZus{}lyapunov}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{)}
+    \PY{k}{else}\PY{p}{:}
+        \PY{n}{suma\PYZus{}positiva} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{exponentes\PYZus{}lyapunov}\PY{p}{[}\PY{p}{:}\PY{n}{j}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+        \PY{n}{dimension\PYZus{}kaplan\PYZus{}yorke} \PY{o}{=} \PY{n}{j} \PY{o}{+} \PY{n}{suma\PYZus{}positiva} \PY{o}{/} \PY{n+nb}{abs}\PY{p}{(}\PY{n}{exponentes\PYZus{}lyapunov}\PY{p}{[}\PY{n}{j}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+    
+    \PY{k}{return} \PY{n}{dimension\PYZus{}kaplan\PYZus{}yorke}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{522}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{kaplan\PYZus{}yorke\PYZus{}dimension} \PY{o}{=} \PY{n}{calcular\PYZus{}dimension\PYZus{}kaplan\PYZus{}yorke}\PY{p}{(}\PY{n}{lyapunov\PYZus{}exponents}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Dimensión de Kaplan\PYZhy{}Yorke:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{kaplan\PYZus{}yorke\PYZus{}dimension}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Dimensión de Kaplan-Yorke: 1859.7799991032848
+    \end{Verbatim}
+
+    \hypertarget{interpretaciuxf3n}{%
+\paragraph{Interpretación:}\label{interpretaciuxf3n}}
+
+\begin{itemize}
+\tightlist
+\item
+  La dimensión de Kaplan-Yorke calculada es \textbf{1859.7799991032848}.
+  Este valor es sorprendentemente alto y sugiere que el sistema tiene un
+  comportamiento muy complejo y un atractor de alta dimensión.
+\end{itemize}
+
+    \hypertarget{dimensiuxf3n-grassberger-procaccia}{%
+\subsubsection{Dimensión
+Grassberger-Procaccia}\label{dimensiuxf3n-grassberger-procaccia}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{523}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{crear\PYZus{}embedds}\PY{p}{(}\PY{n}{datos}\PY{p}{,} \PY{n}{m}\PY{p}{,} \PY{n}{tau}\PY{p}{)}\PY{p}{:}
+    \PY{n}{N} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{datos}\PY{p}{)}
+    \PY{n}{embedds} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{n}{datos}\PY{p}{[}\PY{n}{i}\PY{p}{:}\PY{n}{N}\PY{o}{\PYZhy{}}\PY{n}{tau}\PY{o}{*}\PY{p}{(}\PY{n}{m}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{+}\PY{n}{i}\PY{p}{:}\PY{n}{tau}\PY{p}{]} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{m}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+    \PY{k}{return} \PY{n}{embedds}\PY{o}{.}\PY{n}{T}
+
+\PY{k}{def} \PY{n+nf}{calcular\PYZus{}correlacion\PYZus{}integral}\PY{p}{(}\PY{n}{kdtree}\PY{p}{,} \PY{n}{embedds}\PY{p}{,} \PY{n}{r}\PY{p}{)}\PY{p}{:}
+    \PY{n}{N} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{embedds}\PY{p}{)}
+    \PY{n}{C\PYZus{}r} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{[}\PY{n+nb}{len}\PY{p}{(}\PY{n}{kdtree}\PY{o}{.}\PY{n}{query\PYZus{}radius}\PY{p}{(}\PY{n}{point}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{r}\PY{o}{=}\PY{n}{r}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)} \PY{k}{for} \PY{n}{point} \PY{o+ow}{in} \PY{n}{embedds}\PY{p}{]}\PY{p}{)} \PY{o}{/} \PY{n}{N}
+    \PY{k}{return} \PY{n}{C\PYZus{}r}
+
+\PY{k}{def} \PY{n+nf}{calcular\PYZus{}dimension\PYZus{}gp}\PY{p}{(}\PY{n}{datos}\PY{p}{,} \PY{n}{m}\PY{p}{,} \PY{n}{tau}\PY{p}{,} \PY{n}{r\PYZus{}vals}\PY{p}{,} \PY{n}{n\PYZus{}jobs}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
+    \PY{n}{embedds} \PY{o}{=} \PY{n}{crear\PYZus{}embedds}\PY{p}{(}\PY{n}{datos}\PY{p}{,} \PY{n}{m}\PY{p}{,} \PY{n}{tau}\PY{p}{)}
+    \PY{n}{kdtree} \PY{o}{=} \PY{n}{KDTree}\PY{p}{(}\PY{n}{embedds}\PY{p}{)}
+    \PY{n}{C\PYZus{}r\PYZus{}vals} \PY{o}{=} \PY{n}{Parallel}\PY{p}{(}\PY{n}{n\PYZus{}jobs}\PY{o}{=}\PY{n}{n\PYZus{}jobs}\PY{p}{)}\PY{p}{(}\PY{n}{delayed}\PY{p}{(}\PY{n}{calcular\PYZus{}correlacion\PYZus{}integral}\PY{p}{)}\PY{p}{(}\PY{n}{kdtree}\PY{p}{,} \PY{n}{embedds}\PY{p}{,} \PY{n}{r}\PY{p}{)} \PY{k}{for} \PY{n}{r} \PY{o+ow}{in} \PY{n}{r\PYZus{}vals}\PY{p}{)}
+    \PY{n}{log\PYZus{}r} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{r\PYZus{}vals}\PY{p}{)}
+    \PY{n}{log\PYZus{}C\PYZus{}r} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{C\PYZus{}r\PYZus{}vals}\PY{p}{)}
+    \PY{n}{slope}\PY{p}{,} \PY{n}{intercept} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{polyfit}\PY{p}{(}\PY{n}{log\PYZus{}r}\PY{p}{,} \PY{n}{log\PYZus{}C\PYZus{}r}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+    \PY{k}{return} \PY{n}{slope}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{524}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{m} \PY{o}{=} \PY{l+m+mi}{10}
+\PY{n}{tau} \PY{o}{=} \PY{l+m+mi}{1}
+\PY{n}{r\PYZus{}vals} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{logspace}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{)}
+\PY{n}{dimension\PYZus{}gp} \PY{o}{=} \PY{n}{calcular\PYZus{}dimension\PYZus{}gp}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{n}{m}\PY{p}{,} \PY{n}{tau}\PY{p}{,} \PY{n}{r\PYZus{}vals}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{La dimensión de Grassberger\PYZhy{}Procaccia es:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{dimension\PYZus{}gp}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+La dimensión de Grassberger-Procaccia es: 0.9925943073228688
+    \end{Verbatim}
+
+    \hypertarget{interpretaciuxf3n}{%
+\paragraph{Interpretación:}\label{interpretaciuxf3n}}
+
+\begin{itemize}
+\tightlist
+\item
+  La dimensión de Grassberger-Procaccia calculada es
+  \textbf{0.9925943073228688}. Este valor sugiere que el atractor del
+  sistema se comporta casi como una curva unidimensional. En sistemas
+  dinámicos, valores cercanos a 1 pueden indicar que el sistema está en
+  una dimensión baja, aunque aún presenta características fractales.
+\end{itemize}
+
+    \hypertarget{bifurcaciuxf3n-exponencial-de-feigenbaum}{%
+\section{Bifurcación Exponencial de
+Feigenbaum}\label{bifurcaciuxf3n-exponencial-de-feigenbaum}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{525}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{valores\PYZus{}x} \PY{o}{=} \PY{n}{leer\PYZus{}col\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{datosFeigenbaumExponencial.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Valores x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{valores\PYZus{}k} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{)}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{graficar}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{n}{valores\PYZus{}k}\PY{p}{,} \PY{n}{width}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{height}\PY{o}{=}\PY{l+m+mi}{7} \PY{p}{,}\PY{n}{titulo}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Bifurcacion Exponencial de Feigenbaum}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_31_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{probabiluxedstico}{%
+\subsection{Probabilístico}\label{probabiluxedstico}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{526}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{feigen\PYZus{}e} \PY{o}{=} \PY{n}{DistribucionProbabilidad}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{)}
+\PY{n}{feigen\PYZus{}e}\PY{o}{.}\PY{n}{mostrar\PYZus{}metricas}\PY{p}{(}\PY{p}{)}
+\PY{n}{plotear\PYZus{}hist}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Histograma de Feigenbaum Exponencial}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Valor}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Frecuencia}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sturges}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+--- Métricas para Variable 1 ---
+Media: 1.0000106107876798
+Mediana: 0.6220634691695446
+Moda: 0.0004820849853227784
+Media Geométrica: 0.40555674899751426
+Rango: 3.5279839013453684
+Desviación Estándar: 0.938773102207703
+Varianza: 0.8812949374286744
+Asimetría: 0.6445668032337394
+Curtosis: -0.8737655379697409
+Entropia: 11.512925464970223
+Coeficiente de Variación: 0.9387631411913302
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_33_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{anuxe1lisis-de-muxe9tricas-estaduxedsticas-para-el-modelo-de-bifurcaciones-exponencial-de-feigenbaum}{%
+\subsection{Análisis de Métricas Estadísticas para el Modelo de
+Bifurcaciones Exponencial de
+Feigenbaum}\label{anuxe1lisis-de-muxe9tricas-estaduxedsticas-para-el-modelo-de-bifurcaciones-exponencial-de-feigenbaum}}
+
+\begin{itemize}
+\item
+  \textbf{Media (1.000007)}: La media es exactamente 1, lo cual es
+  interesante y podría indicar un comportamiento estabilizador alrededor
+  de este valor en el sistema. Esto sugiere que, a pesar de la
+  naturaleza exponencial del modelo, los valores tienden a converger o
+  fluctuar alrededor de este punto.
+\item
+  \textbf{Mediana (0.4721)}: La mediana considerablemente menor que la
+  media implica una distribución asimétrica de los datos. Esto podría
+  indicar la presencia de una cola larga hacia valores más altos, que no
+  son comunes pero contribuyen significativamente al promedio.
+\item
+  \textbf{Desviación Estándar (1.0533)} y \textbf{Varianza (1.1094)}:
+  Ambas métricas son relativamente altas, destacando una gran dispersión
+  de los datos. Esta alta variabilidad es característica de los sistemas
+  caóticos donde pequeños cambios en los parámetros iniciales pueden
+  producir grandes variaciones en los resultados.
+\item
+  \textbf{Asimetría (0.9807)}: La asimetría positiva significa que hay
+  una cola más pesada hacia valores más altos. Esto reafirma la
+  presencia de valores extremos que pueden estar influenciando la media.
+\item
+  \textbf{Curtosis (0.0634)}: Una curtosis cercana a cero sugiere que la
+  distribución no es ni muy picuda ni muy plana, lo que es inusual para
+  sistemas dinámicos caóticos y merece una investigación más profunda.
+\item
+  \textbf{Entropía (11.9184)}: Similar al modelo logístico, la alta
+  entropía refleja una considerable incertidumbre y diversidad en los
+  valores, lo que es típico en comportamientos caóticos.
+\item
+  \textbf{Coeficiente de Variación (1.0533)}: Este valor indica que la
+  desviación estándar es comparable a la media, lo que sugiere que hay
+  una amplia variación en los datos en relación con su nivel promedio.
+\end{itemize}
+
+\hypertarget{conclusiuxf3n}{%
+\subsubsection{Conclusión}\label{conclusiuxf3n}}
+
+El análisis de estas métricas muestra que el modelo exponencial de
+Feigenbaum genera datos con una amplia variabilidad y una distribución
+asimétrica. La presencia de asimetría y una alta entropía son
+indicativos de un sistema que exhibe un comportamiento dinámico complejo
+y caótico. Estas características son fundamentales para comprender la
+dinámica subyacente del modelo y para explorar cómo pequeñas variaciones
+en las condiciones iniciales pueden influir dramáticamente en el
+comportamiento del sistema.
+
+    \hypertarget{cauxf3tico}{%
+\subsection{Caótico}\label{cauxf3tico}}
+
+    \hypertarget{exponentes-de-laypounov}{%
+\subsubsection{Exponentes de Laypounov}\label{exponentes-de-laypounov}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{527}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{lyapunov\PYZus{}spectrum\PYZus{}e}\PY{p}{(}\PY{n}{series}\PY{p}{,} \PY{n}{rates}\PY{p}{,} \PY{n}{window\PYZus{}size}\PY{p}{)}\PY{p}{:}
+    \PY{n}{N} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{series}\PY{p}{)}
+    \PY{n}{n\PYZus{}windows} \PY{o}{=} \PY{n}{N} \PY{o}{/}\PY{o}{/} \PY{n}{window\PYZus{}size}
+    \PY{n}{lyapunov\PYZus{}exponents} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+
+    \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{n\PYZus{}windows}\PY{p}{)}\PY{p}{:}
+        \PY{n}{window} \PY{o}{=} \PY{n}{series}\PY{p}{[}\PY{n}{i} \PY{o}{*} \PY{n}{window\PYZus{}size}\PY{p}{:}\PY{p}{(}\PY{n}{i} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)} \PY{o}{*} \PY{n}{window\PYZus{}size}\PY{p}{]}
+        \PY{n}{rate\PYZus{}window} \PY{o}{=} \PY{n}{rates}\PY{p}{[}\PY{n}{i} \PY{o}{*} \PY{n}{window\PYZus{}size}\PY{p}{:}\PY{p}{(}\PY{n}{i} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)} \PY{o}{*} \PY{n}{window\PYZus{}size}\PY{p}{]}
+        \PY{n}{sum\PYZus{}log\PYZus{}der} \PY{o}{=} \PY{l+m+mf}{0.0}
+        \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{window\PYZus{}size}\PY{p}{)}\PY{p}{:}
+            \PY{n}{x} \PY{o}{=} \PY{n}{window}\PY{p}{[}\PY{n}{j}\PY{p}{]}
+            \PY{n}{r} \PY{o}{=} \PY{n}{rate\PYZus{}window}\PY{p}{[}\PY{n}{j}\PY{p}{]}
+            \PY{n}{derivative} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{n}{r} \PY{o}{*} \PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{x}\PY{p}{)}\PY{p}{)} \PY{o}{*} \PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{r} \PY{o}{*} \PY{n}{x}\PY{p}{)}
+            \PY{n}{sum\PYZus{}log\PYZus{}der} \PY{o}{+}\PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n+nb}{abs}\PY{p}{(}\PY{n}{derivative}\PY{p}{)}\PY{p}{)}
+        
+        \PY{n}{le} \PY{o}{=} \PY{n}{sum\PYZus{}log\PYZus{}der} \PY{o}{/} \PY{n}{window\PYZus{}size}
+        \PY{n}{lyapunov\PYZus{}exponents}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{le}\PY{p}{)}
+    
+    \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{lyapunov\PYZus{}exponents}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{528}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{window\PYZus{}size} \PY{o}{=} \PY{l+m+mi}{100}
+\PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{n}{valores\PYZus{}r} \PY{o}{=} \PY{n}{leer\PYZus{}csv\PYZus{}a\PYZus{}numpy}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{datosFeigenbaumExponencial.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{pasos} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{)}\PY{p}{)}
+\PY{n}{lyapunov\PYZus{}exponents} \PY{o}{=} \PY{n}{lyapunov\PYZus{}spectrum\PYZus{}e}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{n}{valores\PYZus{}r}\PY{p}{,} \PY{n}{window\PYZus{}size}\PY{p}{)}
+\PY{n}{fig}\PY{p}{,} \PY{n}{ax1} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
+
+\PY{n}{color} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tab:blue}\PY{l+s+s1}{\PYZsq{}}
+\PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tiempo}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Serie Temporal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{n}{color}\PY{p}{)}
+\PY{n}{ax1}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{pasos}\PY{p}{,} \PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{n}{color}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Serie Temporal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{marker}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{o}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{s}\PY{o}{=}\PY{l+m+mf}{0.1}\PY{p}{)}
+\PY{n}{ax1}\PY{o}{.}\PY{n}{tick\PYZus{}params}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{labelcolor}\PY{o}{=}\PY{n}{color}\PY{p}{)}
+\PY{n}{ax2} \PY{o}{=} \PY{n}{ax1}\PY{o}{.}\PY{n}{twinx}\PY{p}{(}\PY{p}{)}
+\PY{n}{color} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tab:red}\PY{l+s+s1}{\PYZsq{}}
+\PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Exponente de Lyapunov}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{n}{color}\PY{p}{)}
+\PY{n}{ax2}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{lyapunov\PYZus{}exponents}\PY{p}{)}\PY{p}{)} \PY{o}{*} \PY{n}{window\PYZus{}size} \PY{o}{+} \PY{n}{window\PYZus{}size} \PY{o}{/}\PY{o}{/} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{lyapunov\PYZus{}exponents}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{n}{color}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Exponente de Lyapunov}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{ax2}\PY{o}{.}\PY{n}{tick\PYZus{}params}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{labelcolor}\PY{o}{=}\PY{n}{color}\PY{p}{)}
+\PY{n}{fig}\PY{o}{.}\PY{n}{suptitle}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Serie Temporal y Espectro de Exponentes de Lyapunov}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{fig}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_38_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{interpretaciuxf3n}{%
+\paragraph{Interpretación:}\label{interpretaciuxf3n}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Serie Temporal (Azul):} Esta gráfica muestra la evolución
+  temporal del sistema exponencial de bifurcación. Se puede observar una
+  estructura compleja y densa, indicando la presencia de múltiples
+  bifurcaciones y comportamiento caótico en el sistema.
+\item
+  \textbf{Exponentes de Lyapunov (Rojo):} Los exponentes de Lyapunov
+  superpuestos a la serie temporal indican la sensibilidad a las
+  condiciones iniciales del sistema. Un exponente de Lyapunov positivo
+  indica comportamiento caótico. En este gráfico, se observa que los
+  exponentes de Lyapunov se mantienen mayormente positivos en varias
+  regiones, lo que confirma la presencia de caos en el sistema.
+\end{itemize}
+
+    \hypertarget{dimensiuxf3n-de-kaplan-yorke}{%
+\subsubsection{Dimensión de
+Kaplan-Yorke}\label{dimensiuxf3n-de-kaplan-yorke}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{529}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{kaplan\PYZus{}yorke\PYZus{}dimension} \PY{o}{=} \PY{n}{calcular\PYZus{}dimension\PYZus{}kaplan\PYZus{}yorke}\PY{p}{(}\PY{n}{lyapunov\PYZus{}exponents}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Dimensión de Kaplan\PYZhy{}Yorke:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{kaplan\PYZus{}yorke\PYZus{}dimension}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Dimensión de Kaplan-Yorke: 1118.1010399811667
+    \end{Verbatim}
+
+    \hypertarget{interpretaciuxf3n}{%
+\paragraph{Interpretación:}\label{interpretaciuxf3n}}
+
+\begin{itemize}
+\tightlist
+\item
+  La dimensión de Kaplan-Yorke calculada es \textbf{1118.1010399811667}.
+  Este valor es alto y sugiere que el sistema tiene un comportamiento
+  muy complejo y un atractor de alta dimensión.
+\end{itemize}
+
+    \hypertarget{dimensiuxf3n-grassberger-procaccia}{%
+\subsubsection{Dimensión
+Grassberger-Procaccia}\label{dimensiuxf3n-grassberger-procaccia}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{530}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{m} \PY{o}{=} \PY{l+m+mi}{10}
+\PY{n}{tau} \PY{o}{=} \PY{l+m+mi}{1}
+\PY{n}{r\PYZus{}vals} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{logspace}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{)}
+\PY{n}{dimension\PYZus{}gp} \PY{o}{=} \PY{n}{calcular\PYZus{}dimension\PYZus{}gp}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{n}{m}\PY{p}{,} \PY{n}{tau}\PY{p}{,} \PY{n}{r\PYZus{}vals}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{La dimensión de Grassberger\PYZhy{}Procaccia es:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{dimension\PYZus{}gp}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+La dimensión de Grassberger-Procaccia es: 0.9846650435688487
+    \end{Verbatim}
+
+    \hypertarget{interpretaciuxf3n}{%
+\paragraph{Interpretación:}\label{interpretaciuxf3n}}
+
+\begin{itemize}
+\tightlist
+\item
+  La dimensión de Grassberger-Procaccia calculada es
+  \textbf{0.9846650435688487}. Este valor sugiere que el atractor del
+  sistema se comporta casi como una curva unidimensional. En sistemas
+  dinámicos, valores cercanos a 1 pueden indicar que el sistema está en
+  una dimensión baja, aunque aún presenta características fractales.
+\end{itemize}
+
+    \hypertarget{bifurcaciuxf3n-cuxfabica-de-feigenbaum}{%
+\section{Bifurcación Cúbica de
+Feigenbaum}\label{bifurcaciuxf3n-cuxfabica-de-feigenbaum}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{531}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{valores\PYZus{}x} \PY{o}{=} \PY{n}{leer\PYZus{}col\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{datosFeigenbaumCubica.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Valores x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{valores\PYZus{}k} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{)}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{graficar}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{n}{valores\PYZus{}k}\PY{p}{,} \PY{n}{width}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{height}\PY{o}{=}\PY{l+m+mi}{7} \PY{p}{,}\PY{n}{titulo}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Bifurcacion Cubica de Feigenbaum}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_47_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{probabiluxedstico}{%
+\subsection{Probabilístico}\label{probabiluxedstico}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{532}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{feigen\PYZus{}c} \PY{o}{=} \PY{n}{DistribucionProbabilidad}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{)}
+\PY{n}{feigen\PYZus{}c}\PY{o}{.}\PY{n}{mostrar\PYZus{}metricas}\PY{p}{(}\PY{p}{)}
+\PY{n}{plotear\PYZus{}hist}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Histograma de Feigenbaum Cubica}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Valor}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Frecuencia}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sturges}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+--- Métricas para Variable 1 ---
+Media: 0.035128893534851074
+Mediana: -0.006948518172824103
+Moda: -0.992241615612928
+Media Geométrica: nan
+Rango: 1.9838105846338316
+Desviación Estándar: 0.5932030500549282
+Varianza: 0.3518898585944697
+Asimetría: -0.009584765711514487
+Curtosis: -1.5738697743200434
+Entropia: 11.512925464970223
+Coeficiente de Variación: 16.886471231051345
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/home/rodrigo/.local/lib/python3.10/site-packages/scipy/stats/\_stats\_py.py:197:
+RuntimeWarning:
+
+invalid value encountered in log
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_49_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{anuxe1lisis-de-muxe9tricas-estaduxedsticas-para-el-modelo-de-bifurcaciones-cuxfabico-de-feigenbaum}{%
+\subsection{Análisis de Métricas Estadísticas para el Modelo de
+Bifurcaciones Cúbico de
+Feigenbaum}\label{anuxe1lisis-de-muxe9tricas-estaduxedsticas-para-el-modelo-de-bifurcaciones-cuxfabico-de-feigenbaum}}
+
+\begin{itemize}
+\item
+  \textbf{Media (0.0244)}: Esta media cercana a cero sugiere que, en
+  promedio, los valores de la serie tienden a ser bajos, aunque esto no
+  descarta la presencia de valores extremos en ambos sentidos.
+\item
+  \textbf{Desviación Estándar (0.5557)} y \textbf{Varianza (0.3089)}:
+  Estas métricas indican una dispersión significativa de los datos
+  alrededor de la media, lo que es característico de los sistemas
+  caóticos donde la variabilidad es alta.
+\item
+  \textbf{Rango (1.9245)}: Un rango amplio como este demuestra que los
+  valores se extienden casi por todo el intervalo teórico posible en el
+  modelo (-1 a 1), lo cual es indicativo de una dinámica extrema que
+  puede estar explorando múltiples estados.
+\item
+  \textbf{Curtosis (-1.6627)}: Una curtosis negativa indica una
+  distribución más aplanada que la normal, lo cual podría sugerir una
+  mayor igualdad en la frecuencia de aparición de los valores a lo largo
+  del rango, en lugar de una acumulación alrededor de un valor medio.
+\item
+  \textbf{Entropía (11.9184)}: Una entropía muy alta es típica de los
+  sistemas dinámicos caóticos, donde la diversidad de estados es máxima,
+  indicando que el sistema puede estar en muchos estados diferentes con
+  igual probabilidad.
+\item
+  \textbf{Coeficiente de Variación (22.7498)}: Este valor extremadamente
+  alto muestra que la desviación estándar es mucho mayor que la media,
+  reforzando el punto de alta variabilidad y la naturaleza impredecible
+  del sistema bajo estudio.
+\end{itemize}
+
+\hypertarget{conclusiuxf3n}{%
+\subsubsection{Conclusión}\label{conclusiuxf3n}}
+
+Las métricas destacadas reflejan la naturaleza caótica y compleja del
+modelo cúbico de Feigenbaum. La alta variabilidad, el amplio rango y la
+alta entropía son indicativos de un sistema que muestra un
+comportamiento dinámico muy rico y posiblemente caótico, explorando un
+amplio espectro de estados posibles. Esto es característico de los
+modelos que incluyen términos no lineales elevados, como es el caso del
+modelo cúbico.
+
+    \hypertarget{cauxf3tico}{%
+\subsection{Caótico}\label{cauxf3tico}}
+
+    \hypertarget{exponentes-de-laypounov}{%
+\subsubsection{Exponentes de Laypounov}\label{exponentes-de-laypounov}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{533}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{lyapunov\PYZus{}spectrum\PYZus{}c}\PY{p}{(}\PY{n}{series}\PY{p}{,} \PY{n}{rates}\PY{p}{,} \PY{n}{window\PYZus{}size}\PY{p}{)}\PY{p}{:}
+    \PY{n}{N} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{series}\PY{p}{)}
+    \PY{n}{n\PYZus{}windows} \PY{o}{=} \PY{n}{N} \PY{o}{/}\PY{o}{/} \PY{n}{window\PYZus{}size}
+    \PY{n}{lyapunov\PYZus{}exponents} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+
+    \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{n\PYZus{}windows}\PY{p}{)}\PY{p}{:}
+        \PY{n}{window} \PY{o}{=} \PY{n}{series}\PY{p}{[}\PY{n}{i} \PY{o}{*} \PY{n}{window\PYZus{}size}\PY{p}{:}\PY{p}{(}\PY{n}{i} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)} \PY{o}{*} \PY{n}{window\PYZus{}size}\PY{p}{]}
+        \PY{n}{rate\PYZus{}window} \PY{o}{=} \PY{n}{rates}\PY{p}{[}\PY{n}{i} \PY{o}{*} \PY{n}{window\PYZus{}size}\PY{p}{:}\PY{p}{(}\PY{n}{i} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)} \PY{o}{*} \PY{n}{window\PYZus{}size}\PY{p}{]}
+        \PY{n}{sum\PYZus{}log\PYZus{}der} \PY{o}{=} \PY{l+m+mf}{0.0}
+        \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{window\PYZus{}size}\PY{p}{)}\PY{p}{:}
+            \PY{n}{x} \PY{o}{=} \PY{n}{window}\PY{p}{[}\PY{n}{j}\PY{p}{]}
+            \PY{n}{r} \PY{o}{=} \PY{n}{rate\PYZus{}window}\PY{p}{[}\PY{n}{j}\PY{p}{]}
+            \PY{n}{derivative} \PY{o}{=} \PY{l+m+mi}{1} \PY{o}{+} \PY{n}{r} \PY{o}{*} \PY{p}{(}\PY{l+m+mi}{3} \PY{o}{*} \PY{n}{x}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{)}
+            \PY{n}{sum\PYZus{}log\PYZus{}der} \PY{o}{+}\PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n+nb}{abs}\PY{p}{(}\PY{n}{derivative}\PY{p}{)}\PY{p}{)}
+        
+        \PY{n}{le} \PY{o}{=} \PY{n}{sum\PYZus{}log\PYZus{}der} \PY{o}{/} \PY{n}{window\PYZus{}size}
+        \PY{n}{lyapunov\PYZus{}exponents}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{le}\PY{p}{)}
+    
+    \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{lyapunov\PYZus{}exponents}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{534}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{n}{valores\PYZus{}r} \PY{o}{=} \PY{n}{leer\PYZus{}csv\PYZus{}a\PYZus{}numpy}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{datosFeigenbaumCubica.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{pasos} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{)}\PY{p}{)}
+\PY{n}{lyapunov\PYZus{}exponents} \PY{o}{=} \PY{n}{lyapunov\PYZus{}spectrum\PYZus{}c}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{n}{valores\PYZus{}r}\PY{p}{,} \PY{n}{window\PYZus{}size}\PY{p}{)}
+\PY{n}{fig}\PY{p}{,} \PY{n}{ax1} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
+
+\PY{n}{color} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tab:blue}\PY{l+s+s1}{\PYZsq{}}
+\PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tiempo}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Serie Temporal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{n}{color}\PY{p}{)}
+\PY{n}{ax1}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{pasos}\PY{p}{,} \PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{n}{color}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Serie Temporal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{marker}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{o}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{s}\PY{o}{=}\PY{l+m+mf}{0.1}\PY{p}{)}
+\PY{n}{ax1}\PY{o}{.}\PY{n}{tick\PYZus{}params}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{labelcolor}\PY{o}{=}\PY{n}{color}\PY{p}{)}
+\PY{n}{ax2} \PY{o}{=} \PY{n}{ax1}\PY{o}{.}\PY{n}{twinx}\PY{p}{(}\PY{p}{)}
+\PY{n}{color} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tab:red}\PY{l+s+s1}{\PYZsq{}}
+\PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Exponente de Lyapunov}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{n}{color}\PY{p}{)}
+\PY{n}{ax2}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{lyapunov\PYZus{}exponents}\PY{p}{)}\PY{p}{)} \PY{o}{*} \PY{n}{window\PYZus{}size} \PY{o}{+} \PY{n}{window\PYZus{}size} \PY{o}{/}\PY{o}{/} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{lyapunov\PYZus{}exponents}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{n}{color}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Exponente de Lyapunov}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{ax2}\PY{o}{.}\PY{n}{tick\PYZus{}params}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{labelcolor}\PY{o}{=}\PY{n}{color}\PY{p}{)}
+
+\PY{n}{fig}\PY{o}{.}\PY{n}{suptitle}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Serie Temporal y Espectro de Exponentes de Lyapunov}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{fig}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_54_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{interpretaciuxf3n}{%
+\paragraph{Interpretación:}\label{interpretaciuxf3n}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Serie Temporal (Azul):} Esta gráfica muestra la evolución
+  temporal del sistema cúbico de bifurcación. La estructura muestra una
+  serie de bifurcaciones que indican una transición a comportamientos
+  caóticos en el sistema.
+\item
+  \textbf{Exponentes de Lyapunov (Rojo):} Los exponentes de Lyapunov
+  superpuestos a la serie temporal indican la sensibilidad a las
+  condiciones iniciales del sistema. Un exponente de Lyapunov positivo
+  indica comportamiento caótico. En este gráfico, se observa que los
+  exponentes de Lyapunov se vuelven positivos en varias regiones, lo
+  cual confirma la presencia de caos en el sistema.
+\end{itemize}
+
+    \hypertarget{dimensiuxf3n-de-kaplan-yorke}{%
+\subsubsection{Dimensión de
+Kaplan-Yorke}\label{dimensiuxf3n-de-kaplan-yorke}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{535}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{kaplan\PYZus{}yorke\PYZus{}dimension} \PY{o}{=} \PY{n}{calcular\PYZus{}dimension\PYZus{}kaplan\PYZus{}yorke}\PY{p}{(}\PY{n}{lyapunov\PYZus{}exponents}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Dimensión de Kaplan\PYZhy{}Yorke:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{kaplan\PYZus{}yorke\PYZus{}dimension}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Dimensión de Kaplan-Yorke: 1077.3710854151905
+    \end{Verbatim}
+
+    \hypertarget{interpretaciuxf3n}{%
+\paragraph{Interpretación:}\label{interpretaciuxf3n}}
+
+\begin{itemize}
+\tightlist
+\item
+  La dimensión de Kaplan-Yorke calculada es \textbf{1077.3710854151905}.
+  Este valor es alto y sugiere que el sistema tiene un comportamiento
+  muy complejo y un atractor de alta dimensión.
+\end{itemize}
+
+    \hypertarget{dimensiuxf3n-grassberger-procaccia}{%
+\subsubsection{Dimensión
+Grassberger-Procaccia}\label{dimensiuxf3n-grassberger-procaccia}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{536}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{m} \PY{o}{=} \PY{l+m+mi}{10}
+\PY{n}{tau} \PY{o}{=} \PY{l+m+mi}{1}
+\PY{n}{r\PYZus{}vals} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{logspace}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{)}
+\PY{n}{dimension\PYZus{}gp} \PY{o}{=} \PY{n}{calcular\PYZus{}dimension\PYZus{}gp}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{n}{m}\PY{p}{,} \PY{n}{tau}\PY{p}{,} \PY{n}{r\PYZus{}vals}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{La dimensión de Grassberger\PYZhy{}Procaccia es:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{dimension\PYZus{}gp}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+La dimensión de Grassberger-Procaccia es: 0.9262214344050015
+    \end{Verbatim}
+
+    \hypertarget{interpretaciuxf3n}{%
+\paragraph{Interpretación:}\label{interpretaciuxf3n}}
+
+\begin{itemize}
+\tightlist
+\item
+  La dimensión de Grassberger-Procaccia calculada es
+  \textbf{0.9262214344050015}. Este valor sugiere que el atractor del
+  sistema se comporta casi como una curva unidimensional. En sistemas
+  dinámicos, valores cercanos a 1 pueden indicar que el sistema está en
+  una dimensión baja, aunque aún presenta características fractales.
+\end{itemize}
+
+    \hypertarget{bifurcaciuxf3n-triangular-de-feigenbaum}{%
+\section{Bifurcación Triangular de
+Feigenbaum}\label{bifurcaciuxf3n-triangular-de-feigenbaum}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{537}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{valores\PYZus{}x} \PY{o}{=} \PY{n}{leer\PYZus{}col\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{datosFeigenbaumTriangular.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Valores x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{valores\PYZus{}k} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{)}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{graficar}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{n}{valores\PYZus{}k}\PY{p}{,} \PY{n}{width}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{height}\PY{o}{=}\PY{l+m+mi}{7} \PY{p}{,}\PY{n}{titulo}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Bifurcacion Triangular de Feigenbaum}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_63_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{probabiluxedstico}{%
+\subsection{Probabilístico}\label{probabiluxedstico}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{538}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{feigen\PYZus{}t} \PY{o}{=} \PY{n}{DistribucionProbabilidad}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{)}
+\PY{n}{feigen\PYZus{}t}\PY{o}{.}\PY{n}{mostrar\PYZus{}metricas}\PY{p}{(}\PY{p}{)}
+\PY{n}{plotear\PYZus{}hist}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Histograma de Feigenbaum Triangular}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Valor}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Frecuencia}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sturges}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+--- Métricas para Variable 1 ---
+Media: 0.5634713853957487
+Mediana: 0.5823316406627415
+Moda: 0.42023661123507994
+Media Geométrica: 0.5578876915654843
+Rango: 0.27959009254991707
+Desviación Estándar: 0.0786209973339597
+Varianza: 0.0061812612217865
+Asimetría: -0.0877370026433518
+Curtosis: -1.5352630947880699
+Entropia: 11.512925464970223
+Coeficiente de Variación: 0.1395297070475744
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_65_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{anuxe1lisis-de-muxe9tricas-estaduxedsticas-para-el-modelo-de-bifurcaciones-triangular-de-feigenbaum}{%
+\subsection{Análisis de Métricas Estadísticas para el Modelo de
+Bifurcaciones Triangular de
+Feigenbaum}\label{anuxe1lisis-de-muxe9tricas-estaduxedsticas-para-el-modelo-de-bifurcaciones-triangular-de-feigenbaum}}
+
+\begin{itemize}
+\item
+  \textbf{Media (0.5364)} y \textbf{Mediana (0.5173)}: Estos valores
+  cercanos entre sí indican que los datos no están sesgados de manera
+  significativa hacia ningún extremo del rango, lo cual es un indicio de
+  una distribución relativamente simétrica alrededor de este valor
+  central.
+\item
+  \textbf{Desviación Estándar (0.0445)} y \textbf{Varianza (0.0020)}:
+  Estos valores bajos muestran que los datos están bastante concentrados
+  alrededor de la media, indicando una baja dispersión en los resultados
+  del modelo.
+\item
+  \textbf{Rango (0.3249)}: Un rango moderado sugiere que mientras los
+  valores exploran una variedad de estados, no se extienden por todo el
+  espectro posible, lo que podría indicar limitaciones en la dinámica
+  explorada por este modelo.
+\item
+  \textbf{Asimetría (0.2056)}: Una asimetría ligeramente positiva indica
+  una cola más pesada hacia el lado derecho de la mediana. Esto puede
+  ser indicativo de episodios donde el sistema explora valores más altos
+  con menos frecuencia.
+\item
+  \textbf{Curtosis (-1.5760)}: Una curtosis negativa muestra una
+  distribución más plana que una distribución normal. Esto sugiere que
+  los valores están más uniformemente distribuidos a lo largo del rango,
+  sin un pico pronunciado.
+\item
+  \textbf{Entropía (11.9184)}: La alta entropía se mantiene como un
+  indicador de la diversidad y complejidad en los estados del sistema,
+  reafirmando la presencia de un comportamiento caótico y la
+  variabilidad en los datos generados.
+\item
+  \textbf{Coeficiente de Variación (0.0828)}: Este valor bajo indica que
+  la desviación estándar es pequeña en relación con la media, lo que
+  sugiere que la variabilidad de los datos, aunque presente, no domina
+  la escala de los datos.
+\end{itemize}
+
+\hypertarget{conclusiuxf3n}{%
+\subsubsection{Conclusión}\label{conclusiuxf3n}}
+
+El modelo triangular de Feigenbaum muestra una interesante distribución
+de datos con métricas que indican una dinámica tanto concentrada como
+diversificada. La alta entropía junto con una curtosis negativa y
+asimetría positiva sugiere que, aunque el sistema es predominantemente
+estable en torno a ciertos valores, también es capaz de explorar estados
+menos comunes, lo cual es característico de los comportamientos
+dinámicos no lineales y caóticos observados en este tipo de modelos.
+
+    \hypertarget{cauxf3tico}{%
+\subsection{Caótico}\label{cauxf3tico}}
+
+    \hypertarget{exponentes-de-laypounov}{%
+\subsubsection{Exponentes de Laypounov}\label{exponentes-de-laypounov}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{539}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{lyapunov\PYZus{}spectrum\PYZus{}t}\PY{p}{(}\PY{n}{series}\PY{p}{,} \PY{n}{rates}\PY{p}{,} \PY{n}{window\PYZus{}size}\PY{p}{)}\PY{p}{:}
+    \PY{n}{N} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{series}\PY{p}{)}
+    \PY{n}{n\PYZus{}windows} \PY{o}{=} \PY{n}{N} \PY{o}{/}\PY{o}{/} \PY{n}{window\PYZus{}size}
+    \PY{n}{lyapunov\PYZus{}exponents} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+
+    \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{n\PYZus{}windows}\PY{p}{)}\PY{p}{:}
+        \PY{n}{window} \PY{o}{=} \PY{n}{series}\PY{p}{[}\PY{n}{i} \PY{o}{*} \PY{n}{window\PYZus{}size}\PY{p}{:}\PY{p}{(}\PY{n}{i} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)} \PY{o}{*} \PY{n}{window\PYZus{}size}\PY{p}{]}
+        \PY{n}{rate\PYZus{}window} \PY{o}{=} \PY{n}{rates}\PY{p}{[}\PY{n}{i} \PY{o}{*} \PY{n}{window\PYZus{}size}\PY{p}{:}\PY{p}{(}\PY{n}{i} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)} \PY{o}{*} \PY{n}{window\PYZus{}size}\PY{p}{]}
+        \PY{n}{sum\PYZus{}log\PYZus{}der} \PY{o}{=} \PY{l+m+mf}{0.0}
+        \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{window\PYZus{}size}\PY{p}{)}\PY{p}{:}
+            \PY{n}{x} \PY{o}{=} \PY{n}{window}\PY{p}{[}\PY{n}{j}\PY{p}{]}
+            \PY{n}{r} \PY{o}{=} \PY{n}{rate\PYZus{}window}\PY{p}{[}\PY{n}{j}\PY{p}{]}
+            \PY{k}{if} \PY{n}{x} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mf}{0.5}\PY{p}{:}
+                \PY{n}{derivative} \PY{o}{=} \PY{n}{r}
+            \PY{k}{else}\PY{p}{:}
+                \PY{n}{derivative} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{n}{r}
+            \PY{n}{sum\PYZus{}log\PYZus{}der} \PY{o}{+}\PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n+nb}{abs}\PY{p}{(}\PY{n}{derivative}\PY{p}{)}\PY{p}{)}
+        
+        \PY{n}{le} \PY{o}{=} \PY{n}{sum\PYZus{}log\PYZus{}der} \PY{o}{/} \PY{n}{window\PYZus{}size}
+        \PY{n}{lyapunov\PYZus{}exponents}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{le}\PY{p}{)}
+    
+    \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{lyapunov\PYZus{}exponents}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{540}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{n}{valores\PYZus{}r} \PY{o}{=} \PY{n}{leer\PYZus{}csv\PYZus{}a\PYZus{}numpy}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{datosFeigenbaumTriangular.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{pasos} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{)}\PY{p}{)}
+\PY{n}{lyapunov\PYZus{}exponents} \PY{o}{=} \PY{n}{lyapunov\PYZus{}spectrum\PYZus{}t}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{n}{valores\PYZus{}r}\PY{p}{,} \PY{n}{window\PYZus{}size}\PY{p}{)}
+\PY{n}{fig}\PY{p}{,} \PY{n}{ax1} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
+
+\PY{n}{color} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tab:blue}\PY{l+s+s1}{\PYZsq{}}
+\PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tiempo}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Serie Temporal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{n}{color}\PY{p}{)}
+\PY{n}{ax1}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{pasos}\PY{p}{,} \PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{n}{color}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Serie Temporal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{marker}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{o}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{s}\PY{o}{=}\PY{l+m+mf}{0.1}\PY{p}{)}
+\PY{n}{ax1}\PY{o}{.}\PY{n}{tick\PYZus{}params}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{labelcolor}\PY{o}{=}\PY{n}{color}\PY{p}{)}
+
+\PY{n}{ax2} \PY{o}{=} \PY{n}{ax1}\PY{o}{.}\PY{n}{twinx}\PY{p}{(}\PY{p}{)}
+\PY{n}{color} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tab:red}\PY{l+s+s1}{\PYZsq{}}
+\PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Exponente de Lyapunov}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{n}{color}\PY{p}{)}
+\PY{n}{ax2}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{lyapunov\PYZus{}exponents}\PY{p}{)}\PY{p}{)} \PY{o}{*} \PY{n}{window\PYZus{}size} \PY{o}{+} \PY{n}{window\PYZus{}size} \PY{o}{/}\PY{o}{/} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{lyapunov\PYZus{}exponents}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{n}{color}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Exponente de Lyapunov}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{ax2}\PY{o}{.}\PY{n}{tick\PYZus{}params}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{labelcolor}\PY{o}{=}\PY{n}{color}\PY{p}{)}
+
+\PY{n}{fig}\PY{o}{.}\PY{n}{suptitle}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Serie Temporal y Espectro de Exponentes de Lyapunov}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{fig}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_70_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{interpretaciuxf3n}{%
+\paragraph{Interpretación:}\label{interpretaciuxf3n}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Serie Temporal (Azul):} Esta gráfica muestra la evolución
+  temporal del sistema triangular de bifurcación. La estructura no
+  parece exhibir bifurcaciones tradicionales, pero hay una separación
+  clara en dos bandas paralelas, lo que sugiere un comportamiento
+  dinámico interesante.
+\item
+  \textbf{Exponentes de Lyapunov (Rojo):} Los exponentes de Lyapunov
+  superpuestos a la serie temporal indican la sensibilidad a las
+  condiciones iniciales del sistema. La línea roja inclinada muestra una
+  tendencia positiva constante, lo que puede indicar que el sistema es
+  caótico pero con una estructura diferente a la de los sistemas
+  caóticos típicos.
+\end{itemize}
+
+    \hypertarget{dimensiuxf3n-de-kaplan-yorke}{%
+\subsubsection{Dimensión de
+Kaplan-Yorke}\label{dimensiuxf3n-de-kaplan-yorke}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{541}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{kaplan\PYZus{}yorke\PYZus{}dimension} \PY{o}{=} \PY{n}{calcular\PYZus{}dimension\PYZus{}kaplan\PYZus{}yorke}\PY{p}{(}\PY{n}{lyapunov\PYZus{}exponents}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Dimensión de Kaplan\PYZhy{}Yorke:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{kaplan\PYZus{}yorke\PYZus{}dimension}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Dimensión de Kaplan-Yorke: 2141.8077760850883
+    \end{Verbatim}
+
+    \hypertarget{interpretaciuxf3n}{%
+\paragraph{Interpretación:}\label{interpretaciuxf3n}}
+
+\begin{itemize}
+\tightlist
+\item
+  La dimensión de Kaplan-Yorke calculada es \textbf{2141.8077760850883}.
+  Este valor es extremadamente alto y sugiere que el sistema tiene un
+  comportamiento muy complejo y un atractor de alta dimensión.
+\end{itemize}
+
+    \hypertarget{dimensiuxf3n-grassberger-procaccia}{%
+\subsubsection{Dimensión
+Grassberger-Procaccia}\label{dimensiuxf3n-grassberger-procaccia}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{542}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{m} \PY{o}{=} \PY{l+m+mi}{10}
+\PY{n}{tau} \PY{o}{=} \PY{l+m+mi}{1}
+\PY{n}{r\PYZus{}vals} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{logspace}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{)}
+\PY{n}{dimension\PYZus{}gp} \PY{o}{=} \PY{n}{calcular\PYZus{}dimension\PYZus{}gp}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{n}{m}\PY{p}{,} \PY{n}{tau}\PY{p}{,} \PY{n}{r\PYZus{}vals}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{La dimensión de Grassberger\PYZhy{}Procaccia es:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{dimension\PYZus{}gp}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+La dimensión de Grassberger-Procaccia es: 1.761396392229035
+    \end{Verbatim}
+
+    \hypertarget{interpretaciuxf3n}{%
+\paragraph{Interpretación:}\label{interpretaciuxf3n}}
+
+\begin{itemize}
+\tightlist
+\item
+  La dimensión de Grassberger-Procaccia calculada es
+  \textbf{1.761396392229035}. Este valor sugiere que el atractor del
+  sistema tiene una dimensión fractal intermedia, lo cual puede indicar
+  un comportamiento caótico complejo pero en una dimensión más baja
+  comparada con la dimensión de Kaplan-Yorke obtenida.
+\end{itemize}
+
+    \hypertarget{mapa-de-henon}{%
+\section{Mapa de Henon}\label{mapa-de-henon}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{543}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{valores\PYZus{}x} \PY{o}{=} \PY{n}{leer\PYZus{}col\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{datosHenon.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Valores x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{valores\PYZus{}y} \PY{o}{=} \PY{n}{leer\PYZus{}col\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{datosHenon.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Valores y}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{valores\PYZus{}k} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{)}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{graficar}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{n}{valores\PYZus{}y}\PY{p}{,} \PY{n}{width}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{height}\PY{o}{=}\PY{l+m+mi}{7} \PY{p}{,}\PY{n}{titulo}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Bifurcacion Triangular de Feigenbaum}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_79_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{probabiluxedstico}{%
+\subsection{Probabilístico}\label{probabiluxedstico}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{544}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{henon} \PY{o}{=} \PY{n}{DistribucionProbabilidad}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{n}{valores\PYZus{}y}\PY{p}{)}
+\PY{n}{henon}\PY{o}{.}\PY{n}{mostrar\PYZus{}metricas}\PY{p}{(}\PY{p}{)}
+\PY{n}{plotear\PYZus{}hist}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Histograma de Henon X}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Valor}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Frecuencia}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sturges}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plotear\PYZus{}hist}\PY{p}{(}\PY{n}{valores\PYZus{}y}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Histograma de Henon Y}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Valor}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Frecuencia}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sturges}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{graficar}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{n}{valores\PYZus{}k}\PY{p}{,} \PY{n}{width}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{height}\PY{o}{=}\PY{l+m+mi}{7} \PY{p}{,}\PY{n}{titulo}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Variable X vs k}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{graficar}\PY{p}{(}\PY{n}{valores\PYZus{}y}\PY{p}{,} \PY{n}{valores\PYZus{}k}\PY{p}{,} \PY{n}{width}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{height}\PY{o}{=}\PY{l+m+mi}{7} \PY{p}{,}\PY{n}{titulo}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Variable y vs k}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+--- Métricas para Variable 1 ---
+Media: 0.25826445541982584
+Mediana: 0.41086307203174455
+Moda: -1.2846637827292586
+Media Geométrica: nan
+Rango: 2.557636523935283
+Desviación Estándar: 0.7200413783449912
+Varianza: 0.5184595865289547
+Asimetría: -0.4982432032837881
+Curtosis: -0.8744955533890941
+Entropia: 11.512925464970223
+Coeficiente de Variación: 2.7880002967288573
+
+--- Métricas para Variable 2 ---
+Media: 0.07747980171430803
+Mediana: 0.12325892160952336
+Moda: -0.3853991348187776
+Media Geométrica: nan
+Rango: 0.7672909571805848
+Desviación Estándar: 0.21601284253966427
+Varianza: 0.046661548142065794
+Asimetría: -0.498241172200149
+Curtosis: -0.8745012960453131
+Entropia: 11.512925464970223
+Coeficiente de Variación: 2.7879890985804323
+
+Matriz de Correlación:
+[[ 1.         -0.31554664]
+ [-0.31554664  1.        ]]
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/home/rodrigo/.local/lib/python3.10/site-packages/scipy/stats/\_stats\_py.py:197:
+RuntimeWarning:
+
+invalid value encountered in log
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_81_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_81_3.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_81_4.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_81_5.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_81_6.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{anuxe1lisis-de-muxe9tricas-estaduxedsticas-para-el-modelo-del-mapa-de-henon}{%
+\subsection{Análisis de Métricas Estadísticas para el Modelo del Mapa de
+Henon}\label{anuxe1lisis-de-muxe9tricas-estaduxedsticas-para-el-modelo-del-mapa-de-henon}}
+
+\hypertarget{variable-x}{%
+\paragraph{Variable X}\label{variable-x}}
+
+\begin{itemize}
+\item
+  \textbf{Media (0.2569)} y \textbf{Mediana (0.4109)}: Estos valores
+  indican que, aunque la media está más cerca de cero, la mediana más
+  alta sugiere una distribución con una cola hacia valores mayores. Esto
+  es típico en sistemas caóticos donde la distribución no es simétrica.
+\item
+  \textbf{Rango (2.5576)}: Un rango amplio muestra que la variable X
+  explora un espectro extenso de valores, lo cual es esperado en
+  dinámicas caóticas como las del mapa de Henon.
+\item
+  \textbf{Desviación Estándar (0.7209)} y \textbf{Varianza (0.5197)}:
+  Estas métricas altas reflejan la considerable dispersión de los datos,
+  indicativa de la alta variabilidad inherente a este sistema.
+\item
+  \textbf{Entropía (11.5129)}: Una entropía muy alta sugiere una
+  distribución compleja y diversa de los valores, característica de los
+  comportamientos caóticos.
+\end{itemize}
+
+\hypertarget{variable-y}{%
+\paragraph{Variable Y}\label{variable-y}}
+
+\begin{itemize}
+\item
+  \textbf{Media (0.0771)} y \textbf{Mediana (0.1233)}: Similar a la
+  variable X, los valores muestran una distribución con ligera
+  asimetría, aunque la diferencia entre la media y la mediana es menor.
+\item
+  \textbf{Desviación Estándar (0.2163)}: Menor en comparación con la
+  variable X, indicando menos variabilidad en esta variable.
+\end{itemize}
+
+\hypertarget{anuxe1lisis-de-correlaciuxf3n-y-gruxe1fica-de-dispersiuxf3n}{%
+\subsubsection{Análisis de Correlación y Gráfica de
+Dispersión}\label{anuxe1lisis-de-correlaciuxf3n-y-gruxe1fica-de-dispersiuxf3n}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Matriz de Correlación}: Un coeficiente de -0.315 indica una
+  correlación negativa moderada entre las variables. Esto sugiere que a
+  medida que una variable aumenta, la otra tiende a disminuir, lo cual
+  es coherente con el comportamiento esperado del mapa de Henon donde
+  las variables están interconectadas en un sistema dinámico complejo.
+\end{itemize}
+
+\hypertarget{conclusiuxf3n}{%
+\subsubsection{Conclusión}\label{conclusiuxf3n}}
+
+Las métricas estadísticas junto con la matriz de correlación y la
+gráfica de dispersión revelan un sistema con alta variabilidad y
+dinámicas complejas interdependientes. La alta entropía y el amplio
+rango de ambas variables subrayan la rica dinámica caótica del mapa de
+Henon. Estos resultados son cruciales para entender cómo pequeñas
+variaciones en las condiciones iniciales pueden resultar en cambios
+significativos en el comportamiento del sistema, un rasgo definitorio
+del caos.
+
+    \hypertarget{cauxf3tico}{%
+\subsection{Caótico}\label{cauxf3tico}}
+
+    \hypertarget{exponentes-de-laypounov}{%
+\subsubsection{Exponentes de Laypounov}\label{exponentes-de-laypounov}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{545}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{leer\PYZus{}datos}\PY{p}{(}\PY{n}{csv\PYZus{}path}\PY{p}{)}\PY{p}{:}
+    \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n}{csv\PYZus{}path}\PY{p}{)}
+    \PY{k}{return} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Valores x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Valores y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}
+
+\PY{k}{def} \PY{n+nf}{jacobian\PYZus{}henon}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{a}\PY{o}{=}\PY{l+m+mf}{1.4}\PY{p}{,} \PY{n}{b}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{)}\PY{p}{:}
+    \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{a} \PY{o}{*} \PY{n}{x}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}
+                     \PY{p}{[}\PY{n}{b}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+
+\PY{k}{def} \PY{n+nf}{calculate\PYZus{}lyapunov\PYZus{}exponents}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{a}\PY{o}{=}\PY{l+m+mf}{1.4}\PY{p}{,} \PY{n}{b}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{n}{window\PYZus{}size}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{:}
+    \PY{n}{n} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+    \PY{n}{perturbations} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{eye}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+    \PY{n}{lyapunov\PYZus{}exponents} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{n} \PY{o}{\PYZhy{}} \PY{n}{window\PYZus{}size}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+    
+    \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{window\PYZus{}size}\PY{p}{,} \PY{n}{n}\PY{p}{)}\PY{p}{:}
+        \PY{n}{J} \PY{o}{=} \PY{n}{jacobian\PYZus{}henon}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{y}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{a}\PY{p}{,} \PY{n}{b}\PY{p}{)}
+        \PY{n}{perturbations} \PY{o}{=} \PY{n}{J} \PY{o}{@} \PY{n}{perturbations}
+        
+        \PY{k}{if} \PY{n}{i} \PY{o}{\PYZpc{}} \PY{n}{window\PYZus{}size} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+            \PY{n}{Q}\PY{p}{,} \PY{n}{R} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{qr}\PY{p}{(}\PY{n}{perturbations}\PY{p}{)}
+            \PY{n}{perturbations} \PY{o}{=} \PY{n}{Q}
+            \PY{n}{lyapunov\PYZus{}exponents}\PY{p}{[}\PY{n}{i} \PY{o}{\PYZhy{}} \PY{n}{window\PYZus{}size}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{abs}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{diag}\PY{p}{(}\PY{n}{R}\PY{p}{)}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{n}{window\PYZus{}size}
+    
+    \PY{k}{return} \PY{n}{lyapunov\PYZus{}exponents}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{546}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{x}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{n}{leer\PYZus{}datos}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{datosHenon.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{exponents} \PY{o}{=} \PY{n}{calculate\PYZus{}lyapunov\PYZus{}exponents}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{exponents}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Exponente de Lyapunov \PYZdl{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{lambda\PYZus{}1\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{exponents}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Exponente de Lyapunov \PYZdl{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{lambda\PYZus{}2\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tiempo (en ventanas de }\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{window\PYZus{}size}\PY{p}{)} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Valor del Exponente de Lyapunov}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Espectro de Exponentes de Lyapunov del Atractor de Henón}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/tmp/ipykernel\_17541/3196099903.py:21: RuntimeWarning:
+
+divide by zero encountered in log
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_86_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{interpretaciuxf3n}{%
+\paragraph{Interpretación:}\label{interpretaciuxf3n}}
+
+\begin{itemize}
+\tightlist
+\item
+  **Exponente de Lyapunov \$ \lambda\_1 \$ (Azul):** Este exponente
+  muestra una serie de valores positivos alrededor de 0.4 a 0.5, lo que
+  indica que el sistema es caótico.
+\item
+  **Exponente de Lyapunov \$ \lambda\_2 \$ (Naranja):** Este exponente
+  se mantiene cerca de 0, indicando estabilidad en otra dirección. En
+  los sistemas bidimensionales como el mapa de Henón, es común tener un
+  exponente positivo y otro negativo.
+\end{itemize}
+
+    \hypertarget{dimensiuxf3n-de-kaplan-yorke}{%
+\subsubsection{Dimensión de
+Kaplan-Yorke}\label{dimensiuxf3n-de-kaplan-yorke}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{547}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{calcular\PYZus{}dimension\PYZus{}kaplan\PYZus{}yorke}\PY{p}{(}\PY{n}{exponentes\PYZus{}lyapunov}\PY{p}{)}\PY{p}{:}
+    \PY{n}{exponentes\PYZus{}lyapunov} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sort}\PY{p}{(}\PY{n}{exponentes\PYZus{}lyapunov}\PY{p}{)}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+    \PY{n}{suma} \PY{o}{=} \PY{l+m+mf}{0.0}
+    \PY{n}{j} \PY{o}{=} \PY{l+m+mi}{0}
+    \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{exponentes\PYZus{}lyapunov}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+        \PY{n}{suma} \PY{o}{+}\PY{o}{=} \PY{n}{exponentes\PYZus{}lyapunov}\PY{p}{[}\PY{n}{j}\PY{p}{]}
+        \PY{k}{if} \PY{n}{suma} \PY{o}{\PYZlt{}} \PY{l+m+mi}{0}\PY{p}{:}
+            \PY{n}{j} \PY{o}{\PYZhy{}}\PY{o}{=} \PY{l+m+mi}{1}
+            \PY{k}{break}
+
+    \PY{k}{if} \PY{n}{j} \PY{o}{\PYZlt{}} \PY{l+m+mi}{0}\PY{p}{:}
+        \PY{k}{return} \PY{l+m+mi}{0}
+    \PY{k}{elif} \PY{n}{j} \PY{o}{==} \PY{n+nb}{len}\PY{p}{(}\PY{n}{exponentes\PYZus{}lyapunov}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{:}
+        \PY{n}{suma\PYZus{}positiva} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{exponentes\PYZus{}lyapunov}\PY{p}{[}\PY{p}{:}\PY{n}{j}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+        \PY{n}{dimension\PYZus{}kaplan\PYZus{}yorke} \PY{o}{=} \PY{n}{j} \PY{o}{+} \PY{n}{suma\PYZus{}positiva} \PY{o}{/} \PY{n+nb}{abs}\PY{p}{(}\PY{n}{exponentes\PYZus{}lyapunov}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{)}
+    \PY{k}{else}\PY{p}{:}
+        \PY{n}{suma\PYZus{}positiva} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{exponentes\PYZus{}lyapunov}\PY{p}{[}\PY{p}{:}\PY{n}{j}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+        \PY{n}{dimension\PYZus{}kaplan\PYZus{}yorke} \PY{o}{=} \PY{n}{j} \PY{o}{+} \PY{n}{suma\PYZus{}positiva} \PY{o}{/} \PY{n+nb}{abs}\PY{p}{(}\PY{n}{exponentes\PYZus{}lyapunov}\PY{p}{[}\PY{n}{j}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+    
+    \PY{k}{return} \PY{n}{dimension\PYZus{}kaplan\PYZus{}yorke}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{548}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{averages} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{exponents}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{averages} \PY{o}{=} \PY{n}{averages}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{kaplan\PYZus{}yorke\PYZus{}dimension} \PY{o}{=} \PY{n}{calcular\PYZus{}dimension\PYZus{}kaplan\PYZus{}yorke}\PY{p}{(}\PY{n}{averages}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Dimensión de Kaplan\PYZhy{}Yorke:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{kaplan\PYZus{}yorke\PYZus{}dimension}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Dimensión de Kaplan-Yorke: 398.0
+    \end{Verbatim}
+
+    \hypertarget{interpretaciuxf3n}{%
+\paragraph{Interpretación:}\label{interpretaciuxf3n}}
+
+\begin{itemize}
+\tightlist
+\item
+  La dimensión de Kaplan-Yorke calculada es \textbf{398.0}. Este valor
+  es extremadamente alto y sugiere que el sistema tiene un
+  comportamiento muy complejo y un atractor de alta dimensión.
+\end{itemize}
+
+    \hypertarget{dimensiuxf3n-de-grassberger-procaccia}{%
+\subsubsection{Dimensión de
+Grassberger-Procaccia}\label{dimensiuxf3n-de-grassberger-procaccia}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{549}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{crear\PYZus{}embedds\PYZus{}multivariado}\PY{p}{(}\PY{n}{datos}\PY{p}{,} \PY{n}{m}\PY{p}{,} \PY{n}{tau}\PY{p}{)}\PY{p}{:}
+    \PY{n}{N} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{datos}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+    \PY{n}{embedds} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+    \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{m}\PY{p}{)}\PY{p}{:}
+        \PY{n}{embedds}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{[}\PY{n}{serie}\PY{p}{[}\PY{n}{i}\PY{p}{:}\PY{n}{N}\PY{o}{\PYZhy{}}\PY{n}{tau}\PY{o}{*}\PY{p}{(}\PY{n}{m}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{+}\PY{n}{i}\PY{p}{:}\PY{n}{tau}\PY{p}{]} \PY{k}{for} \PY{n}{serie} \PY{o+ow}{in} \PY{n}{datos}\PY{p}{]}\PY{p}{)}
+    \PY{n}{embedds} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{hstack}\PY{p}{(}\PY{n}{embedds}\PY{p}{)}
+    \PY{k}{return} \PY{n}{embedds}
+
+\PY{k}{def} \PY{n+nf}{calcular\PYZus{}correlacion\PYZus{}integral}\PY{p}{(}\PY{n}{kdtree}\PY{p}{,} \PY{n}{embedds}\PY{p}{,} \PY{n}{r}\PY{p}{)}\PY{p}{:}
+    \PY{n}{N} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{embedds}\PY{p}{)}
+    \PY{n}{C\PYZus{}r} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{[}\PY{n+nb}{len}\PY{p}{(}\PY{n}{kdtree}\PY{o}{.}\PY{n}{query\PYZus{}radius}\PY{p}{(}\PY{n}{point}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{r}\PY{o}{=}\PY{n}{r}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)} \PY{k}{for} \PY{n}{point} \PY{o+ow}{in} \PY{n}{embedds}\PY{p}{]}\PY{p}{)} \PY{o}{/} \PY{n}{N}
+    \PY{k}{return} \PY{n}{C\PYZus{}r}
+
+\PY{k}{def} \PY{n+nf}{calcular\PYZus{}dimension\PYZus{}gp\PYZus{}multivariado}\PY{p}{(}\PY{n}{datos}\PY{p}{,} \PY{n}{m}\PY{p}{,} \PY{n}{tau}\PY{p}{,} \PY{n}{r\PYZus{}vals}\PY{p}{,} \PY{n}{n\PYZus{}jobs}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
+    \PY{n}{embedds} \PY{o}{=} \PY{n}{crear\PYZus{}embedds\PYZus{}multivariado}\PY{p}{(}\PY{n}{datos}\PY{p}{,} \PY{n}{m}\PY{p}{,} \PY{n}{tau}\PY{p}{)}
+    \PY{n}{kdtree} \PY{o}{=} \PY{n}{KDTree}\PY{p}{(}\PY{n}{embedds}\PY{p}{)}
+    \PY{n}{C\PYZus{}r\PYZus{}vals} \PY{o}{=} \PY{n}{Parallel}\PY{p}{(}\PY{n}{n\PYZus{}jobs}\PY{o}{=}\PY{n}{n\PYZus{}jobs}\PY{p}{)}\PY{p}{(}\PY{n}{delayed}\PY{p}{(}\PY{n}{calcular\PYZus{}correlacion\PYZus{}integral}\PY{p}{)}\PY{p}{(}\PY{n}{kdtree}\PY{p}{,} \PY{n}{embedds}\PY{p}{,} \PY{n}{r}\PY{p}{)} \PY{k}{for} \PY{n}{r} \PY{o+ow}{in} \PY{n}{r\PYZus{}vals}\PY{p}{)}
+    \PY{n}{log\PYZus{}r} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{r\PYZus{}vals}\PY{p}{)}
+    \PY{n}{log\PYZus{}C\PYZus{}r} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{C\PYZus{}r\PYZus{}vals}\PY{p}{)}
+    \PY{n}{slope}\PY{p}{,} \PY{n}{intercept} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{polyfit}\PY{p}{(}\PY{n}{log\PYZus{}r}\PY{p}{,} \PY{n}{log\PYZus{}C\PYZus{}r}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+    \PY{k}{return} \PY{n}{slope}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{13}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{m} \PY{o}{=} \PY{l+m+mi}{10}
+\PY{n}{tau} \PY{o}{=} \PY{l+m+mi}{1}
+\PY{n}{r\PYZus{}vals} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{logspace}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{)} 
+\PY{n}{dimension\PYZus{}gp} \PY{o}{=} \PY{n}{calcular\PYZus{}dimension\PYZus{}gp\PYZus{}multivariado}\PY{p}{(}\PY{p}{[}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{]}\PY{p}{,} \PY{n}{m}\PY{p}{,} \PY{n}{tau}\PY{p}{,} \PY{n}{r\PYZus{}vals}\PY{p}{,} \PY{n}{n\PYZus{}jobs}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{La dimensión de Grassberger\PYZhy{}Procaccia es:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{dimension\PYZus{}gp}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+La dimensión de Grassberger-Procaccia es: 1.63782763568
+    \end{Verbatim}
+
+    \hypertarget{interpretaciuxf3n}{%
+\paragraph{Interpretación:}\label{interpretaciuxf3n}}
+
+\begin{itemize}
+\tightlist
+\item
+  La dimensión de Grassberger-Procaccia calculada es
+  \textbf{1.63782763568}. Este valor sugiere que el atractor del sistema
+  tiene una dimensión fractal intermedia, lo cual puede indicar un
+  comportamiento caótico complejo pero en una dimensión razonable para
+  sistemas caóticos típicos.
+\end{itemize}
+
+    \hypertarget{atractor-de-rossler}{%
+\section{Atractor de Rossler}\label{atractor-de-rossler}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{10}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{valores\PYZus{}x} \PY{o}{=} \PY{n}{leer\PYZus{}col\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{datosRossler.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Valores x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{valores\PYZus{}y} \PY{o}{=} \PY{n}{leer\PYZus{}col\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{datosRossler.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Valores y}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{valores\PYZus{}z} \PY{o}{=} \PY{n}{leer\PYZus{}col\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{datosRossler.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Valores z}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{valores\PYZus{}k} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{)}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{graficar\PYZus{}3d}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{n}{valores\PYZus{}y}\PY{p}{,} \PY{n}{valores\PYZus{}z}\PY{p}{,} \PY{n}{titulo}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Atractor de Rossler}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    
+    
+    \hypertarget{probabiluxedstico}{%
+\subsection{Probabilístico}\label{probabiluxedstico}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{rossler} \PY{o}{=} \PY{n}{DistribucionProbabilidad}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{n}{valores\PYZus{}y}\PY{p}{,} \PY{n}{valores\PYZus{}z}\PY{p}{)}
+\PY{n}{rossler}\PY{o}{.}\PY{n}{mostrar\PYZus{}metricas}\PY{p}{(}\PY{p}{)}
+\PY{n}{plotear\PYZus{}hist}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Histograma de Rossler X}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Valor}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Frecuencia}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sturges}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plotear\PYZus{}hist}\PY{p}{(}\PY{n}{valores\PYZus{}y}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Histograma de Rossler Y}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Valor}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Frecuencia}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sturges}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plotear\PYZus{}hist}\PY{p}{(}\PY{n}{valores\PYZus{}z}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Histograma de Rossler Z}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Valor}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Frecuencia}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sturges}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{graficar}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{n}{valores\PYZus{}k}\PY{p}{,} \PY{n}{width}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{height}\PY{o}{=}\PY{l+m+mi}{7} \PY{p}{,}\PY{n}{titulo}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Variable X vs k}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{graficar}\PY{p}{(}\PY{n}{valores\PYZus{}y}\PY{p}{,} \PY{n}{valores\PYZus{}k}\PY{p}{,} \PY{n}{width}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{height}\PY{o}{=}\PY{l+m+mi}{7} \PY{p}{,}\PY{n}{titulo}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Variable Y vs k}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{graficar}\PY{p}{(}\PY{n}{valores\PYZus{}z}\PY{p}{,} \PY{n}{valores\PYZus{}k}\PY{p}{,} \PY{n}{width}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{height}\PY{o}{=}\PY{l+m+mi}{7} \PY{p}{,}\PY{n}{titulo}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Variable Z vs k}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+--- Métricas para Variable 1 ---
+Media: 0.18485470681822816
+Mediana: -0.22063136624253193
+Moda: -9.28112168747234
+Media Geométrica: nan
+Rango: 21.07306785563107
+Desviación Estándar: 4.998003092482866
+Varianza: 24.980034912468287
+Asimetría: 0.20554979315632138
+Curtosis: -0.5972925304986041
+Entropia: 11.512925464970223
+Coeficiente de Variación: 27.03746730883902
+
+--- Métricas para Variable 2 ---
+Media: -0.908295039420532
+Mediana: -0.8376306330690166
+Moda: -11.090572417946863
+Media Geométrica: nan
+Rango: 19.023502319928667
+Desviación Estándar: 4.742096688026963
+Varianza: 22.48748099859629
+Asimetría: -0.17152034988291723
+Curtosis: -0.6646172866952118
+Entropia: 11.512925464970223
+Coeficiente de Variación: -5.220877008259666
+
+--- Métricas para Variable 3 ---
+Media: 0.9022493082024416
+Mediana: 0.04085462120151002
+Moda: 0.013365904330161932
+Media Geométrica: 0.07601411137144386
+Rango: 26.4706830221461
+Desviación Estándar: 3.4708531990836273
+Varianza: 12.046821929589049
+Asimetría: 5.213854069701677
+Curtosis: 27.985554192873423
+Entropia: 11.512925464970223
+Coeficiente de Variación: 3.846889288281789
+
+Matriz de Correlación:
+[[ 1.         -0.19435777  0.27536813]
+ [-0.19435777  1.          0.09060812]
+ [ 0.27536813  0.09060812  1.        ]]
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/home/rodrigo/.local/lib/python3.10/site-packages/scipy/stats/\_stats\_py.py:197:
+RuntimeWarning:
+
+invalid value encountered in log
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_99_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_99_3.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_99_4.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_99_5.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_99_6.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_99_7.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_99_8.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{anuxe1lisis-de-muxe9tricas-estaduxedsticas-para-el-modelo-del-atractor-de-rossler}{%
+\subsection{Análisis de Métricas Estadísticas para el Modelo del
+Atractor de
+Rossler}\label{anuxe1lisis-de-muxe9tricas-estaduxedsticas-para-el-modelo-del-atractor-de-rossler}}
+
+\hypertarget{anuxe1lisis-de-muxe9tricas-estaduxedsticas}{%
+\subsubsection{Análisis de Métricas
+Estadísticas}\label{anuxe1lisis-de-muxe9tricas-estaduxedsticas}}
+
+\begin{itemize}
+\item
+  \textbf{Rango}: Los rangos amplios en todas las variables (Variable X:
+  21.07, Variable Y: 19.02, Variable Z: 26.47) indican que cada variable
+  explora un amplio espectro de valores. Esto es característico de
+  sistemas caóticos donde los estados pueden cambiar dramáticamente a lo
+  largo del tiempo.
+\item
+  \textbf{Desviación Estándar y Varianza}: Altas en todas las variables
+  (por ejemplo, Variable X: Desviación Estándar de 5.00, Varianza de
+  25.02), reflejan la considerable dispersión y la alta variabilidad de
+  los datos. Esto subraya la naturaleza impredecible y sensible a las
+  condiciones iniciales del sistema.
+\item
+  \textbf{Curtosis y Asimetría}: La curtosis elevada en la Variable Z
+  (27.85) junto con una asimetría significativa (5.21) indica una
+  distribución con colas pesadas y un pico agudo. Esto sugiere la
+  presencia de comportamientos extremos y transiciones abruptas típicas
+  en dinámicas caóticas.
+\item
+  \textbf{Entropía (11.9184 para todas las variables)}: Una entropía
+  consistentemente alta a través de las variables muestra una gran
+  diversidad en los estados del sistema, lo cual es un indicador de
+  complejidad y caos.
+\end{itemize}
+
+\hypertarget{anuxe1lisis-de-correlaciuxf3n-y-gruxe1fica-de-dispersiuxf3n}{%
+\subsubsection{Análisis de Correlación y Gráfica de
+Dispersión}\label{anuxe1lisis-de-correlaciuxf3n-y-gruxe1fica-de-dispersiuxf3n}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Matriz de Correlación}: La correlación entre las variables
+  muestra valores bajos y mixtos (por ejemplo, 0.274 entre la Variable 1
+  y la Variable 3), indicando que no hay una fuerte dependencia lineal
+  entre ellas. Esto es esperado en sistemas caóticos donde las
+  relaciones no son simples ni directamente proporcionales.
+\end{itemize}
+
+\hypertarget{conclusiuxf3n}{%
+\subsubsection{Conclusión}\label{conclusiuxf3n}}
+
+Las métricas estadísticas y las visualizaciones del atractor de Rossler
+resaltan un sistema con extrema variabilidad y complejidad. La amplia
+gama de valores explorados por las variables, junto con altas entropías
+y patrones de dispersión característicos, confirman la naturaleza
+caótica del atractor. Este análisis proporciona una comprensión profunda
+de cómo las variables interactúan y evolucionan en el tiempo dentro de
+este sistema dinámico.
+
+    \hypertarget{cauxf3tico}{%
+\subsection{Caótico}\label{cauxf3tico}}
+
+    \hypertarget{exponentes-de-laypounov}{%
+\subsubsection{Exponentes de Laypounov}\label{exponentes-de-laypounov}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{leer\PYZus{}datos\PYZus{}rossler}\PY{p}{(}\PY{n}{csv\PYZus{}path}\PY{p}{)}\PY{p}{:}
+    \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n}{csv\PYZus{}path}\PY{p}{)}
+    \PY{k}{return} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Valores x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Valores y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Valores z}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}
+
+\PY{k}{def} \PY{n+nf}{jacobian\PYZus{}rossler}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{,} \PY{n}{a}\PY{o}{=}\PY{l+m+mf}{0.1}\PY{p}{,} \PY{n}{b}\PY{o}{=}\PY{l+m+mf}{0.1}\PY{p}{,} \PY{n}{c}\PY{o}{=}\PY{l+m+mi}{14}\PY{p}{)}\PY{p}{:}
+    \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}
+        \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}
+        \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{a}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}
+        \PY{p}{[}\PY{n}{z}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{x} \PY{o}{\PYZhy{}} \PY{n}{c}\PY{p}{]}
+    \PY{p}{]}\PY{p}{)}
+
+\PY{k}{def} \PY{n+nf}{calculate\PYZus{}lyapunov\PYZus{}exponents\PYZus{}rossler}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{,} \PY{n}{a}\PY{o}{=}\PY{l+m+mf}{0.1}\PY{p}{,} \PY{n}{b}\PY{o}{=}\PY{l+m+mf}{0.1}\PY{p}{,} \PY{n}{c}\PY{o}{=}\PY{l+m+mi}{14}\PY{p}{,} \PY{n}{window\PYZus{}size}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{:}
+    \PY{n}{n} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+    \PY{n}{perturbations} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{eye}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}
+    \PY{n}{lyapunov\PYZus{}exponents} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{n} \PY{o}{\PYZhy{}} \PY{n}{window\PYZus{}size}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+    
+    \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{window\PYZus{}size}\PY{p}{,} \PY{n}{n}\PY{p}{)}\PY{p}{:}
+        \PY{n}{J} \PY{o}{=} \PY{n}{jacobian\PYZus{}rossler}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{y}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{z}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{a}\PY{p}{,} \PY{n}{b}\PY{p}{,} \PY{n}{c}\PY{p}{)}
+        \PY{n}{perturbations} \PY{o}{=} \PY{n}{J} \PY{o}{@} \PY{n}{perturbations}
+        
+        \PY{k}{if} \PY{n}{i} \PY{o}{\PYZpc{}} \PY{n}{window\PYZus{}size} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+            \PY{n}{Q}\PY{p}{,} \PY{n}{R} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{qr}\PY{p}{(}\PY{n}{perturbations}\PY{p}{)}
+            \PY{n}{perturbations} \PY{o}{=} \PY{n}{Q}
+            \PY{n}{lyapunov\PYZus{}exponents}\PY{p}{[}\PY{n}{i} \PY{o}{\PYZhy{}} \PY{n}{window\PYZus{}size}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{abs}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{diag}\PY{p}{(}\PY{n}{R}\PY{p}{)}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{n}{window\PYZus{}size}
+    
+    \PY{k}{return} \PY{n}{lyapunov\PYZus{}exponents}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z} \PY{o}{=} \PY{n}{leer\PYZus{}datos\PYZus{}rossler}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{datosRossler.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{exponents} \PY{o}{=} \PY{n}{calculate\PYZus{}lyapunov\PYZus{}exponents\PYZus{}rossler}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{exponents}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Exponente de Lyapunov \PYZdl{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{lambda\PYZus{}1\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{exponents}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Exponente de Lyapunov \PYZdl{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{lambda\PYZus{}2\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{exponents}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Exponente de Lyapunov \PYZdl{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{lambda\PYZus{}3\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tiempo (en ventanas de }\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{window\PYZus{}size}\PY{p}{)} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Valor del Exponente de Lyapunov}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Espectro de Exponentes de Lyapunov del Atractor de Rössler}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/tmp/ipykernel\_17541/1592744035.py:24: RuntimeWarning:
+
+divide by zero encountered in log
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_104_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{interpretaciuxf3n}{%
+\subsubsection{Interpretación:}\label{interpretaciuxf3n}}
+
+\begin{itemize}
+\tightlist
+\item
+  **Exponente de Lyapunov \$ \lambda\_1 \$ (Azul):** Este exponente
+  muestra una serie de valores positivos alrededor de 2.5 a 3.0, lo que
+  indica que el sistema es altamente caótico.
+\item
+  **Exponente de Lyapunov \$ \lambda\_2 \$ (Naranja):** Este exponente
+  se mantiene en torno a 1.5, lo que sugiere una dinámica caótica
+  adicional en otra dirección.
+\item
+  **Exponente de Lyapunov \$ \lambda\_3 \$ (Verde):** Este exponente
+  está alrededor de 1.0, lo cual es consistente con la presencia de caos
+  en múltiples dimensiones en el sistema.
+\end{itemize}
+
+    \hypertarget{dimensiuxf3n-de-kaplan-yorke}{%
+\subsubsection{Dimensión de
+Kaplan-Yorke}\label{dimensiuxf3n-de-kaplan-yorke}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{averages} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{exponents}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{averages} \PY{o}{=} \PY{n}{averages}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{kaplan\PYZus{}yorke\PYZus{}dimension} \PY{o}{=} \PY{n}{calcular\PYZus{}dimension\PYZus{}kaplan\PYZus{}yorke}\PY{p}{(}\PY{n}{averages}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Dimensión de Kaplan\PYZhy{}Yorke:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{kaplan\PYZus{}yorke\PYZus{}dimension}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Dimensión de Kaplan-Yorke: [98.]
+    \end{Verbatim}
+
+    \hypertarget{interpretaciuxf3n}{%
+\paragraph{Interpretación:}\label{interpretaciuxf3n}}
+
+\begin{itemize}
+\tightlist
+\item
+  La dimensión de Kaplan-Yorke calculada es \textbf{98.0}. Este valor es
+  bastante alto y sugiere que el sistema tiene un comportamiento
+  complejo y un atractor de alta dimensión.
+\end{itemize}
+
+    \hypertarget{dimensiuxf3n-grassberger-procaccia}{%
+\subsubsection{Dimensión
+Grassberger-Procaccia}\label{dimensiuxf3n-grassberger-procaccia}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{14}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{m} \PY{o}{=} \PY{l+m+mi}{10}
+\PY{n}{tau} \PY{o}{=} \PY{l+m+mi}{1}
+\PY{n}{r\PYZus{}vals} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{logspace}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{)} 
+\PY{n}{dimension\PYZus{}gp} \PY{o}{=} \PY{n}{calcular\PYZus{}dimension\PYZus{}gp\PYZus{}multivariado}\PY{p}{(}\PY{p}{[}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{]}\PY{p}{,} \PY{n}{m}\PY{p}{,} \PY{n}{tau}\PY{p}{,} \PY{n}{r\PYZus{}vals}\PY{p}{,} \PY{n}{n\PYZus{}jobs}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{La dimensión de Grassberger\PYZhy{}Procaccia es:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{dimension\PYZus{}gp}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+La dimensión de Grassberger-Procaccia es: 1.2674972467934673
+    \end{Verbatim}
+
+    \hypertarget{interpretaciuxf3n}{%
+\paragraph{Interpretación:}\label{interpretaciuxf3n}}
+
+\begin{itemize}
+\tightlist
+\item
+  La dimensión de Grassberger-Procaccia calculada es
+  \textbf{1.2674972467934673}. Este valor sugiere que el atractor del
+  sistema tiene una dimensión fractal baja, esto puede indicar que el
+  atractor tiene una estructura fractal compleja pero en una dimensión
+  efectiva más baja.
+\end{itemize}
+
+    \hypertarget{atractor-de-lorentz}{%
+\subsubsection{Atractor de Lorentz}\label{atractor-de-lorentz}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{valores\PYZus{}x} \PY{o}{=} \PY{n}{leer\PYZus{}col\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{datosLorentz.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Valores x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{valores\PYZus{}y} \PY{o}{=} \PY{n}{leer\PYZus{}col\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{datosLorentz.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Valores y}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{valores\PYZus{}z} \PY{o}{=} \PY{n}{leer\PYZus{}col\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{datosLorentz.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Valores z}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{valores\PYZus{}k} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{)}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{graficar\PYZus{}3d}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{n}{valores\PYZus{}y}\PY{p}{,} \PY{n}{valores\PYZus{}z}\PY{p}{,} \PY{n}{titulo}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Atractor de Lorentz}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    
+    
+    \hypertarget{probabiluxedstico}{%
+\subsection{Probabilístico}\label{probabiluxedstico}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{lorentz} \PY{o}{=} \PY{n}{DistribucionProbabilidad}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{n}{valores\PYZus{}y}\PY{p}{,} \PY{n}{valores\PYZus{}z}\PY{p}{)}
+\PY{n}{lorentz}\PY{o}{.}\PY{n}{mostrar\PYZus{}metricas}\PY{p}{(}\PY{p}{)}
+\PY{n}{plotear\PYZus{}hist}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Histograma de Lorentz X}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Valor}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Frecuencia}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sturges}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plotear\PYZus{}hist}\PY{p}{(}\PY{n}{valores\PYZus{}y}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Histograma de Lorentz Y}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Valor}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Frecuencia}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sturges}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plotear\PYZus{}hist}\PY{p}{(}\PY{n}{valores\PYZus{}z}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Histograma de Lorentz Z}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Valor}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Frecuencia}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sturges}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{graficar}\PY{p}{(}\PY{n}{valores\PYZus{}x}\PY{p}{,} \PY{n}{valores\PYZus{}k}\PY{p}{,} \PY{n}{width}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{height}\PY{o}{=}\PY{l+m+mi}{7} \PY{p}{,}\PY{n}{titulo}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Variable X vs k}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{graficar}\PY{p}{(}\PY{n}{valores\PYZus{}y}\PY{p}{,} \PY{n}{valores\PYZus{}k}\PY{p}{,} \PY{n}{width}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{height}\PY{o}{=}\PY{l+m+mi}{7} \PY{p}{,}\PY{n}{titulo}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Variable Y vs k}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{graficar}\PY{p}{(}\PY{n}{valores\PYZus{}z}\PY{p}{,} \PY{n}{valores\PYZus{}k}\PY{p}{,} \PY{n}{width}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{height}\PY{o}{=}\PY{l+m+mi}{7} \PY{p}{,}\PY{n}{titulo}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Variable Z vs k}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+--- Métricas para Variable 1 ---
+Media: -0.8837743511144559
+Mediana: -1.2706424157711937
+Moda: -18.81364430507488
+Media Geométrica: nan
+Rango: 38.56871649435135
+Desviación Estándar: 7.964705996176799
+Varianza: 63.436541605534664
+Asimetría: 0.2116758898459656
+Curtosis: -0.7767563835465703
+Entropia: 11.512925464970223
+Coeficiente de Variación: -9.01214884334803
+
+--- Métricas para Variable 2 ---
+Media: -0.8926042312278303
+Mediana: -1.1269238369230985
+Moda: -25.60801161362229
+Media Geométrica: nan
+Rango: 53.02582318365201
+Desviación Estándar: 8.981911993104438
+Varianza: 80.67474305187335
+Asimetría: 0.21541672236583292
+Curtosis: -0.2165588403431289
+Entropia: 11.512925464970223
+Coeficiente de Variación: -10.06259177233485
+
+--- Métricas para Variable 3 ---
+Media: 23.943247724589817
+Mediana: 23.718936504537208
+Moda: 0.8609231341947348
+Media Geométrica: 22.237786636601825
+Rango: 47.54539290506558
+Desviación Estándar: 8.350685729826283
+Varianza: 69.73395215832431
+Asimetría: 0.07697925163258434
+Curtosis: -0.6133079795441914
+Entropia: 11.512925464970223
+Coeficiente de Variación: 0.3487699674614356
+
+Matriz de Correlación:
+[[ 1.          0.88597276 -0.03967717]
+ [ 0.88597276  1.         -0.03792969]
+ [-0.03967717 -0.03792969  1.        ]]
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/home/rodrigo/.local/lib/python3.10/site-packages/scipy/stats/\_stats\_py.py:197:
+RuntimeWarning:
+
+invalid value encountered in log
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_115_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_115_3.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_115_4.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_115_5.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_115_6.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_115_7.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_115_8.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{anuxe1lisis-de-muxe9tricas-estaduxedsticas-para-el-modelo-del-atractor-de-lorenz}{%
+\subsection{Análisis de Métricas Estadísticas para el Modelo del
+Atractor de
+Lorenz}\label{anuxe1lisis-de-muxe9tricas-estaduxedsticas-para-el-modelo-del-atractor-de-lorenz}}
+
+\hypertarget{anuxe1lisis-de-muxe9tricas-estaduxedsticas}{%
+\subsubsection{Análisis de Métricas
+Estadísticas}\label{anuxe1lisis-de-muxe9tricas-estaduxedsticas}}
+
+\begin{itemize}
+\item
+  \textbf{Rango}: Los rangos muy amplios para todas las variables
+  (Variable X: 38.57, Variable Y: 53.03, Variable Z: 47.55) indican que
+  cada variable explora extensivamente su espacio de estado. Esto
+  subraya la gran variabilidad y la capacidad del sistema para transitar
+  por estados muy distintos, lo cual es característico de la dinámica
+  caótica.
+\item
+  \textbf{Desviación Estándar y Varianza}: Altas en todas las variables
+  (Variable X: Desviación Estándar de 7.98, Varianza de 63.72; Variable
+  Y: Desviación Estándar de 9.03, Varianza de 81.57), reflejan una
+  considerable dispersión de los datos y subrayan la alta variabilidad y
+  la naturaleza impredecible del sistema.
+\item
+  \textbf{Curtosis y Asimetría}: La curtosis ligeramente negativa en
+  todas las variables indica una distribución más plana que la normal,
+  lo que sugiere un perfil de distribución con colas pesadas. La
+  asimetría cercana a cero sugiere una simetría relativa en la
+  distribución de los valores alrededor de la media.
+\end{itemize}
+
+\hypertarget{anuxe1lisis-de-correlaciuxf3n-y-gruxe1fica-de-dispersiuxf3n}{%
+\subsubsection{Análisis de Correlación y Gráfica de
+Dispersión}\label{anuxe1lisis-de-correlaciuxf3n-y-gruxe1fica-de-dispersiuxf3n}}
+
+\begin{itemize}
+\item
+  \textbf{Matriz de Correlación}: La correlación notablemente alta entre
+  las variables X y Y (0.883) sugiere una fuerte relación lineal entre
+  estas dimensiones del sistema, lo cual es interesante dado que el
+  atractor de Lorenz tiende a mostrar una estructura de alas de mariposa
+  simétrica que podría explicar esta correlación. Las correlaciones
+  cercanas a cero con la Variable Z indican que esta dimensión opera más
+  independientemente, lo cual es característico de sistemas con
+  dinámicas multidimensionales complejas.
+\item
+  \textbf{Gráfica de Dispersión}: Las visualizaciones muestran claros
+  patrones de atractor extraño con estructuras en forma de mariposa y
+  anillos concéntricos que son típicos del atractor de Lorenz. Estos
+  patrones son indicativos de la dinámica no lineal y recurrente del
+  sistema y proporcionan una confirmación visual de la naturaleza
+  caótica y compleja del atractor.
+\end{itemize}
+
+\hypertarget{conclusiuxf3n}{%
+\subsubsection{Conclusión}\label{conclusiuxf3n}}
+
+Las métricas y las visualizaciones para el atractor de Lorenz ilustran
+un sistema con una variabilidad extremadamente alta y relaciones
+complejas entre sus variables. Los amplios rangos y las altas
+desviaciones estándar, junto con las visualizaciones que muestran
+patrones distintivos de atractores extraños, confirman la naturaleza
+dinámica y caótica del sistema. Este análisis destaca cómo el atractor
+de Lorenz continúa siendo un ejemplo fascinante de caos determinista en
+sistemas dinámicos.
+
+    \hypertarget{cauxf3tico}{%
+\subsection{Caótico}\label{cauxf3tico}}
+
+    \hypertarget{exponentes-de-laypounov}{%
+\subsubsection{Exponentes de Laypounov}\label{exponentes-de-laypounov}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{leer\PYZus{}datos\PYZus{}lorenz}\PY{p}{(}\PY{n}{csv\PYZus{}path}\PY{p}{)}\PY{p}{:}
+    \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n}{csv\PYZus{}path}\PY{p}{)}
+    \PY{k}{return} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Valores x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Valores y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Valores z}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}
+
+\PY{k}{def} \PY{n+nf}{jacobian\PYZus{}lorenz}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{,} \PY{n}{sigma}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{rho}\PY{o}{=}\PY{l+m+mi}{28}\PY{p}{,} \PY{n}{beta}\PY{o}{=}\PY{l+m+mi}{8}\PY{o}{/}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{:}
+    \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}
+        \PY{p}{[}\PY{o}{\PYZhy{}}\PY{n}{sigma}\PY{p}{,} \PY{n}{sigma}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}
+        \PY{p}{[}\PY{n}{rho} \PY{o}{\PYZhy{}} \PY{n}{z}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{x}\PY{p}{]}\PY{p}{,}
+        \PY{p}{[}\PY{n}{y}\PY{p}{,} \PY{n}{x}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{beta}\PY{p}{]}
+    \PY{p}{]}\PY{p}{)}
+
+\PY{k}{def} \PY{n+nf}{calculate\PYZus{}lyapunov\PYZus{}exponents\PYZus{}lorenz}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{,} \PY{n}{sigma}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{rho}\PY{o}{=}\PY{l+m+mi}{28}\PY{p}{,} \PY{n}{beta}\PY{o}{=}\PY{l+m+mi}{8}\PY{o}{/}\PY{l+m+mi}{3}\PY{p}{,} \PY{n}{window\PYZus{}size}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{:}
+    \PY{n}{n} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+    \PY{n}{perturbations} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{eye}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}
+    \PY{n}{lyapunov\PYZus{}exponents} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{n} \PY{o}{\PYZhy{}} \PY{n}{window\PYZus{}size}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+    
+    \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{window\PYZus{}size}\PY{p}{,} \PY{n}{n}\PY{p}{)}\PY{p}{:}
+        \PY{n}{J} \PY{o}{=} \PY{n}{jacobian\PYZus{}lorenz}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{y}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{z}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{sigma}\PY{p}{,} \PY{n}{rho}\PY{p}{,} \PY{n}{beta}\PY{p}{)}
+        
+        \PY{n}{perturbations} \PY{o}{=} \PY{n}{J} \PY{o}{@} \PY{n}{perturbations}
+        
+        \PY{k}{if} \PY{n}{i} \PY{o}{\PYZpc{}} \PY{n}{window\PYZus{}size} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+            \PY{n}{Q}\PY{p}{,} \PY{n}{R} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{qr}\PY{p}{(}\PY{n}{perturbations}\PY{p}{)}
+            \PY{n}{perturbations} \PY{o}{=} \PY{n}{Q}
+            \PY{n}{lyapunov\PYZus{}exponents}\PY{p}{[}\PY{n}{i} \PY{o}{\PYZhy{}} \PY{n}{window\PYZus{}size}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{abs}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{diag}\PY{p}{(}\PY{n}{R}\PY{p}{)}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{n}{window\PYZus{}size}
+    
+    \PY{k}{return} \PY{n}{lyapunov\PYZus{}exponents}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{csv\PYZus{}path} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{datosLorentz.csv}\PY{l+s+s2}{\PYZdq{}}
+\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z} \PY{o}{=} \PY{n}{leer\PYZus{}datos\PYZus{}lorenz}\PY{p}{(}\PY{n}{csv\PYZus{}path}\PY{p}{)}
+\PY{n}{exponents} \PY{o}{=} \PY{n}{calculate\PYZus{}lyapunov\PYZus{}exponents\PYZus{}lorenz}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{)}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{exponents}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Exponente de Lyapunov \PYZdl{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{lambda\PYZus{}1\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{exponents}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Exponente de Lyapunov \PYZdl{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{lambda\PYZus{}2\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{exponents}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Exponente de Lyapunov \PYZdl{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{lambda\PYZus{}3\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tiempo (en ventanas de }\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{window\PYZus{}size}\PY{p}{)} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Valor del Exponente de Lyapunov}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Espectro de Exponentes de Lyapunov del Atractor de Lorenz}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/tmp/ipykernel\_17541/2811961212.py:25: RuntimeWarning:
+
+divide by zero encountered in log
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{analisisCaos2_files/analisisCaos2_120_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{interpretaciuxf3n}{%
+\paragraph{Interpretación:}\label{interpretaciuxf3n}}
+
+\begin{itemize}
+\tightlist
+\item
+  **Exponente de Lyapunov \$ \lambda\_1 \$ (Azul):** Este exponente
+  muestra una serie de valores positivos alrededor de 2.5 a 3.0, lo que
+  indica que el sistema es altamente caótico.
+\item
+  **Exponente de Lyapunov \$ \lambda\_2 \$ (Naranja):** Este exponente
+  se mantiene alrededor de 1.5, lo que sugiere una dinámica caótica
+  adicional en otra dirección.
+\item
+  **Exponente de Lyapunov \$ \lambda\_3 \$ (Verde):** Este exponente se
+  mantiene en torno a 1.0, lo cual es consistente con la presencia de
+  caos en múltiples dimensiones en el sistema.
+\end{itemize}
+
+    \hypertarget{dimensiuxf3n-de-kaplan-yorke}{%
+\subsubsection{Dimensión de
+Kaplan-Yorke}\label{dimensiuxf3n-de-kaplan-yorke}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{averages} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{exponents}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{averages} \PY{o}{=} \PY{n}{averages}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{kaplan\PYZus{}yorke\PYZus{}dimension} \PY{o}{=} \PY{n}{calcular\PYZus{}dimension\PYZus{}kaplan\PYZus{}yorke}\PY{p}{(}\PY{n}{averages}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Dimensión de Kaplan\PYZhy{}Yorke:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{kaplan\PYZus{}yorke\PYZus{}dimension}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Dimensión de Kaplan-Yorke: [1098.]
+    \end{Verbatim}
+
+    \hypertarget{interpretaciuxf3n}{%
+\subsubsection{Interpretación:}\label{interpretaciuxf3n}}
+
+\begin{itemize}
+\tightlist
+\item
+  La dimensión de Kaplan-Yorke calculada es \textbf{1098.0}. Este valor
+  es bastante alto y sugiere que el sistema tiene un comportamiento
+  complejo y un atractor de alta dimensión.
+\end{itemize}
+
+    \hypertarget{dimensiuxf3n-grassberger-procaccia}{%
+\subsubsection{Dimensión
+Grassberger-Procaccia}\label{dimensiuxf3n-grassberger-procaccia}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{15}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{m} \PY{o}{=} \PY{l+m+mi}{10}
+\PY{n}{tau} \PY{o}{=} \PY{l+m+mi}{1}
+\PY{n}{r\PYZus{}vals} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{logspace}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{)} 
+\PY{n}{dimension\PYZus{}gp} \PY{o}{=} \PY{n}{calcular\PYZus{}dimension\PYZus{}gp\PYZus{}multivariado}\PY{p}{(}\PY{p}{[}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{]}\PY{p}{,} \PY{n}{m}\PY{p}{,} \PY{n}{tau}\PY{p}{,} \PY{n}{r\PYZus{}vals}\PY{p}{,} \PY{n}{n\PYZus{}jobs}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{La dimensión de Grassberger\PYZhy{}Procaccia es:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{dimension\PYZus{}gp}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+La dimensión de Grassberger-Procaccia es: 2.648790926345455
+    \end{Verbatim}
+
+    \hypertarget{interpretaciuxf3n}{%
+\paragraph{Interpretación:}\label{interpretaciuxf3n}}
+
+\begin{itemize}
+\tightlist
+\item
+  La dimensión de Grassberger-Procaccia calculada es
+  \textbf{2.648790926345455}. Este valor sugiere que el atractor del
+  sistema tiene una dimensión fractal intermedia, lo cual puede indicar
+  un comportamiento caótico complejo pero en una dimensión razonable
+  para sistemas caóticos típicos.
+\end{itemize}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+\end{document}
